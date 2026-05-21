@@ -60,7 +60,17 @@
             color: var(--rose);
             display: block;
             margin-bottom: 16px;
-            font-weight: 500;
+            font-weight: 600;
+        }
+
+        .card .tag {
+            color: var(--branco);
+            text-shadow: 0 1px 4px rgba(0,0,0,0.5);
+            background-color: rgba(214, 179, 170, 0.8);
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 2px;
+            margin-bottom: 20px;
         }
 
         .container {
@@ -335,7 +345,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(to bottom, rgba(26,26,26,0) 0%, rgba(26,26,26,0.88) 100%);
+            background: linear-gradient(to bottom, rgba(0,0,0,0.2) 0%, rgba(26,26,26,0.5) 40%, rgba(26,26,26,0.95) 100%);
             transition: all 0.4s ease;
             z-index: 1;
         }
@@ -350,24 +360,29 @@
         }
 
         .card:hover .card-overlay {
-            background: linear-gradient(to bottom, rgba(26,26,26,0) 0%, rgba(26,26,26,0.65) 100%);
+            background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(26,26,26,0.4) 40%, rgba(26,26,26,0.85) 100%);
         }
 
         .card h3 {
-            font-size: 28px;
+            font-size: 32px;
             color: var(--branco);
             margin-bottom: 12px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
         }
 
         .card p {
-            font-size: 15px;
-            color: #C8C8C4;
+            font-size: 16px;
+            color: #E0E0E0;
             margin-bottom: 24px;
             line-height: 1.6;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.3);
         }
 
         .card .btn-ghost-white {
-            padding: 12px 24px;
+            padding: 14px 28px;
+            font-weight: 600;
+            backdrop-filter: blur(4px);
+            background-color: rgba(255, 255, 255, 0.05);
         }
 
         /* SOBRE */
@@ -780,7 +795,7 @@
                 <h1>Direito do Trabalho com estratégia, clareza e comprometimento.</h1>
                 <p class="hero-subtitle">Seja você um trabalhador que teve seus direitos violados ou uma empresa que precisa de segurança jurídica — aqui você encontra assessoria trabalhista especializada, com atuação em todo o Brasil.</p>
                 <a href="#sobre" class="btn btn-primary">→ Conheça a Katarina</a>
-                <span class="hero-support-text">OAB/SP nº 123456 · Atendimento em todo o Brasil</span>
+                <span class="hero-support-text">OAB/SP nº 338.901 · Atendimento em todo o Brasil</span>
             </div>
             <div class="hero-image fade-in" style="transition-delay: 0.2s;">
                 <!-- Placeholder para foto da Katarina (sem fundo, tons quentes) -->
@@ -800,7 +815,7 @@
                 <a href=" trabalhista para empresas.html" class="card card-empresas fade-in">
                     <div class="card-overlay"></div>
                     <div class="card-content">
-                        <span class="tag" style="color: var(--rose);">Para Empresas</span>
+                        <span class="tag">Para Empresas</span>
                         <h3>Assessoria Trabalhista Empresarial</h3>
                         <p>Proteja seu negócio, reduza passivos e tome decisões com segurança jurídica.</p>
                         <span class="btn btn-ghost-white">→ Sou empresa</span>
@@ -811,7 +826,7 @@
                 <a href="#atuacao-trabalhadores" class="card card-trabalhadores fade-in" style="transition-delay: 0.2s;">
                     <div class="card-overlay"></div>
                     <div class="card-content">
-                        <span class="tag" style="color: var(--rose);">Para Trabalhadores</span>
+                        <span class="tag">Para Trabalhadores</span>
                         <h3>Defesa dos Seus Direitos Trabalhistas</h3>
                         <p>Seus direitos foram violados? Atuo para garantir o que você trabalhou para conquistar.</p>
                         <span class="btn btn-ghost-white">→ Sou trabalhador</span>
@@ -831,7 +846,7 @@
             <div class="sobre-content fade-in" style="transition-delay: 0.2s;">
                 <span class="tag">Quem é ela</span>
                 <h2>Katarina Malinauskas</h2>
-                <span class="sobre-sub">Advogada Trabalhista · OAB/SP nº 123456</span>
+                <span class="sobre-sub">Advogada Trabalhista · OAB/SP nº 338.901</span>
                 
                 <div class="sobre-text-block">
                     <p>Sou advogada especialista em Direito do Trabalho, com atuação em dois lados da mesma balança: ao lado das empresas que precisam crescer com segurança jurídica, e ao lado dos trabalhadores que precisam que alguém esteja genuinamente no seu canto.</p>
@@ -938,7 +953,7 @@
                 </div>
                 
                 <div class="cta-info">
-                    São Paulo, SP · OAB/SP nº 123456 · @katarinamalinauskas
+                    São Paulo, SP · OAB/SP nº 338.901 · @katarinamalinauskas
                 </div>
             </div>
         </div>
@@ -969,7 +984,7 @@
             </div>
             
             <div class="rodape-bottom">
-                &copy; 2024 Katarina Malinauskas · OAB/SP nº 123456 · Este site tem caráter informativo e não constitui consulta jurídica.
+                &copy; 2024 Katarina Malinauskas · OAB/SP nº 338.901 · Este site tem caráter informativo e não constitui consulta jurídica.
             </div>
         </div>
     </footer>
