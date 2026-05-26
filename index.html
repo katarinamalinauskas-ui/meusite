@@ -1,1052 +1,449 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Katarina Malinauskas | Advogada Trabalhista</title>
     <meta name="description" content="Direito do Trabalho com estratégia, clareza e comprometimento.">
-    
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-    
-    <!-- Phosphor Icons -->
-    <script src="https://unpkg.com/@phosphor-icons/web"></script>
-
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        rose: '#D6B3AA',
+                        'rose-hover': '#C5A198',
+                        'rose-light': '#F5EFED',
+                        dark: '#111111',
+                        'dark-2': '#1A1A1A',
+                        surface: '#F7F5F2',
+                        'surface-2': '#EFEDE9',
+                        'text-p': '#1A1A1A',
+                        'text-s': '#6B6B65',
+                        'text-m': '#9A9A94',
+                    },
+                    fontFamily: {
+                        serif: ['"Cormorant Garamond"', 'serif'],
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
     <style>
-        :root {
-            --branco: #FFFFFF;
-            --cinza-claro: #F7F5F3;
-            --cinza-escuro: #1A1A1A;
-            --cinza-medio: #8A8A85;
-            --rose: #D6B3AA;
-            
-            --font-serif: 'Cormorant Garamond', serif;
-            --font-sans: 'Inter', sans-serif;
-            
-            --max-width: 1100px;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: var(--font-sans);
-            color: var(--cinza-escuro);
-            background-color: var(--branco);
-            line-height: 1.6;
-            -webkit-font-smoothing: antialiased;
-            overflow-x: hidden;
-        }
-
-        h1, h2, h3, h4, h5, h6 {
-            font-family: var(--font-serif);
-            font-weight: 500;
-        }
-
-        .tag {
-            font-family: var(--font-sans);
-            font-size: 11px;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            color: var(--rose);
-            display: block;
-            margin-bottom: 16px;
-            font-weight: 600;
-        }
-
-        .card .tag {
-            color: var(--branco);
-            text-shadow: 0 1px 4px rgba(0,0,0,0.5);
-            background-color: rgba(214, 179, 170, 0.8);
-            display: inline-block;
-            padding: 4px 12px;
-            border-radius: 2px;
-            margin-bottom: 20px;
-        }
-
-        .container {
-            width: 100%;
-            max-width: var(--max-width);
-            margin: 0 auto;
-            padding: 0 24px;
-        }
-
-        /* Botões */
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            font-family: var(--font-sans);
-            font-size: 15px;
-            font-weight: 500;
-            text-decoration: none;
-            padding: 16px 40px;
-            border-radius: 4px;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            border: none;
-        }
-
-        .btn-primary {
-            background-color: var(--rose);
-            color: var(--branco);
-        }
-
-        .btn-primary:hover {
-            opacity: 0.9;
-        }
-
-        .btn-ghost {
-            background-color: transparent;
-            border: 1px solid var(--rose);
-            color: var(--rose);
-        }
-
-        .btn-ghost:hover {
-            background-color: var(--rose);
-            color: var(--branco);
-        }
-
-        .btn-ghost-white {
-            background-color: transparent;
-            border: 1px solid var(--branco);
-            color: var(--branco);
-        }
-
-        .btn-ghost-white:hover {
-            background-color: var(--rose);
-            border-color: var(--rose);
-            color: var(--branco);
-        }
-
-        /* Animações */
-        .fade-in {
+        /* Animations */
+        .fade-up {
             opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+            transform: translateY(36px);
+            transition: opacity .7s cubic-bezier(.16,1,.3,1), transform .7s cubic-bezier(.16,1,.3,1);
+        }
+        .fade-up.visible { opacity: 1; transform: translateY(0); }
+        .fade-in { opacity: 0; transition: opacity .9s ease; }
+        .fade-in.visible { opacity: 1; }
+
+        /* Rose accent line */
+        .r-line { width: 44px; height: 2px; background: linear-gradient(90deg, #D6B3AA, #E8C8BF); }
+
+        /* Hero subtle grid */
+        .hero-grid {
+            background-image:
+                linear-gradient(rgba(214,179,170,.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(214,179,170,.04) 1px, transparent 1px);
+            background-size: 64px 64px;
         }
 
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
+        /* Progress bar */
+        #pbar {
+            position: fixed; top: 0; left: 0; height: 2px;
+            background: linear-gradient(90deg, #D6B3AA, #E8C8BF);
+            z-index: 200; width: 0%; transition: width .08s linear;
         }
 
-        /* NAVBAR */
-        .navbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background-color: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            z-index: 1000;
-            padding: 20px 0;
-            border-bottom: 1px solid rgba(0,0,0,0.05);
-            transition: all 0.3s ease;
-        }
-
-        .navbar .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .nav-logo {
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 32px;
-            list-style: none;
-        }
-
-        .nav-links a {
-            font-family: var(--font-sans);
-            font-size: 15px;
-            color: var(--cinza-escuro);
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        .nav-links a:hover {
-            color: var(--rose);
-        }
-
-        .nav-btn {
-            background-color: var(--rose);
-            color: var(--branco);
-            padding: 12px 24px;
-            border-radius: 4px;
-            text-decoration: none;
-            font-size: 15px;
+        /* Buttons */
+        .btn-rose {
+            display: inline-block;
+            background: linear-gradient(135deg, #D6B3AA 0%, #C5A198 100%);
+            color: #fff;
+            border-radius: 3px;
+            font-family: 'Inter', sans-serif;
             font-weight: 500;
-            transition: opacity 0.3s;
+            transition: box-shadow .3s ease, transform .2s ease;
+            box-shadow: 0 4px 18px rgba(214,179,170,.3);
         }
+        .btn-rose:hover { box-shadow: 0 6px 28px rgba(214,179,170,.5); transform: translateY(-1px); }
 
-        .nav-btn:hover {
-            opacity: 0.9;
+        .btn-outline {
+            display: inline-block;
+            border: 1px solid #D6B3AA;
+            color: #D6B3AA;
+            border-radius: 3px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            transition: all .3s ease;
         }
+        .btn-outline:hover { background: #D6B3AA; color: #fff; }
 
-        /* MENU MOBILE */
-        .menu-toggle {
-            display: none;
-            background: none;
-            border: none;
-            font-size: 24px;
-            color: var(--cinza-escuro);
-            cursor: pointer;
-        }
-
-        /* HERO */
-        .hero {
-            height: 100vh;
-            min-height: 700px;
-            background-color: var(--cinza-escuro);
-            display: flex;
-            align-items: center;
-            padding-top: 80px;
-        }
-
-        .hero .container {
-            display: flex;
-            align-items: center;
-            height: 100%;
-        }
-
-        .hero-content {
-            width: 55%;
-            padding-right: 40px;
-            z-index: 2;
-        }
-
-        .hero-image {
-            width: 45%;
-            height: 100%;
-            display: flex;
-            align-items: flex-end;
-            justify-content: center;
-            position: relative;
-        }
-
-        .hero-image img {
-            max-width: 100%;
-            max-height: 85vh;
-            object-fit: cover;
-            object-position: bottom;
-            border-radius: 8px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-            position: relative;
-            z-index: 2;
-        }
-
-        .hero-image::after {
-            content: '';
-            position: absolute;
-            bottom: 5%;
-            right: 5%;
-            width: 90%;
-            height: 85%;
-            background-color: var(--rose);
-            border-radius: 8px;
-            z-index: 1;
-            opacity: 0.15;
-            transform: translate(20px, 20px);
-        }
-
-        .hero-decorator {
-            width: 3px;
-            height: 48px;
-            background-color: var(--rose);
-            margin-bottom: 24px;
-        }
-
-        .hero h1 {
-            font-size: 54px;
-            color: var(--branco);
-            line-height: 1.15;
-            max-width: 540px;
-            margin-bottom: 24px;
-        }
-
-        .hero-subtitle {
-            font-size: 17px;
-            color: #A0A09A;
-            line-height: 1.8;
-            max-width: 480px;
-            margin-bottom: 40px;
-        }
-
-        .hero-support-text {
-            font-size: 12px;
-            color: #6A6A65;
-            margin-top: 16px;
-            display: block;
-        }
-
-        /* BIFURCAÇÃO */
-        .bifurcacao {
-            padding: 120px 0;
-            background-color: var(--branco);
-            text-align: center;
-        }
-
-        .bifurcacao h2 {
-            font-size: 42px;
-            color: var(--cinza-escuro);
-            margin-bottom: 64px;
-        }
-
-        .cards-wrapper {
-            display: flex;
-            gap: 24px;
-            justify-content: center;
-        }
-
-        .card {
-            width: 500px;
-            height: 420px;
-            position: relative;
-            text-align: left;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            padding: 48px;
-            text-decoration: none;
-            border: 2px solid transparent;
-            transition: all 0.4s ease;
-            background-size: cover;
-            background-position: center;
-        }
-
-        .card-empresas {
-            background-image: url('empresarial_card.png');
-        }
-
-        .card-trabalhadores {
-            background-image: url('novo_trabalhador_card.png');
-        }
-
-        .card-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.2) 0%, rgba(26,26,26,0.5) 40%, rgba(26,26,26,0.95) 100%);
-            transition: all 0.4s ease;
-            z-index: 1;
-        }
-
-        .card-content {
-            position: relative;
-            z-index: 2;
-        }
-
-        .card:hover {
-            border-color: var(--rose);
-        }
-
-        .card:hover .card-overlay {
-            background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(26,26,26,0.4) 40%, rgba(26,26,26,0.85) 100%);
-        }
-
-        .card h3 {
-            font-size: 32px;
-            color: var(--branco);
-            margin-bottom: 12px;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
-        }
-
-        .card p {
-            font-size: 16px;
-            color: #E0E0E0;
-            margin-bottom: 24px;
-            line-height: 1.6;
-            text-shadow: 0 1px 3px rgba(0,0,0,0.3);
-        }
-
-        .card .btn-ghost-white {
-            padding: 14px 28px;
-            font-weight: 600;
+        .btn-outline-white {
+            display: inline-block;
+            border: 1px solid rgba(255,255,255,.35);
+            color: #fff;
+            border-radius: 3px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            transition: all .3s ease;
             backdrop-filter: blur(4px);
-            background-color: rgba(255, 255, 255, 0.05);
         }
+        .btn-outline-white:hover { background: #D6B3AA; border-color: #D6B3AA; }
 
-        /* SOBRE */
-        .sobre {
-            background-color: var(--cinza-claro);
-            padding: 120px 0;
-        }
+        /* Navbar */
+        #nav { transition: background .4s ease, border-color .4s ease; }
+        #nav.solid { background: rgba(255,255,255,.97) !important; border-color: rgba(0,0,0,.06) !important; backdrop-filter: blur(14px); }
+        #nav.solid .nav-link { color: #4A4A45 !important; }
+        #nav.solid .nav-link:hover { color: #D6B3AA !important; }
+        #nav.solid .mob-icon { color: #1A1A1A !important; }
 
-        .sobre .container {
-            display: flex;
-            align-items: stretch;
-            gap: 64px;
-        }
+        /* Path cards */
+        .path-card { transition: transform .4s ease, box-shadow .4s ease; }
+        .path-card:hover { transform: translateY(-3px); box-shadow: 0 24px 48px rgba(0,0,0,.25); }
+        .path-card .card-img { transition: transform .7s cubic-bezier(.16,1,.3,1); }
+        .path-card:hover .card-img { transform: scale(1.05); }
 
-        .sobre-img {
-            width: 50%;
-        }
-
-        .sobre-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 8px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-        }
-
-        .sobre-content {
-            width: 50%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            padding: 24px 0;
-        }
-
-        .sobre h2 {
-            font-size: 46px;
-            color: var(--cinza-escuro);
-            margin-bottom: 8px;
-            line-height: 1.2;
-        }
-
-        .sobre-sub {
-            font-family: var(--font-sans);
-            font-size: 12px;
-            color: var(--cinza-medio);
-            letter-spacing: 1px;
-            margin-bottom: 40px;
-            display: block;
-        }
-
-        .sobre-text-block {
-            border-left: 1px solid var(--rose);
-            padding-left: 32px;
-            margin-bottom: 40px;
-        }
-
-        .sobre-text-block p {
-            font-size: 16px;
-            color: #5A5A55;
-            line-height: 1.9;
-            margin-bottom: 16px;
-        }
-
-        .sobre-text-block p:last-child {
-            margin-bottom: 0;
-        }
-
-        /* NÚMEROS */
-        .numeros {
-            padding: 100px 0;
-            background-color: var(--branco);
-            text-align: center;
-        }
-
-        .numeros-grid {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin: 48px 0;
-        }
-
-        .numero-item {
-            flex: 1;
-            padding: 0 24px;
-        }
-
-        .numero-valor {
-            font-family: var(--font-serif);
-            font-size: 58px;
-            color: var(--rose);
-            line-height: 1;
-            margin-bottom: 8px;
-        }
-
-        .numero-label {
-            font-size: 13px;
-            color: var(--cinza-medio);
-            line-height: 1.5;
-        }
-
-        .numero-separador {
-            width: 1px;
-            height: 80px;
-            background-color: rgba(214, 179, 170, 0.3); /* rosê 30% */
-        }
-
-        .numeros-apoio {
-            font-family: var(--font-serif);
-            font-style: italic;
-            font-size: 20px;
-            color: var(--cinza-medio);
-        }
-
-        /* FRASE DE AUTORIDADE */
-        .autoridade {
-            background-color: var(--cinza-escuro);
-            padding: 120px 0;
-            text-align: center;
-        }
-
-        .autoridade-content {
-            max-width: 740px;
-            margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .autoridade blockquote {
-            font-family: var(--font-serif);
-            font-style: italic;
-            font-size: 30px;
-            color: var(--branco);
-            line-height: 1.6;
-            margin-bottom: 24px;
-        }
-
-        .autoridade-autor {
-            font-size: 13px;
-            color: var(--rose);
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            margin-top: 24px;
-        }
-
-        .autoridade .btn {
-            margin-top: 48px;
-        }
-
-        /* ÁREAS DE ATUAÇÃO */
-        .atuacao {
-            background-color: var(--cinza-claro);
-            padding: 120px 0;
-        }
-
-        .atuacao h2 {
-            font-size: 40px;
-            color: var(--cinza-escuro);
-            text-align: center;
-            margin-bottom: 64px;
-        }
-
-        .atuacao-grid {
-            display: flex;
-            gap: 32px;
-            justify-content: center;
-        }
-
-        .atuacao-bloco {
-            background-color: var(--branco);
-            border-top: 2px solid var(--rose);
-            padding: 40px;
-            flex: 1;
-            max-width: 500px;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .atuacao-bloco h3 {
-            font-size: 26px;
-            color: var(--cinza-escuro);
-            margin-bottom: 32px;
-            margin-top: 8px;
-        }
-
-        .atuacao-lista {
-            list-style: none;
-            margin-bottom: 40px;
-            flex-grow: 1;
-        }
-
-        .atuacao-lista li {
+        /* Area list items */
+        .area-li {
+            padding: 14px 0;
+            border-bottom: 1px solid rgba(214,179,170,.12);
+            font-family: 'Inter', sans-serif;
             font-size: 15px;
             color: #5A5A55;
-            margin-bottom: 16px;
-            position: relative;
-            padding-left: 20px;
-        }
-
-        .atuacao-lista li::before {
-            content: '—';
-            color: var(--rose);
-            position: absolute;
-            left: 0;
-            top: 0;
-        }
-
-        .atuacao-bloco .btn {
-            align-self: flex-start;
-        }
-
-        /* CTA FINAL / CONTATO */
-        .cta {
-            background-color: var(--cinza-escuro);
-            padding: 120px 0;
-            text-align: center;
-        }
-
-        .cta-content {
-            max-width: 560px;
-            margin: 0 auto;
-        }
-
-        .cta h2 {
-            font-size: 44px;
-            color: var(--branco);
-            margin-bottom: 16px;
-            line-height: 1.2;
-        }
-
-        .cta p {
-            font-size: 16px;
-            color: #A0A09A;
-            margin-bottom: 48px;
-        }
-
-        .cta-botoes {
-            display: flex;
-            gap: 16px;
-            justify-content: center;
-            margin-bottom: 32px;
-        }
-
-        .cta-info {
-            font-size: 12px;
-            color: #6A6A65;
-            padding-top: 32px;
-            border-top: 1px solid rgba(255,255,255,0.05);
-        }
-
-        /* RODAPÉ */
-        .rodape {
-            background-color: #111111;
-            color: var(--branco);
-            padding: 64px 0 32px;
-            border-top: 1px solid var(--rose);
-        }
-
-        .rodape-grid {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 48px;
-        }
-
-        .rodape-logo strong {
-            font-family: var(--font-serif);
-            font-size: 20px;
-            font-weight: 600;
-            display: block;
-            margin-bottom: 4px;
-        }
-
-        .rodape-logo span {
-            font-size: 14px;
-            color: var(--cinza-medio);
-            font-style: italic;
-            font-family: var(--font-serif);
-        }
-
-        .rodape-links {
-            display: flex;
-            gap: 24px;
-        }
-
-        .rodape-links a {
-            color: var(--branco);
-            text-decoration: none;
-            font-size: 14px;
-            transition: color 0.3s;
-        }
-
-        .rodape-links a:hover {
-            color: var(--rose);
-        }
-
-        .rodape-contato {
-            display: flex;
-            gap: 24px;
-        }
-
-        .rodape-contato a {
-            color: var(--branco);
-            text-decoration: none;
-            font-size: 14px;
-            transition: color 0.3s;
-        }
-
-        .rodape-contato a:hover {
-            color: var(--rose);
-        }
-
-        .rodape-bottom {
-            text-align: center;
-            font-size: 11px;
-            color: #6A6A65;
-            padding-top: 32px;
-            border-top: 1px solid rgba(255,255,255,0.05);
-        }
-
-        /* WHATSAPP FLUTUANTE */
-        .fab-whatsapp {
-            position: fixed;
-            bottom: 32px;
-            right: 32px;
-            width: 60px;
-            height: 60px;
-            background-color: var(--rose);
-            color: var(--branco);
-            border-radius: 50%;
             display: flex;
             align-items: center;
-            justify-content: center;
-            font-size: 32px;
-            box-shadow: 0 4px 12px rgba(214, 179, 170, 0.4);
-            z-index: 1000;
-            transition: transform 0.3s, background-color 0.3s;
-            text-decoration: none;
+            gap: 12px;
+            transition: color .2s, padding-left .2s;
         }
-
-        .fab-whatsapp:hover {
-            transform: scale(1.05);
-            background-color: #C5A198;
-        }
-
-        /* RESPONSIVO */
-        @media (max-width: 992px) {
-            .hero-content { width: 50%; }
-            .hero-image { width: 50%; }
-            .hero h1 { font-size: 42px; }
-            
-            .bifurcacao .cards-wrapper { flex-direction: column; align-items: center; }
-            .card { width: 100%; max-width: 500px; }
-            
-            .sobre .container { flex-direction: column; }
-            .sobre-img { width: 100%; height: 420px; order: -1; }
-            .sobre-content { width: 100%; padding: 0; }
-            
-            .atuacao-grid { flex-direction: column; align-items: center; }
-            .atuacao-bloco { width: 100%; }
-            
-            .rodape-grid { flex-direction: column; gap: 32px; text-align: center; }
-        }
-
-        @media (max-width: 768px) {
-            .nav-links, .nav-btn { display: none; }
-            .menu-toggle { display: block; }
-            
-            .hero { padding-top: 100px; padding-bottom: 40px; min-height: auto; height: auto; }
-            .hero .container { flex-direction: column; text-align: center; gap: 40px; }
-            .hero-content { width: 100%; padding-right: 0; display: flex; flex-direction: column; align-items: center; margin-bottom: 0; }
-            .hero-image { width: 100%; height: 350px; display: block; }
-            .hero-image img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
-            
-            .numeros-grid { flex-direction: column; gap: 40px; }
-            .numero-separador { width: 80px; height: 1px; }
-            
-            .cta-botoes { flex-direction: column; }
-            .cta-botoes .btn { width: 100%; }
-            
-            .rodape-links, .rodape-contato { flex-direction: column; gap: 16px; }
-            
-            .fab-whatsapp { bottom: 24px; right: 24px; width: 54px; height: 54px; font-size: 28px; }
-        }
+        .area-li:last-child { border-bottom: none; }
+        .area-li:hover { color: #1A1A1A; padding-left: 4px; }
+        .area-dot { width: 5px; height: 5px; border-radius: 50%; background: #D6B3AA; flex-shrink: 0; }
     </style>
 </head>
-<body>
+<body class="bg-white text-text-p font-sans antialiased overflow-x-hidden selection:bg-rose selection:text-white">
 
-    <!-- NAVBAR -->
-    <nav class="navbar" id="navbar">
-        <div class="container">
-            <a href="#" class="nav-logo"><img src="logo-2.png" alt="Katarina Malinauskas Advocacia" style="max-height: 44px; width: auto; object-fit: contain;"></a>
-            <ul class="nav-links">
-                <li><a href="#inicio">Início</a></li>
-                <li><a href="#sobre">Sobre</a></li>
-                <li><a href="#atuacao">Atuação</a></li>
-                <li><a href="#contato">Contato</a></li>
-            </ul>
-            <a href="https://wa.me/5511999999999" target="_blank" class="nav-btn">Falar no WhatsApp</a>
-            <button class="menu-toggle"><i class="ph ph-list"></i></button>
+<div id="pbar"></div>
+
+<!-- NAV -->
+<nav id="nav" class="fixed w-full top-0 z-50 border-b border-transparent">
+    <div class="max-w-[1140px] mx-auto px-6 h-[70px] flex items-center justify-between">
+        <a href="#" class="flex-shrink-0">
+            <img src="logo-2.png" alt="Katarina Malinauskas Advocacia" class="h-10 w-auto object-contain">
+        </a>
+        <ul class="hidden md:flex items-center gap-7 list-none">
+            <li><a href="#inicio" class="nav-link font-sans text-[13px] text-white/65 hover:text-white transition-colors tracking-wide">Início</a></li>
+            <li><a href="#sobre" class="nav-link font-sans text-[13px] text-white/65 hover:text-white transition-colors tracking-wide">Sobre</a></li>
+            <li><a href="#atuacao" class="nav-link font-sans text-[13px] text-white/65 hover:text-white transition-colors tracking-wide">Atuação</a></li>
+            <li><a href="#contato" class="nav-link font-sans text-[13px] text-white/65 hover:text-white transition-colors tracking-wide">Contato</a></li>
+        </ul>
+        <a href="https://wa.me/5511933502503" target="_blank" class="hidden md:inline-block btn-rose px-6 py-2.5 text-[13px]">Falar no WhatsApp</a>
+        <button id="mob-toggle" class="mob-icon md:hidden text-white text-[26px] leading-none">☰</button>
+    </div>
+    <!-- Mobile menu -->
+    <div id="mob-menu" class="hidden md:hidden bg-dark-2 border-t border-white/5">
+        <div class="flex flex-col px-6 py-5 gap-4">
+            <a href="#inicio" class="font-sans text-[14px] text-white/70 py-1">Início</a>
+            <a href="#sobre" class="font-sans text-[14px] text-white/70 py-1">Sobre</a>
+            <a href="#atuacao" class="font-sans text-[14px] text-white/70 py-1">Atuação</a>
+            <a href="#contato" class="font-sans text-[14px] text-white/70 py-1">Contato</a>
+            <a href="https://wa.me/5511933502503" target="_blank" class="btn-rose px-6 py-3 text-[14px] text-center mt-2">Falar no WhatsApp</a>
         </div>
-    </nav>
+    </div>
+</nav>
 
-    <!-- HERO -->
-    <section id="inicio" class="hero">
-        <div class="container">
-            <div class="hero-content fade-in">
-                <div class="hero-decorator"></div>
-                <span class="tag">Advocacia Trabalhista</span>
-                <h1>Direito do Trabalho com estratégia, clareza e comprometimento.</h1>
-                <p class="hero-subtitle">Seja você um trabalhador que teve seus direitos violados ou uma empresa que precisa de segurança jurídica — aqui você encontra assessoria trabalhista especializada, com atuação em todo o Brasil.</p>
-                <a href="#sobre" class="btn btn-primary">→ Conheça a Katarina</a>
-                <span class="hero-support-text">OAB/SP nº 338.901 · Atendimento em todo o Brasil</span>
-            </div>
-            <div class="hero-image fade-in" style="transition-delay: 0.2s;">
-                <!-- Placeholder para foto da Katarina (sem fundo, tons quentes) -->
-                <img src="nova_foto_katarina.jpg" alt="Katarina Malinauskas">
-            </div>
-        </div>
-    </section>
+<!-- HERO -->
+<section id="inicio" class="relative bg-dark-2 min-h-screen flex items-center pt-[70px] hero-grid overflow-hidden">
+    <div class="absolute top-1/2 right-[30%] -translate-y-1/2 w-[600px] h-[600px] rounded-full pointer-events-none" style="background:radial-gradient(circle,rgba(214,179,170,.07) 0%,transparent 65%);"></div>
 
-    <!-- BIFURCAÇÃO -->
-    <section class="bifurcacao">
-        <div class="container">
-            <span class="tag fade-in" style="text-align: center; margin-bottom: 24px;">Para quem é essa página</span>
-            <h2 class="fade-in">Como posso te auxiliar hoje?</h2>
-            
-            <div class="cards-wrapper">
-                <!-- Card Empresas -->
-                <a href="empresarios.html" class="card card-empresas fade-in">
-                    <div class="card-overlay"></div>
-                    <div class="card-content">
-                        <span class="tag">Para Empresas</span>
-                        <h3>Assessoria Trabalhista Empresarial</h3>
-                        <p>Proteja seu negócio, reduza passivos e tome decisões com segurança jurídica.</p>
-                        <span class="btn btn-ghost-white">→ Sou empresa</span>
+    <div class="max-w-[1140px] mx-auto px-6 w-full relative z-10 py-16">
+        <div class="flex flex-col lg:flex-row items-center gap-14 lg:gap-0">
+
+            <!-- Text -->
+            <div class="w-full lg:w-[52%] fade-up">
+                <div class="r-line mb-8"></div>
+                <span class="font-sans text-[11px] uppercase tracking-[3px] text-rose font-semibold block mb-5">Advocacia Trabalhista</span>
+                <h1 class="font-serif text-[44px] md:text-[58px] text-white leading-[1.1] mb-8" style="max-width:560px;">
+                    Direito do Trabalho com estratégia, clareza e
+                    <em class="text-rose not-italic"> comprometimento.</em>
+                </h1>
+                <p class="font-sans text-[17px] text-white/60 leading-[1.85] mb-10" style="max-width:460px;">
+                    Seja você um trabalhador que teve seus direitos violados ou uma empresa que precisa de segurança jurídica — aqui você encontra assessoria trabalhista especializada, com atuação em todo o Brasil.
+                </p>
+                <div class="flex flex-col sm:flex-row items-start gap-4">
+                    <a href="#sobre" class="btn-rose px-9 py-4 text-[15px]">→ Conheça a Katarina</a>
+                    <a href="#atuacao" class="font-sans text-[14px] text-white/40 hover:text-white/70 transition-colors self-center underline underline-offset-4 decoration-white/15">Ver atuação</a>
+                </div>
+                <span class="font-sans text-[12px] text-white/22 mt-5 block">OAB/SP nº 338.901 · Atendimento em todo o Brasil</span>
+            </div>
+
+            <!-- Photo -->
+            <div class="w-full lg:w-[48%] flex justify-center lg:justify-end fade-in" style="transition-delay:.15s;">
+                <div class="relative w-full max-w-[400px] h-[480px] lg:h-[620px]">
+                    <div class="absolute -top-4 -right-4 w-full h-full border border-rose/20 rounded-sm z-0"></div>
+                    <div class="relative w-full h-full overflow-hidden rounded-sm z-10">
+                        <div class="absolute inset-0 bg-gradient-to-t from-dark-2 via-dark-2/10 to-transparent z-10"></div>
+                        <div class="absolute inset-0 bg-rose/10 mix-blend-overlay z-20"></div>
+                        <img src="nova_foto_katarina.jpg" alt="Katarina Malinauskas" class="w-full h-full object-cover object-top">
                     </div>
-                </a>
-
-                <!-- Card Trabalhadores -->
-                <a href="trabalhista-para-trabalhadores.html" class="card card-trabalhadores fade-in" style="transition-delay: 0.2s;">
-                    <div class="card-overlay"></div>
-                    <div class="card-content">
-                        <span class="tag">Para Trabalhadores</span>
-                        <h3>Defesa dos Seus Direitos Trabalhistas</h3>
-                        <p>Seus direitos foram violados? Atuo para garantir o que você trabalhou para conquistar.</p>
-                        <span class="btn btn-ghost-white">→ Sou trabalhador</span>
+                    <div class="absolute bottom-5 left-5 z-20 bg-dark/80 backdrop-blur-sm border border-white/10 px-5 py-3 rounded-sm">
+                        <p class="font-serif text-white text-[16px]">Katarina Malinauskas</p>
+                        <p class="font-sans text-[11px] text-rose/80 tracking-widest uppercase mt-0.5">OAB/SP nº 338.901</p>
                     </div>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- SOBRE KATARINA -->
-    <section id="sobre" class="sobre">
-        <div class="container">
-            <div class="sobre-img fade-in">
-                <!-- Placeholder foto Katarina (retrato P&B ou tons quentes) -->
-                <img src="foto-katarina-sobre.jpg" alt="Katarina Malinauskas">
-            </div>
-            <div class="sobre-content fade-in" style="transition-delay: 0.2s;">
-                <span class="tag">Quem é ela</span>
-                <h2>Katarina Malinauskas</h2>
-                <span class="sobre-sub">Advogada Trabalhista · OAB/SP nº 338.901</span>
-                
-                <div class="sobre-text-block">
-                    <p>Sou advogada especialista em Direito do Trabalho, com atuação em dois lados da mesma balança: ao lado das empresas que precisam crescer com segurança jurídica, e ao lado dos trabalhadores que precisam que alguém esteja genuinamente no seu canto.</p>
-                    <p>Acredito que o Direito do Trabalho, quando bem aplicado, protege pessoas e viabiliza negócios — ao mesmo tempo. Não são objetivos opostos. São dois lados de uma relação que funciona melhor quando há clareza, respeito e orientação jurídica de qualidade.</p>
-                    <p>Minha atuação é direta, estratégica e sem enrolação. Cada caso recebe atenção real — não respostas genéricas.</p>
-                </div>
-                
-                <a href="#atuacao" class="btn btn-ghost" style="align-self: flex-start;">→ Saiba mais sobre minha trajetória</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- NÚMEROS E CREDIBILIDADE -->
-    <section class="numeros">
-        <div class="container">
-            <span class="tag fade-in" style="text-align: center;">Em números</span>
-            
-            <div class="numeros-grid">
-                <div class="numero-item fade-in">
-                    <div class="numero-valor">10 anos</div>
-                    <div class="numero-label">de atuação em<br>Direito do Trabalho</div>
-                </div>
-                
-                <div class="numero-separador fade-in" style="transition-delay: 0.1s;"></div>
-                
-                <div class="numero-item fade-in" style="transition-delay: 0.2s;">
-                    <div class="numero-valor">+500 casos</div>
-                    <div class="numero-label">conduzidos para<br>empresas e trabalhadores</div>
-                </div>
-                
-                <div class="numero-separador fade-in" style="transition-delay: 0.3s;"></div>
-                
-                <div class="numero-item fade-in" style="transition-delay: 0.4s;">
-                    <div class="numero-valor">Brasil</div>
-                    <div class="numero-label">atendimento<br>presencial e remoto</div>
-                </div>
-            </div>
-            
-            <p class="numeros-apoio fade-in" style="transition-delay: 0.5s;">Cada número representa uma decisão tomada com mais segurança.</p>
-        </div>
-    </section>
-
-    <!-- FRASE DE AUTORIDADE -->
-    <section class="autoridade">
-        <div class="container">
-            <div class="autoridade-content fade-in">
-                <div class="hero-decorator" style="margin-bottom: 32px;"></div>
-                <blockquote>"Meu trabalho não é complicar o que já é difícil. É simplificar, orientar e garantir que você tome a melhor decisão — seja para proteger sua empresa ou para defender o que você tem direito."</blockquote>
-                <span class="autoridade-autor">— Katarina Malinauskas</span>
-                <a href="#contato" class="btn btn-primary">→ Quero falar com a Katarina</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- ÁREAS DE ATUAÇÃO -->
-    <section id="atuacao" class="atuacao">
-        <div class="container">
-            <span class="tag fade-in" style="text-align: center;">Atuação</span>
-            <h2 class="fade-in">Dois lados. A mesma dedicação.</h2>
-            
-            <div class="atuacao-grid">
-                <!-- Bloco Empresas -->
-                <div id="atuacao-empresas" class="atuacao-bloco fade-in">
-                    <span class="tag" style="margin-bottom: 16px; font-size: 11px; letter-spacing: 2px;">Para Empresas</span>
-                    <h3>Assessoria Trabalhista Empresarial</h3>
-                    <ul class="atuacao-lista">
-                        <li>Consultoria e Parceria com RH</li>
-                        <li>Compliance Trabalhista</li>
-                        <li>Relações Sindicais</li>
-                        <li>Gestão de Riscos e Contencioso</li>
-                        <li>Saúde e Segurança do Trabalho</li>
-                    </ul>
-                    <a href="empresarios.html" class="btn btn-ghost">→ Ver página completa</a>
-                </div>
-
-                <!-- Bloco Trabalhadores -->
-                <div id="atuacao-trabalhadores" class="atuacao-bloco fade-in" style="transition-delay: 0.2s;">
-                    <span class="tag" style="margin-bottom: 16px; font-size: 11px; letter-spacing: 2px;">Para Trabalhadores</span>
-                    <h3>Defesa dos Seus Direitos</h3>
-                    <ul class="atuacao-lista">
-                        <li>Verbas Rescisórias e Demissão Indevida</li>
-                        <li>Horas Extras e Banco de Horas</li>
-                        <li>Assédio Moral e Discriminação</li>
-                        <li>Acidente de Trabalho</li>
-                        <li>Reconhecimento de Vínculo Empregatício</li>
-                    </ul>
-                    <a href="trabalhista-para-trabalhadores.html" class="btn btn-ghost">→ Ver página completa</a>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
 
-    <!-- CTA FINAL / CONTATO -->
-    <section id="contato" class="cta">
-        <div class="container">
-            <div class="cta-content fade-in">
-                <span class="tag" style="text-align: center; margin-bottom: 24px;">Vamos conversar</span>
-                <h2>Tem uma dúvida? Está com um problema trabalhista?</h2>
-                <p>A primeira conversa é sem compromisso. Me conta o que está acontecendo.</p>
-                
-                <div class="cta-botoes">
-                    <a href="https://wa.me/5511999999999" target="_blank" class="btn btn-primary">→ Falar no WhatsApp</a>
-                    <a href="mailto:contato@katarinamalinauskas.com.br" class="btn btn-ghost-white">→ Enviar um e-mail</a>
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 fade-up" style="transition-delay:.4s;">
+        <span class="font-sans text-[10px] uppercase tracking-[2px] text-white/22">Rolar</span>
+        <div class="w-px h-8 bg-gradient-to-b from-white/22 to-transparent"></div>
+    </div>
+</section>
+
+<!-- BIFURCAÇÃO -->
+<section class="bg-dark py-[100px]">
+    <div class="max-w-[1140px] mx-auto px-6">
+        <div class="text-center mb-14 fade-up">
+            <div class="r-line mx-auto mb-6"></div>
+            <span class="font-sans text-[11px] uppercase tracking-[3px] text-rose font-semibold block mb-5">Para quem é essa página</span>
+            <h2 class="font-serif text-[38px] md:text-[46px] text-white leading-[1.15]">Como posso te auxiliar hoje?</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+            <!-- Empresas -->
+            <a href="empresarios.html" class="path-card group relative overflow-hidden block rounded-sm fade-up" style="height:420px;">
+                <img src="empresarial_card.png" alt="Para Empresas" class="card-img absolute inset-0 w-full h-full object-cover">
+                <div class="absolute inset-0 bg-gradient-to-t from-dark via-dark/55 to-dark/10"></div>
+                <div class="absolute inset-0 border border-transparent group-hover:border-rose/35 transition-colors duration-400 rounded-sm"></div>
+                <div class="absolute bottom-0 left-0 right-0 p-10">
+                    <span class="font-sans text-[10px] uppercase tracking-[3px] text-rose font-semibold block mb-4">Para Empresas</span>
+                    <h3 class="font-serif text-[30px] text-white mb-3 leading-[1.2]">Assessoria Trabalhista Empresarial</h3>
+                    <p class="font-sans text-[15px] text-white/60 leading-[1.65] mb-7">Proteja seu negócio, reduza passivos e tome decisões com segurança jurídica.</p>
+                    <span class="btn-outline-white px-6 py-3 text-[14px]">→ Sou empresa</span>
                 </div>
-                
-                <div class="cta-info">
-                    São Paulo, SP · OAB/SP nº 338.901 · @kmalinauskas
+            </a>
+
+            <!-- Trabalhadores -->
+            <a href="trabalhista-para-trabalhadores.html" class="path-card group relative overflow-hidden block rounded-sm fade-up" style="height:420px; transition-delay:.1s;">
+                <img src="novo_trabalhador_card.png" alt="Para Trabalhadores" class="card-img absolute inset-0 w-full h-full object-cover">
+                <div class="absolute inset-0 bg-gradient-to-t from-dark via-dark/55 to-dark/10"></div>
+                <div class="absolute inset-0 border border-transparent group-hover:border-rose/35 transition-colors duration-400 rounded-sm"></div>
+                <div class="absolute bottom-0 left-0 right-0 p-10">
+                    <span class="font-sans text-[10px] uppercase tracking-[3px] text-rose font-semibold block mb-4">Para Trabalhadores</span>
+                    <h3 class="font-serif text-[30px] text-white mb-3 leading-[1.2]">Defesa dos Seus Direitos Trabalhistas</h3>
+                    <p class="font-sans text-[15px] text-white/60 leading-[1.65] mb-7">Seus direitos foram violados? Atuo para garantir o que você trabalhou para conquistar.</p>
+                    <span class="btn-outline-white px-6 py-3 text-[14px]">→ Sou trabalhador</span>
+                </div>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- SOBRE -->
+<section id="sobre" class="bg-surface">
+    <div class="flex flex-col lg:flex-row min-h-[620px]">
+        <div class="w-full lg:w-1/2 h-[420px] lg:h-auto overflow-hidden fade-in">
+            <img src="foto-katarina-sobre.jpg" alt="Katarina Malinauskas" class="w-full h-full object-cover object-top scale-[1.02] hover:scale-[1.0] transition-transform duration-700">
+        </div>
+        <div class="w-full lg:w-1/2 flex items-center py-[72px] px-8 md:px-[72px] lg:px-[88px] fade-up">
+            <div>
+                <div class="r-line mb-8"></div>
+                <span class="font-sans text-[11px] uppercase tracking-[3px] text-rose font-semibold block mb-5">Quem é ela</span>
+                <h2 class="font-serif text-[40px] md:text-[48px] text-text-p leading-[1.1] mb-2">Katarina Malinauskas</h2>
+                <p class="font-sans text-[11px] text-text-m tracking-[1.5px] mb-8 uppercase">Advogada Trabalhista · OAB/SP nº 338.901</p>
+                <div class="border-l border-rose/40 pl-8 space-y-5 mb-10">
+                    <p class="font-sans text-[16px] text-[#4A4A45] leading-[1.9]">Sou advogada especialista em Direito do Trabalho, com atuação em dois lados da mesma balança: ao lado das empresas que precisam crescer com segurança jurídica, e ao lado dos trabalhadores que precisam que alguém esteja genuinamente no seu canto.</p>
+                    <p class="font-sans text-[16px] text-[#4A4A45] leading-[1.9]">Acredito que o Direito do Trabalho, quando bem aplicado, protege pessoas e viabiliza negócios — ao mesmo tempo. Não são objetivos opostos. São dois lados de uma relação que funciona melhor quando há clareza, respeito e orientação jurídica de qualidade.</p>
+                    <p class="font-sans text-[16px] text-[#4A4A45] leading-[1.9]">Minha atuação é direta, estratégica e sem enrolação. Cada caso recebe atenção real — não respostas genéricas.</p>
+                </div>
+                <a href="#atuacao" class="btn-outline px-8 py-4 text-[15px]">→ Saiba mais sobre minha trajetória</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- NÚMEROS -->
+<section class="py-[96px] bg-white">
+    <div class="max-w-[1100px] mx-auto px-6 fade-up">
+        <div class="text-center mb-14">
+            <div class="r-line mx-auto mb-6"></div>
+            <span class="font-sans text-[11px] uppercase tracking-[3px] text-rose font-semibold">Em números</span>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-px bg-surface-2">
+            <div class="bg-white p-10 md:p-14 text-center">
+                <p class="font-serif font-semibold text-rose text-[52px] leading-none mb-4">10 anos</p>
+                <p class="font-sans text-[13px] text-text-s leading-relaxed">de atuação em<br>Direito do Trabalho</p>
+            </div>
+            <div class="bg-white p-10 md:p-14 text-center">
+                <p class="font-serif font-semibold text-rose text-[52px] leading-none mb-4">+500 casos</p>
+                <p class="font-sans text-[13px] text-text-s leading-relaxed">conduzidos para<br>empresas e trabalhadores</p>
+            </div>
+            <div class="bg-white p-10 md:p-14 text-center">
+                <p class="font-serif font-semibold text-rose text-[52px] leading-none mb-4">Brasil</p>
+                <p class="font-sans text-[13px] text-text-s leading-relaxed">atendimento<br>presencial e remoto</p>
+            </div>
+        </div>
+
+        <p class="font-serif italic text-[20px] text-text-s text-center mt-12">Cada número representa uma decisão tomada com mais segurança.</p>
+    </div>
+</section>
+
+<!-- FRASE DE AUTORIDADE -->
+<section class="py-[100px] bg-dark-2">
+    <div class="max-w-[780px] mx-auto px-6 text-center fade-up">
+        <div class="r-line mx-auto mb-10"></div>
+        <blockquote class="font-serif italic text-[26px] md:text-[32px] text-white leading-[1.65] mb-8">
+            "Meu trabalho não é complicar o que já é difícil. É simplificar, orientar e garantir que você tome a melhor decisão — seja para proteger sua empresa ou para defender o que você tem direito."
+        </blockquote>
+        <span class="font-sans text-[12px] text-rose uppercase tracking-[2px]">— Katarina Malinauskas</span>
+        <div class="mt-12">
+            <a href="#contato" class="btn-rose inline-block px-9 py-4 text-[15px]">→ Quero falar com a Katarina</a>
+        </div>
+    </div>
+</section>
+
+<!-- ÁREAS DE ATUAÇÃO -->
+<section id="atuacao" class="py-[100px] bg-surface">
+    <div class="max-w-[1140px] mx-auto px-6">
+        <div class="text-center mb-16 fade-up">
+            <div class="r-line mx-auto mb-6"></div>
+            <span class="font-sans text-[11px] uppercase tracking-[3px] text-rose font-semibold block mb-4">Atuação</span>
+            <h2 class="font-serif text-[38px] md:text-[46px] text-text-p leading-[1.15]">Dois lados. A mesma dedicação.</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+            <!-- Empresas -->
+            <div id="atuacao-empresas" class="bg-white p-8 md:p-10 fade-up" style="border-top: 2px solid #D6B3AA;">
+                <span class="font-sans text-[10px] uppercase tracking-[2px] text-rose font-semibold block mb-4">Para Empresas</span>
+                <h3 class="font-serif text-[28px] text-text-p mb-8 leading-[1.2]">Assessoria Trabalhista Empresarial</h3>
+                <ul class="mb-10 list-none p-0">
+                    <li class="area-li"><span class="area-dot"></span>Consultoria e Parceria com RH</li>
+                    <li class="area-li"><span class="area-dot"></span>Compliance Trabalhista</li>
+                    <li class="area-li"><span class="area-dot"></span>Relações Sindicais</li>
+                    <li class="area-li"><span class="area-dot"></span>Gestão de Riscos e Contencioso</li>
+                    <li class="area-li"><span class="area-dot"></span>Saúde e Segurança do Trabalho</li>
+                </ul>
+                <a href="empresarios.html" class="btn-outline px-7 py-3.5 text-[14px]">→ Ver página completa</a>
+            </div>
+
+            <!-- Trabalhadores -->
+            <div id="atuacao-trabalhadores" class="bg-white p-8 md:p-10 fade-up" style="border-top: 2px solid #D6B3AA; transition-delay:.1s;">
+                <span class="font-sans text-[10px] uppercase tracking-[2px] text-rose font-semibold block mb-4">Para Trabalhadores</span>
+                <h3 class="font-serif text-[28px] text-text-p mb-8 leading-[1.2]">Defesa dos Seus Direitos</h3>
+                <ul class="mb-10 list-none p-0">
+                    <li class="area-li"><span class="area-dot"></span>Verbas Rescisórias e Demissão Indevida</li>
+                    <li class="area-li"><span class="area-dot"></span>Horas Extras e Banco de Horas</li>
+                    <li class="area-li"><span class="area-dot"></span>Assédio Moral e Discriminação</li>
+                    <li class="area-li"><span class="area-dot"></span>Acidente de Trabalho</li>
+                    <li class="area-li"><span class="area-dot"></span>Reconhecimento de Vínculo Empregatício</li>
+                </ul>
+                <a href="trabalhista-para-trabalhadores.html" class="btn-outline px-7 py-3.5 text-[14px]">→ Ver página completa</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA FINAL / CONTATO -->
+<section id="contato" class="py-[100px] bg-dark">
+    <div class="max-w-[620px] mx-auto px-6 text-center fade-up">
+        <div class="r-line mx-auto mb-8"></div>
+        <span class="font-sans text-[11px] uppercase tracking-[3px] text-rose font-semibold block mb-6">Vamos conversar</span>
+        <h2 class="font-serif text-[36px] md:text-[44px] text-white leading-[1.15] mb-5">Tem uma dúvida? Está com um problema trabalhista?</h2>
+        <p class="font-sans text-[16px] text-white/45 mb-12 leading-[1.85]">A primeira conversa é sem compromisso. Me conta o que está acontecendo.</p>
+
+        <div class="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+            <a href="https://wa.me/5511933502503" target="_blank" class="btn-rose px-9 py-4 text-[15px]">→ Falar no WhatsApp</a>
+            <a href="mailto:contato@katarinamalinauskas.com.br" class="btn-outline-white px-9 py-4 text-[15px]">→ Enviar um e-mail</a>
+        </div>
+
+        <p class="font-sans text-[12px] text-white/18 border-t border-white/5 pt-8">São Paulo, SP · OAB/SP nº 338.901 · @kmalinauskas</p>
+    </div>
+</section>
+
+<!-- RODAPÉ -->
+<footer class="bg-[#0D0D0D] border-t border-rose/18 pt-14 pb-7">
+    <div class="max-w-[1140px] mx-auto px-6">
+        <div class="flex flex-col md:flex-row justify-between gap-10 mb-12">
+            <div>
+                <strong class="font-serif text-[22px] text-white font-semibold block mb-1">Katarina Malinauskas</strong>
+                <span class="font-serif italic text-[14px] text-text-m">Advocacia Trabalhista</span>
+            </div>
+            <div class="flex flex-col sm:flex-row gap-10 sm:gap-16">
+                <div>
+                    <p class="font-sans text-[10px] uppercase tracking-[2px] text-rose font-semibold mb-5">Navegação</p>
+                    <div class="flex flex-col gap-3">
+                        <a href="#inicio" class="font-sans text-[14px] text-white/45 hover:text-white transition-colors">Início</a>
+                        <a href="#sobre" class="font-sans text-[14px] text-white/45 hover:text-white transition-colors">Sobre</a>
+                        <a href="#atuacao-empresas" class="font-sans text-[14px] text-white/45 hover:text-white transition-colors">Para Empresas</a>
+                        <a href="#atuacao-trabalhadores" class="font-sans text-[14px] text-white/45 hover:text-white transition-colors">Para Trabalhadores</a>
+                        <a href="#contato" class="font-sans text-[14px] text-white/45 hover:text-white transition-colors">Contato</a>
+                    </div>
+                </div>
+                <div>
+                    <p class="font-sans text-[10px] uppercase tracking-[2px] text-rose font-semibold mb-5">Contato</p>
+                    <div class="flex flex-col gap-3">
+                        <a href="mailto:contato@katarinamalinauskas.com.br" class="font-sans text-[14px] text-white/45 hover:text-white transition-colors">contato@email.com.br</a>
+                        <a href="https://wa.me/5511933502503" target="_blank" class="font-sans text-[14px] text-white/45 hover:text-white transition-colors">(11) 93350-2503</a>
+                        <a href="#" class="font-sans text-[14px] text-white/45 hover:text-white transition-colors">Instagram</a>
+                    </div>
                 </div>
             </div>
         </div>
-    </section>
-
-    <!-- RODAPÉ -->
-    <footer class="rodape">
-        <div class="container">
-            <div class="rodape-grid">
-                <div class="rodape-logo">
-                    <strong>Katarina Malinauskas</strong>
-                    <span>Advocacia Trabalhista</span>
-                </div>
-                
-                <div class="rodape-links">
-                    <a href="#inicio">Início</a>
-                    <a href="#sobre">Sobre</a>
-                    <a href="#atuacao-empresas">Para Empresas</a>
-                    <a href="#atuacao-trabalhadores">Para Trabalhadores</a>
-                    <a href="#contato">Contato</a>
-                </div>
-                
-                <div class="rodape-contato">
-                    <a href="mailto:contato@katarinamalinauskas.com.br">contato@email.com.br</a>
-                    <a href="https://wa.me/5511999999999">(11) 99999-9999</a>
-                    <a href="#">Instagram</a>
-                </div>
-            </div>
-            
-            <div class="rodape-bottom">
-                &copy; 2024 Katarina Malinauskas · OAB/SP nº 338.901 · Este site tem caráter informativo e não constitui consulta jurídica.
-            </div>
+        <div class="border-t border-white/5 pt-6 text-center">
+            <p class="font-sans text-[11px] text-white/18">© 2024 Katarina Malinauskas · OAB/SP nº 338.901 · Este site tem caráter informativo e não constitui consulta jurídica.</p>
         </div>
-    </footer>
+    </div>
+</footer>
 
-    <!-- WHATSAPP FLUTUANTE -->
-    <a href="https://wa.me/5511999999999" target="_blank" class="fab-whatsapp" aria-label="Falar no WhatsApp">
-        <i class="ph ph-whatsapp-logo"></i>
-    </a>
+<!-- WhatsApp FAB -->
+<a href="https://wa.me/5511933502503" target="_blank" class="fixed bottom-6 right-6 bg-rose text-white w-14 h-14 rounded-full flex items-center justify-center z-50 hover:scale-110 transition-transform" style="box-shadow:0 8px 28px rgba(214,179,170,.45);" aria-label="Falar no WhatsApp">
+    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" viewBox="0 0 16 16">
+        <path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c-.003 1.398.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.005-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"/>
+    </svg>
+</a>
 
-    <!-- SCRIPTS -->
-    <script>
-        // Animação Fade-in com Intersection Observer
-        const fadeElements = document.querySelectorAll('.fade-in');
-        
-        const observerOptions = {
-            root: null,
-            rootMargin: '0px',
-            threshold: 0.15
-        };
-
-        const observer = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    observer.unobserve(entry.target);
-                }
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Scroll animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+                if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
             });
-        }, observerOptions);
+        }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+        document.querySelectorAll('.fade-up, .fade-in').forEach(el => observer.observe(el));
 
-        fadeElements.forEach(el => {
-            observer.observe(el);
-        });
-
-        // Toggle Menu Mobile
-        const menuToggle = document.querySelector('.menu-toggle');
-        const navLinks = document.querySelector('.nav-links');
-        
-        menuToggle.addEventListener('click', () => {
-            const isVisible = navLinks.style.display === 'flex';
-            navLinks.style.display = isVisible ? 'none' : 'flex';
-            if (!isVisible) {
-                navLinks.style.flexDirection = 'column';
-                navLinks.style.position = 'absolute';
-                navLinks.style.top = '100%';
-                navLinks.style.left = '0';
-                navLinks.style.width = '100%';
-                navLinks.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
-                navLinks.style.padding = '20px 0';
-                navLinks.style.textAlign = 'center';
-            }
-        });
-
-        // Ajuste da Navbar no Scroll
-        const navbar = document.getElementById('navbar');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                navbar.style.boxShadow = '0 4px 20px rgba(0,0,0,0.05)';
+        // Navbar: transparent over dark hero → white on scroll
+        const nav = document.getElementById('nav');
+        function updateNav() {
+            if (window.scrollY > 60) {
+                nav.classList.add('solid');
             } else {
-                navbar.style.boxShadow = 'none';
+                nav.classList.remove('solid');
             }
-        });
-    </script>
+        }
+        window.addEventListener('scroll', updateNav, { passive: true });
+        updateNav();
 
+        // Mobile menu
+        document.getElementById('mob-toggle').addEventListener('click', () => {
+            document.getElementById('mob-menu').classList.toggle('hidden');
+        });
+
+        // Progress bar
+        const bar = document.getElementById('pbar');
+        window.addEventListener('scroll', () => {
+            bar.style.width = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight) * 100) + '%';
+        }, { passive: true });
+    });
+</script>
 </body>
 </html>
