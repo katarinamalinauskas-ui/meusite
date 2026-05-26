@@ -34,7 +34,6 @@
         }
     </script>
     <style>
-        /* Animations */
         .fade-up {
             opacity: 0;
             transform: translateY(36px);
@@ -44,10 +43,19 @@
         .fade-in { opacity: 0; transition: opacity .9s ease; }
         .fade-in.visible { opacity: 1; }
 
-        /* Rose accent line */
+        @keyframes marquee {
+            from { transform: translateX(0); }
+            to { transform: translateX(-50%); }
+        }
+        .marquee-inner {
+            display: flex;
+            align-items: center;
+            animation: marquee 30s linear infinite;
+            width: max-content;
+        }
+
         .r-line { width: 44px; height: 2px; background: linear-gradient(90deg, #D6B3AA, #E8C8BF); }
 
-        /* Hero subtle grid */
         .hero-grid {
             background-image:
                 linear-gradient(rgba(214,179,170,.04) 1px, transparent 1px),
@@ -55,14 +63,12 @@
             background-size: 64px 64px;
         }
 
-        /* Progress bar */
         #pbar {
             position: fixed; top: 0; left: 0; height: 2px;
             background: linear-gradient(90deg, #D6B3AA, #E8C8BF);
             z-index: 200; width: 0%; transition: width .08s linear;
         }
 
-        /* Buttons */
         .btn-rose {
             display: inline-block;
             background: linear-gradient(135deg, #D6B3AA 0%, #C5A198 100%);
@@ -88,7 +94,7 @@
 
         .btn-outline-white {
             display: inline-block;
-            border: 1px solid rgba(255,255,255,.35);
+            border: 1px solid rgba(255,255,255,.32);
             color: #fff;
             border-radius: 3px;
             font-family: 'Inter', sans-serif;
@@ -98,20 +104,12 @@
         }
         .btn-outline-white:hover { background: #D6B3AA; border-color: #D6B3AA; }
 
-        /* Navbar */
         #nav { transition: background .4s ease, border-color .4s ease; }
         #nav.solid { background: rgba(255,255,255,.97) !important; border-color: rgba(0,0,0,.06) !important; backdrop-filter: blur(14px); }
         #nav.solid .nav-link { color: #4A4A45 !important; }
         #nav.solid .nav-link:hover { color: #D6B3AA !important; }
         #nav.solid .mob-icon { color: #1A1A1A !important; }
 
-        /* Path cards */
-        .path-card { transition: transform .4s ease, box-shadow .4s ease; }
-        .path-card:hover { transform: translateY(-3px); box-shadow: 0 24px 48px rgba(0,0,0,.25); }
-        .path-card .card-img { transition: transform .7s cubic-bezier(.16,1,.3,1); }
-        .path-card:hover .card-img { transform: scale(1.05); }
-
-        /* Area list items */
         .area-li {
             padding: 14px 0;
             border-bottom: 1px solid rgba(214,179,170,.12);
@@ -126,6 +124,27 @@
         .area-li:last-child { border-bottom: none; }
         .area-li:hover { color: #1A1A1A; padding-left: 4px; }
         .area-dot { width: 5px; height: 5px; border-radius: 50%; background: #D6B3AA; flex-shrink: 0; }
+
+        .cred-pill {
+            display: inline-flex;
+            align-items: center;
+            padding: 5px 13px;
+            border: 1px solid rgba(214,179,170,.22);
+            font-family: 'Inter', sans-serif;
+            font-size: 10px;
+            font-weight: 500;
+            color: #C5A198;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            border-radius: 2px;
+            background: rgba(214,179,170,.04);
+        }
+
+        /* Stat separator lines on dark sections */
+        .stat-sep {
+            width: 1px;
+            background: linear-gradient(to bottom, transparent, rgba(214,179,170,.18), transparent);
+        }
     </style>
 </head>
 <body class="bg-white text-text-p font-sans antialiased overflow-x-hidden selection:bg-rose selection:text-white">
@@ -147,7 +166,6 @@
         <a href="https://wa.me/5511933502503" target="_blank" class="hidden md:inline-block btn-rose px-6 py-2.5 text-[13px]">Falar no WhatsApp</a>
         <button id="mob-toggle" class="mob-icon md:hidden text-white text-[26px] leading-none">☰</button>
     </div>
-    <!-- Mobile menu -->
     <div id="mob-menu" class="hidden md:hidden bg-dark-2 border-t border-white/5">
         <div class="flex flex-col px-6 py-5 gap-4">
             <a href="#inicio" class="font-sans text-[14px] text-white/70 py-1">Início</a>
@@ -161,7 +179,8 @@
 
 <!-- HERO -->
 <section id="inicio" class="relative bg-dark-2 min-h-screen flex items-center pt-[70px] hero-grid overflow-hidden">
-    <div class="absolute top-1/2 right-[30%] -translate-y-1/2 w-[600px] h-[600px] rounded-full pointer-events-none" style="background:radial-gradient(circle,rgba(214,179,170,.07) 0%,transparent 65%);"></div>
+    <div class="absolute top-1/2 right-[28%] -translate-y-1/2 w-[700px] h-[700px] rounded-full pointer-events-none" style="background:radial-gradient(circle,rgba(214,179,170,.09) 0%,transparent 65%);"></div>
+    <div class="absolute inset-0 pointer-events-none opacity-[0.014]" style="background-image: repeating-linear-gradient(135deg, #D6B3AA 0px, #D6B3AA 1px, transparent 1px, transparent 80px);"></div>
 
     <div class="max-w-[1140px] mx-auto px-6 w-full relative z-10 py-16">
         <div class="flex flex-col lg:flex-row items-center gap-14 lg:gap-0">
@@ -170,32 +189,53 @@
             <div class="w-full lg:w-[52%] fade-up">
                 <div class="r-line mb-8"></div>
                 <span class="font-sans text-[11px] uppercase tracking-[3px] text-rose font-semibold block mb-5">Advocacia Trabalhista</span>
-                <h1 class="font-serif text-[44px] md:text-[58px] text-white leading-[1.1] mb-8" style="max-width:560px;">
+                <h1 class="font-serif text-[44px] md:text-[60px] text-white leading-[1.08] mb-8" style="max-width:560px;">
                     Direito do Trabalho com estratégia, clareza e
                     <em class="text-rose not-italic"> comprometimento.</em>
                 </h1>
-                <p class="font-sans text-[17px] text-white/60 leading-[1.85] mb-10" style="max-width:460px;">
+                <p class="font-sans text-[17px] text-white/55 leading-[1.85] mb-10" style="max-width:460px;">
                     Seja você um trabalhador que teve seus direitos violados ou uma empresa que precisa de segurança jurídica — aqui você encontra assessoria trabalhista especializada, com atuação em todo o Brasil.
                 </p>
-                <div class="flex flex-col sm:flex-row items-start gap-4">
+                <div class="flex flex-col sm:flex-row items-start gap-4 mb-10">
                     <a href="#sobre" class="btn-rose px-9 py-4 text-[15px]">→ Conheça a Katarina</a>
                     <a href="#atuacao" class="font-sans text-[14px] text-white/40 hover:text-white/70 transition-colors self-center underline underline-offset-4 decoration-white/15">Ver atuação</a>
                 </div>
-                <span class="font-sans text-[12px] text-white/22 mt-5 block">OAB/SP nº 338.901 · Atendimento em todo o Brasil</span>
+                <!-- Trust micro-stats -->
+                <div class="flex flex-wrap items-center gap-x-6 gap-y-3 pt-7 border-t border-white/[0.06]">
+                    <div class="flex items-center gap-2">
+                        <span class="w-1.5 h-1.5 rounded-full bg-rose flex-shrink-0" style="opacity:.7;"></span>
+                        <span class="font-sans text-[12px] text-white/35">10 anos de experiência</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="w-1.5 h-1.5 rounded-full bg-rose flex-shrink-0" style="opacity:.7;"></span>
+                        <span class="font-sans text-[12px] text-white/35">+500 casos conduzidos</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="w-1.5 h-1.5 rounded-full bg-rose flex-shrink-0" style="opacity:.7;"></span>
+                        <span class="font-sans text-[12px] text-white/35">Todo o Brasil</span>
+                    </div>
+                </div>
             </div>
 
             <!-- Photo -->
             <div class="w-full lg:w-[48%] flex justify-center lg:justify-end fade-in" style="transition-delay:.15s;">
-                <div class="relative w-full max-w-[400px] h-[480px] lg:h-[620px]">
-                    <div class="absolute -top-4 -right-4 w-full h-full border border-rose/20 rounded-sm z-0"></div>
-                    <div class="relative w-full h-full overflow-hidden rounded-sm z-10">
-                        <div class="absolute inset-0 bg-gradient-to-t from-dark-2 via-dark-2/10 to-transparent z-10"></div>
-                        <div class="absolute inset-0 bg-rose/10 mix-blend-overlay z-20"></div>
+                <div class="relative" style="width: min(420px, 100%);">
+                    <!-- Rose glow behind photo -->
+                    <div class="absolute -bottom-8 left-1/2 -translate-x-1/2 pointer-events-none" style="width:75%; height:100px; background:radial-gradient(ellipse, rgba(214,179,170,.22) 0%, transparent 70%); filter:blur(22px);"></div>
+                    <!-- Offset border frame -->
+                    <div class="absolute -top-4 -right-4 bottom-0 left-0 border border-rose/18 rounded-sm z-0"></div>
+                    <!-- Corner accent bottom-right -->
+                    <div class="absolute -bottom-2 -right-2 w-10 h-10 z-0" style="border-bottom: 2px solid rgba(214,179,170,.28); border-right: 2px solid rgba(214,179,170,.28);"></div>
+                    <!-- Photo container -->
+                    <div class="relative overflow-hidden rounded-sm z-10" style="height: clamp(440px, 55vw, 580px);">
+                        <div class="absolute inset-0 bg-gradient-to-t from-dark-2 via-dark-2/6 to-transparent z-10"></div>
+                        <div class="absolute inset-0 z-20" style="background: rgba(214,179,170,.06); mix-blend-mode: overlay;"></div>
                         <img src="nova_foto_katarina.jpg" alt="Katarina Malinauskas" class="w-full h-full object-cover object-top">
                     </div>
-                    <div class="absolute bottom-5 left-5 z-20 bg-dark/80 backdrop-blur-sm border border-white/10 px-5 py-3 rounded-sm">
+                    <!-- Badge -->
+                    <div class="absolute bottom-5 left-5 z-30 backdrop-blur-sm border border-white/10 px-5 py-3 rounded-sm" style="background: rgba(17,17,17,.85);">
                         <p class="font-serif text-white text-[16px]">Katarina Malinauskas</p>
-                        <p class="font-sans text-[11px] text-rose/80 tracking-widest uppercase mt-0.5">OAB/SP nº 338.901</p>
+                        <p class="font-sans text-[11px] tracking-widest uppercase mt-0.5" style="color: rgba(214,179,170,.8);">OAB/SP nº 338.901</p>
                     </div>
                 </div>
             </div>
@@ -208,57 +248,114 @@
     </div>
 </section>
 
-<!-- BIFURCAÇÃO -->
-<section class="bg-dark py-[100px]">
-    <div class="max-w-[1140px] mx-auto px-6">
-        <div class="text-center mb-14 fade-up">
-            <div class="r-line mx-auto mb-6"></div>
-            <span class="font-sans text-[11px] uppercase tracking-[3px] text-rose font-semibold block mb-5">Para quem é essa página</span>
-            <h2 class="font-serif text-[38px] md:text-[46px] text-white leading-[1.15]">Como posso te auxiliar hoje?</h2>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-            <!-- Empresas -->
-            <a href="empresarios.html" class="path-card group relative overflow-hidden block rounded-sm fade-up" style="height:420px;">
-                <img src="empresarial_card.png" alt="Para Empresas" class="card-img absolute inset-0 w-full h-full object-cover">
-                <div class="absolute inset-0 bg-gradient-to-t from-dark via-dark/55 to-dark/10"></div>
-                <div class="absolute inset-0 border border-transparent group-hover:border-rose/35 transition-colors duration-400 rounded-sm"></div>
-                <div class="absolute bottom-0 left-0 right-0 p-10">
-                    <span class="font-sans text-[10px] uppercase tracking-[3px] text-rose font-semibold block mb-4">Para Empresas</span>
-                    <h3 class="font-serif text-[30px] text-white mb-3 leading-[1.2]">Assessoria Trabalhista Empresarial</h3>
-                    <p class="font-sans text-[15px] text-white/60 leading-[1.65] mb-7">Proteja seu negócio, reduza passivos e tome decisões com segurança jurídica.</p>
-                    <span class="btn-outline-white px-6 py-3 text-[14px]">→ Sou empresa</span>
-                </div>
-            </a>
-
-            <!-- Trabalhadores -->
-            <a href="trabalhista-para-trabalhadores.html" class="path-card group relative overflow-hidden block rounded-sm fade-up" style="height:420px; transition-delay:.1s;">
-                <img src="novo_trabalhador_card.png" alt="Para Trabalhadores" class="card-img absolute inset-0 w-full h-full object-cover">
-                <div class="absolute inset-0 bg-gradient-to-t from-dark via-dark/55 to-dark/10"></div>
-                <div class="absolute inset-0 border border-transparent group-hover:border-rose/35 transition-colors duration-400 rounded-sm"></div>
-                <div class="absolute bottom-0 left-0 right-0 p-10">
-                    <span class="font-sans text-[10px] uppercase tracking-[3px] text-rose font-semibold block mb-4">Para Trabalhadores</span>
-                    <h3 class="font-serif text-[30px] text-white mb-3 leading-[1.2]">Defesa dos Seus Direitos Trabalhistas</h3>
-                    <p class="font-sans text-[15px] text-white/60 leading-[1.65] mb-7">Seus direitos foram violados? Atuo para garantir o que você trabalhou para conquistar.</p>
-                    <span class="btn-outline-white px-6 py-3 text-[14px]">→ Sou trabalhador</span>
-                </div>
-            </a>
-        </div>
+<!-- TRUST MARQUEE STRIP -->
+<div class="overflow-hidden border-b" style="background:#0D0B09; border-color:rgba(214,179,170,.08); padding: 14px 0;">
+    <div class="marquee-inner">
+        <span class="font-sans uppercase whitespace-nowrap px-8" style="font-size:10.5px;letter-spacing:2.5px;color:rgba(214,179,170,.55);">OAB/SP nº 338.901</span>
+        <span style="color:rgba(214,179,170,.2);font-size:11px;">✦</span>
+        <span class="font-sans uppercase whitespace-nowrap px-8" style="font-size:10.5px;letter-spacing:2.5px;color:rgba(255,255,255,.22);">+500 Casos Conduzidos</span>
+        <span style="color:rgba(214,179,170,.2);font-size:11px;">✦</span>
+        <span class="font-sans uppercase whitespace-nowrap px-8" style="font-size:10.5px;letter-spacing:2.5px;color:rgba(214,179,170,.55);">10 Anos de Experiência</span>
+        <span style="color:rgba(214,179,170,.2);font-size:11px;">✦</span>
+        <span class="font-sans uppercase whitespace-nowrap px-8" style="font-size:10.5px;letter-spacing:2.5px;color:rgba(255,255,255,.22);">Atendimento em Todo o Brasil</span>
+        <span style="color:rgba(214,179,170,.2);font-size:11px;">✦</span>
+        <span class="font-sans uppercase whitespace-nowrap px-8" style="font-size:10.5px;letter-spacing:2.5px;color:rgba(214,179,170,.55);">Advocacia Trabalhista Especializada</span>
+        <span style="color:rgba(214,179,170,.2);font-size:11px;">✦</span>
+        <span class="font-sans uppercase whitespace-nowrap px-8" style="font-size:10.5px;letter-spacing:2.5px;color:rgba(255,255,255,.22);">Empresas e Trabalhadores</span>
+        <span style="color:rgba(214,179,170,.2);font-size:11px;">✦</span>
+        <!-- duplicate for seamless loop -->
+        <span class="font-sans uppercase whitespace-nowrap px-8" style="font-size:10.5px;letter-spacing:2.5px;color:rgba(214,179,170,.55);">OAB/SP nº 338.901</span>
+        <span style="color:rgba(214,179,170,.2);font-size:11px;">✦</span>
+        <span class="font-sans uppercase whitespace-nowrap px-8" style="font-size:10.5px;letter-spacing:2.5px;color:rgba(255,255,255,.22);">+500 Casos Conduzidos</span>
+        <span style="color:rgba(214,179,170,.2);font-size:11px;">✦</span>
+        <span class="font-sans uppercase whitespace-nowrap px-8" style="font-size:10.5px;letter-spacing:2.5px;color:rgba(214,179,170,.55);">10 Anos de Experiência</span>
+        <span style="color:rgba(214,179,170,.2);font-size:11px;">✦</span>
+        <span class="font-sans uppercase whitespace-nowrap px-8" style="font-size:10.5px;letter-spacing:2.5px;color:rgba(255,255,255,.22);">Atendimento em Todo o Brasil</span>
+        <span style="color:rgba(214,179,170,.2);font-size:11px;">✦</span>
+        <span class="font-sans uppercase whitespace-nowrap px-8" style="font-size:10.5px;letter-spacing:2.5px;color:rgba(214,179,170,.55);">Advocacia Trabalhista Especializada</span>
+        <span style="color:rgba(214,179,170,.2);font-size:11px;">✦</span>
+        <span class="font-sans uppercase whitespace-nowrap px-8" style="font-size:10.5px;letter-spacing:2.5px;color:rgba(255,255,255,.22);">Empresas e Trabalhadores</span>
+        <span style="color:rgba(214,179,170,.2);font-size:11px;">✦</span>
     </div>
+</div>
+
+<!-- BIFURCAÇÃO -->
+<section class="bg-dark overflow-hidden">
+    <div class="max-w-[1140px] mx-auto px-6 pt-[96px] pb-10 text-center fade-up">
+        <div class="r-line mx-auto mb-6"></div>
+        <span class="font-sans text-[11px] uppercase tracking-[3px] text-rose font-semibold block mb-5">Para quem é essa página</span>
+        <h2 class="font-serif text-[38px] md:text-[46px] text-white leading-[1.15]">Como posso te auxiliar hoje?</h2>
+    </div>
+
+    <div class="flex flex-col md:flex-row">
+        <!-- Empresas -->
+        <a href="empresarios.html" class="group relative flex-1 flex flex-col justify-between p-10 md:p-14 min-h-[460px] overflow-hidden fade-up" style="background: linear-gradient(145deg, #161412 0%, #1C1814 100%);">
+            <span class="font-serif text-[120px] md:text-[160px] text-white/[0.03] leading-none select-none absolute -top-4 -right-4 font-bold">01</span>
+            <div class="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-rose/0 via-rose to-rose/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            <div class="absolute left-0 top-0 bottom-0 w-[2px] bg-gradient-to-b from-rose/0 via-rose/30 to-rose/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            <div class="relative z-10">
+                <span class="font-sans text-[10px] uppercase tracking-[3px] text-rose/70 font-semibold block mb-6">Para Empresas</span>
+                <h3 class="font-serif text-[34px] md:text-[40px] text-white leading-[1.15] mb-6 max-w-[380px]">Assessoria Trabalhista Empresarial</h3>
+                <p class="font-sans text-[15px] text-white/45 leading-[1.7] max-w-[360px]">Proteja seu negócio, reduza passivos e tome decisões com segurança jurídica.</p>
+            </div>
+            <div class="relative z-10 mt-10">
+                <ul class="space-y-3 mb-10">
+                    <li class="flex items-center gap-3 font-sans text-[13px] text-white/35"><span class="w-1 h-1 rounded-full bg-rose/50 flex-shrink-0"></span>Consultoria e RH</li>
+                    <li class="flex items-center gap-3 font-sans text-[13px] text-white/35"><span class="w-1 h-1 rounded-full bg-rose/50 flex-shrink-0"></span>Compliance Trabalhista</li>
+                    <li class="flex items-center gap-3 font-sans text-[13px] text-white/35"><span class="w-1 h-1 rounded-full bg-rose/50 flex-shrink-0"></span>Gestão de Riscos e Contencioso</li>
+                </ul>
+                <span class="btn-outline px-7 py-3.5 text-[14px] group-hover:bg-rose group-hover:text-white transition-all duration-300">→ Sou empresa</span>
+            </div>
+        </a>
+
+        <div class="hidden md:block w-px bg-white/5 flex-shrink-0"></div>
+        <div class="block md:hidden h-px bg-white/5"></div>
+
+        <!-- Trabalhadores -->
+        <a href="trabalhista-para-trabalhadores.html" class="group relative flex-1 flex flex-col justify-between p-10 md:p-14 min-h-[460px] overflow-hidden fade-up" style="background: linear-gradient(145deg, #141618 0%, #181A1C 100%); transition-delay:.1s;">
+            <span class="font-serif text-[120px] md:text-[160px] text-white/[0.03] leading-none select-none absolute -top-4 -right-4 font-bold">02</span>
+            <div class="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-rose/0 via-rose to-rose/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            <div class="absolute right-0 top-0 bottom-0 w-[2px] bg-gradient-to-b from-rose/0 via-rose/30 to-rose/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            <div class="relative z-10">
+                <span class="font-sans text-[10px] uppercase tracking-[3px] text-rose/70 font-semibold block mb-6">Para Trabalhadores</span>
+                <h3 class="font-serif text-[34px] md:text-[40px] text-white leading-[1.15] mb-6 max-w-[380px]">Defesa dos Seus Direitos Trabalhistas</h3>
+                <p class="font-sans text-[15px] text-white/45 leading-[1.7] max-w-[360px]">Seus direitos foram violados? Atuo para garantir o que você trabalhou para conquistar.</p>
+            </div>
+            <div class="relative z-10 mt-10">
+                <ul class="space-y-3 mb-10">
+                    <li class="flex items-center gap-3 font-sans text-[13px] text-white/35"><span class="w-1 h-1 rounded-full bg-rose/50 flex-shrink-0"></span>Verbas Rescisórias e Demissão Indevida</li>
+                    <li class="flex items-center gap-3 font-sans text-[13px] text-white/35"><span class="w-1 h-1 rounded-full bg-rose/50 flex-shrink-0"></span>Horas Extras e Banco de Horas</li>
+                    <li class="flex items-center gap-3 font-sans text-[13px] text-white/35"><span class="w-1 h-1 rounded-full bg-rose/50 flex-shrink-0"></span>Assédio Moral e Discriminação</li>
+                </ul>
+                <span class="btn-outline px-7 py-3.5 text-[14px] group-hover:bg-rose group-hover:text-white transition-all duration-300">→ Sou trabalhador</span>
+            </div>
+        </a>
+    </div>
+    <div class="h-[1px] bg-white/5"></div>
 </section>
 
 <!-- SOBRE -->
 <section id="sobre" class="bg-surface">
-    <div class="flex flex-col lg:flex-row min-h-[620px]">
-        <div class="w-full lg:w-1/2 h-[420px] lg:h-auto overflow-hidden fade-in">
+    <div class="flex flex-col lg:flex-row min-h-[640px]">
+        <!-- Photo -->
+        <div class="w-full lg:w-1/2 h-[440px] lg:h-auto overflow-hidden fade-in relative">
             <img src="foto-katarina-sobre.jpg" alt="Katarina Malinauskas" class="w-full h-full object-cover object-top scale-[1.02] hover:scale-[1.0] transition-transform duration-700">
+            <div class="absolute inset-0 hidden lg:block pointer-events-none" style="background: linear-gradient(to right, transparent 80%, #F7F5F2);"></div>
         </div>
+        <!-- Text -->
         <div class="w-full lg:w-1/2 flex items-center py-[72px] px-8 md:px-[72px] lg:px-[88px] fade-up">
             <div>
                 <div class="r-line mb-8"></div>
                 <span class="font-sans text-[11px] uppercase tracking-[3px] text-rose font-semibold block mb-5">Quem é ela</span>
                 <h2 class="font-serif text-[40px] md:text-[48px] text-text-p leading-[1.1] mb-2">Katarina Malinauskas</h2>
-                <p class="font-sans text-[11px] text-text-m tracking-[1.5px] mb-8 uppercase">Advogada Trabalhista · OAB/SP nº 338.901</p>
+                <p class="font-sans text-[11px] text-text-m tracking-[1.5px] mb-7 uppercase">Advogada Trabalhista · OAB/SP nº 338.901</p>
+                <!-- Credential badges -->
+                <div class="flex flex-wrap gap-2 mb-9">
+                    <span class="cred-pill">OAB/SP nº 338.901</span>
+                    <span class="cred-pill">+500 casos</span>
+                    <span class="cred-pill">10 anos</span>
+                    <span class="cred-pill">Todo o Brasil</span>
+                </div>
                 <div class="border-l border-rose/40 pl-8 space-y-5 mb-10">
                     <p class="font-sans text-[16px] text-[#4A4A45] leading-[1.9]">Sou advogada especialista em Direito do Trabalho, com atuação em dois lados da mesma balança: ao lado das empresas que precisam crescer com segurança jurídica, e ao lado dos trabalhadores que precisam que alguém esteja genuinamente no seu canto.</p>
                     <p class="font-sans text-[16px] text-[#4A4A45] leading-[1.9]">Acredito que o Direito do Trabalho, quando bem aplicado, protege pessoas e viabiliza negócios — ao mesmo tempo. Não são objetivos opostos. São dois lados de uma relação que funciona melhor quando há clareza, respeito e orientação jurídica de qualidade.</p>
@@ -271,43 +368,60 @@
 </section>
 
 <!-- NÚMEROS -->
-<section class="py-[96px] bg-white">
-    <div class="max-w-[1100px] mx-auto px-6 fade-up">
-        <div class="text-center mb-14">
+<section class="py-[96px] bg-dark-2 relative overflow-hidden">
+    <div class="absolute inset-0 hero-grid pointer-events-none" style="opacity:.45;"></div>
+    <div class="max-w-[1100px] mx-auto px-6 relative z-10">
+        <div class="text-center mb-16 fade-up">
             <div class="r-line mx-auto mb-6"></div>
             <span class="font-sans text-[11px] uppercase tracking-[3px] text-rose font-semibold">Em números</span>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-px bg-surface-2">
-            <div class="bg-white p-10 md:p-14 text-center">
-                <p class="font-serif font-semibold text-rose text-[52px] leading-none mb-4">10 anos</p>
-                <p class="font-sans text-[13px] text-text-s leading-relaxed">de atuação em<br>Direito do Trabalho</p>
+        <div class="grid grid-cols-1 md:grid-cols-3 fade-up">
+            <!-- Stat 1 -->
+            <div class="text-center px-8 py-10 relative">
+                <div class="hidden md:block absolute right-0 top-1/2 -translate-y-1/2 h-16 w-px" style="background: linear-gradient(to bottom, transparent, rgba(214,179,170,.18), transparent);"></div>
+                <p class="font-serif font-semibold leading-none mb-4" style="font-size:clamp(64px,8vw,88px); color:#D6B3AA;">10</p>
+                <div class="w-8 h-px mx-auto mb-5" style="background: linear-gradient(90deg, transparent, rgba(214,179,170,.6), transparent);"></div>
+                <p class="font-sans text-[11px] uppercase tracking-[2px] text-white/35">anos de atuação em</p>
+                <p class="font-sans text-[11px] uppercase tracking-[2px] text-white/35">Direito do Trabalho</p>
             </div>
-            <div class="bg-white p-10 md:p-14 text-center">
-                <p class="font-serif font-semibold text-rose text-[52px] leading-none mb-4">+500 casos</p>
-                <p class="font-sans text-[13px] text-text-s leading-relaxed">conduzidos para<br>empresas e trabalhadores</p>
+            <!-- Stat 2 -->
+            <div class="text-center px-8 py-10 relative border-t md:border-t-0" style="border-color:rgba(255,255,255,.05);">
+                <div class="hidden md:block absolute right-0 top-1/2 -translate-y-1/2 h-16 w-px" style="background: linear-gradient(to bottom, transparent, rgba(214,179,170,.18), transparent);"></div>
+                <p class="font-serif font-semibold leading-none mb-4" style="font-size:clamp(64px,8vw,88px); color:#D6B3AA;">+500</p>
+                <div class="w-8 h-px mx-auto mb-5" style="background: linear-gradient(90deg, transparent, rgba(214,179,170,.6), transparent);"></div>
+                <p class="font-sans text-[11px] uppercase tracking-[2px] text-white/35">casos conduzidos para</p>
+                <p class="font-sans text-[11px] uppercase tracking-[2px] text-white/35">empresas e trabalhadores</p>
             </div>
-            <div class="bg-white p-10 md:p-14 text-center">
-                <p class="font-serif font-semibold text-rose text-[52px] leading-none mb-4">Brasil</p>
-                <p class="font-sans text-[13px] text-text-s leading-relaxed">atendimento<br>presencial e remoto</p>
+            <!-- Stat 3 -->
+            <div class="text-center px-8 py-10 border-t md:border-t-0" style="border-color:rgba(255,255,255,.05);">
+                <p class="font-serif font-semibold leading-none mb-4" style="font-size:clamp(64px,8vw,88px); color:#D6B3AA;">BR</p>
+                <div class="w-8 h-px mx-auto mb-5" style="background: linear-gradient(90deg, transparent, rgba(214,179,170,.6), transparent);"></div>
+                <p class="font-sans text-[11px] uppercase tracking-[2px] text-white/35">atendimento</p>
+                <p class="font-sans text-[11px] uppercase tracking-[2px] text-white/35">presencial e remoto</p>
             </div>
         </div>
 
-        <p class="font-serif italic text-[20px] text-text-s text-center mt-12">Cada número representa uma decisão tomada com mais segurança.</p>
+        <p class="font-serif italic text-[19px] text-white/30 text-center mt-14 fade-up">Cada número representa uma decisão tomada com mais segurança.</p>
     </div>
 </section>
 
 <!-- FRASE DE AUTORIDADE -->
-<section class="py-[100px] bg-dark-2">
-    <div class="max-w-[780px] mx-auto px-6 text-center fade-up">
+<section class="py-[100px] bg-dark relative overflow-hidden">
+    <!-- Giant decorative quotation mark -->
+    <div class="absolute select-none pointer-events-none font-serif font-bold leading-none" style="font-family:'Cormorant Garamond',serif; font-size:clamp(180px,24vw,300px); color:rgba(214,179,170,.04); top:-30px; left:50%; transform:translateX(-50%); white-space:nowrap;">"</div>
+
+    <div class="max-w-[780px] mx-auto px-6 text-center fade-up relative z-10">
         <div class="r-line mx-auto mb-10"></div>
-        <blockquote class="font-serif italic text-[26px] md:text-[32px] text-white leading-[1.65] mb-8">
+        <blockquote class="font-serif italic text-[26px] md:text-[33px] text-white leading-[1.65] mb-8">
             "Meu trabalho não é complicar o que já é difícil. É simplificar, orientar e garantir que você tome a melhor decisão — seja para proteger sua empresa ou para defender o que você tem direito."
         </blockquote>
-        <span class="font-sans text-[12px] text-rose uppercase tracking-[2px]">— Katarina Malinauskas</span>
-        <div class="mt-12">
-            <a href="#contato" class="btn-rose inline-block px-9 py-4 text-[15px]">→ Quero falar com a Katarina</a>
+        <div class="flex items-center justify-center gap-4 mb-12">
+            <div class="w-8 h-px" style="background:rgba(214,179,170,.4);"></div>
+            <span class="font-sans text-[12px] text-rose uppercase tracking-[2px]">Katarina Malinauskas</span>
+            <div class="w-8 h-px" style="background:rgba(214,179,170,.4);"></div>
         </div>
+        <a href="#contato" class="btn-rose inline-block px-9 py-4 text-[15px]">→ Quero falar com a Katarina</a>
     </div>
 </section>
 
@@ -322,55 +436,94 @@
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
             <!-- Empresas -->
-            <div id="atuacao-empresas" class="bg-white p-8 md:p-10 fade-up" style="border-top: 2px solid #D6B3AA;">
-                <span class="font-sans text-[10px] uppercase tracking-[2px] text-rose font-semibold block mb-4">Para Empresas</span>
-                <h3 class="font-serif text-[28px] text-text-p mb-8 leading-[1.2]">Assessoria Trabalhista Empresarial</h3>
-                <ul class="mb-10 list-none p-0">
-                    <li class="area-li"><span class="area-dot"></span>Consultoria e Parceria com RH</li>
-                    <li class="area-li"><span class="area-dot"></span>Compliance Trabalhista</li>
-                    <li class="area-li"><span class="area-dot"></span>Relações Sindicais</li>
-                    <li class="area-li"><span class="area-dot"></span>Gestão de Riscos e Contencioso</li>
-                    <li class="area-li"><span class="area-dot"></span>Saúde e Segurança do Trabalho</li>
-                </ul>
-                <a href="empresarios.html" class="btn-outline px-7 py-3.5 text-[14px]">→ Ver página completa</a>
+            <div id="atuacao-empresas" class="bg-white overflow-hidden fade-up" style="border-top: 2.5px solid #D6B3AA;">
+                <div class="px-8 md:px-10 pt-8 pb-5 flex items-start gap-4 border-b" style="border-color: #EFEDE9;">
+                    <div class="w-11 h-11 rounded-sm flex items-center justify-center flex-shrink-0 mt-0.5" style="background: rgba(214,179,170,.1);">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#D6B3AA" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="7" width="20" height="14" rx="1"/>
+                            <path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <span class="font-sans text-[10px] uppercase tracking-[2px] text-rose font-semibold block mb-1">Para Empresas</span>
+                        <h3 class="font-serif text-[26px] text-text-p leading-[1.2]">Assessoria Trabalhista Empresarial</h3>
+                    </div>
+                </div>
+                <div class="px-8 md:px-10 pt-6 pb-8">
+                    <ul class="mb-8 list-none p-0">
+                        <li class="area-li"><span class="area-dot"></span>Consultoria e Parceria com RH</li>
+                        <li class="area-li"><span class="area-dot"></span>Compliance Trabalhista</li>
+                        <li class="area-li"><span class="area-dot"></span>Relações Sindicais</li>
+                        <li class="area-li"><span class="area-dot"></span>Gestão de Riscos e Contencioso</li>
+                        <li class="area-li"><span class="area-dot"></span>Saúde e Segurança do Trabalho</li>
+                    </ul>
+                    <a href="empresarios.html" class="btn-outline px-7 py-3.5 text-[14px]">→ Ver página completa</a>
+                </div>
             </div>
 
             <!-- Trabalhadores -->
-            <div id="atuacao-trabalhadores" class="bg-white p-8 md:p-10 fade-up" style="border-top: 2px solid #D6B3AA; transition-delay:.1s;">
-                <span class="font-sans text-[10px] uppercase tracking-[2px] text-rose font-semibold block mb-4">Para Trabalhadores</span>
-                <h3 class="font-serif text-[28px] text-text-p mb-8 leading-[1.2]">Defesa dos Seus Direitos</h3>
-                <ul class="mb-10 list-none p-0">
-                    <li class="area-li"><span class="area-dot"></span>Verbas Rescisórias e Demissão Indevida</li>
-                    <li class="area-li"><span class="area-dot"></span>Horas Extras e Banco de Horas</li>
-                    <li class="area-li"><span class="area-dot"></span>Assédio Moral e Discriminação</li>
-                    <li class="area-li"><span class="area-dot"></span>Acidente de Trabalho</li>
-                    <li class="area-li"><span class="area-dot"></span>Reconhecimento de Vínculo Empregatício</li>
-                </ul>
-                <a href="trabalhista-para-trabalhadores.html" class="btn-outline px-7 py-3.5 text-[14px]">→ Ver página completa</a>
+            <div id="atuacao-trabalhadores" class="bg-white overflow-hidden fade-up" style="border-top: 2.5px solid #D6B3AA; transition-delay:.1s;">
+                <div class="px-8 md:px-10 pt-8 pb-5 flex items-start gap-4 border-b" style="border-color: #EFEDE9;">
+                    <div class="w-11 h-11 rounded-sm flex items-center justify-center flex-shrink-0 mt-0.5" style="background: rgba(214,179,170,.1);">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#D6B3AA" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                            <circle cx="12" cy="7" r="4"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <span class="font-sans text-[10px] uppercase tracking-[2px] text-rose font-semibold block mb-1">Para Trabalhadores</span>
+                        <h3 class="font-serif text-[26px] text-text-p leading-[1.2]">Defesa dos Seus Direitos</h3>
+                    </div>
+                </div>
+                <div class="px-8 md:px-10 pt-6 pb-8">
+                    <ul class="mb-8 list-none p-0">
+                        <li class="area-li"><span class="area-dot"></span>Verbas Rescisórias e Demissão Indevida</li>
+                        <li class="area-li"><span class="area-dot"></span>Horas Extras e Banco de Horas</li>
+                        <li class="area-li"><span class="area-dot"></span>Assédio Moral e Discriminação</li>
+                        <li class="area-li"><span class="area-dot"></span>Acidente de Trabalho</li>
+                        <li class="area-li"><span class="area-dot"></span>Reconhecimento de Vínculo Empregatício</li>
+                    </ul>
+                    <a href="trabalhista-para-trabalhadores.html" class="btn-outline px-7 py-3.5 text-[14px]">→ Ver página completa</a>
+                </div>
             </div>
         </div>
     </div>
 </section>
 
 <!-- CTA FINAL / CONTATO -->
-<section id="contato" class="py-[100px] bg-dark">
-    <div class="max-w-[620px] mx-auto px-6 text-center fade-up">
+<section id="contato" class="py-[110px] bg-dark relative overflow-hidden">
+    <div class="absolute inset-0 pointer-events-none" style="background: radial-gradient(ellipse 80% 60% at 50% 50%, rgba(214,179,170,.04) 0%, transparent 70%);"></div>
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-px h-16" style="background: linear-gradient(to bottom, rgba(214,179,170,.3), transparent);"></div>
+
+    <div class="max-w-[600px] mx-auto px-6 text-center fade-up relative z-10">
         <div class="r-line mx-auto mb-8"></div>
         <span class="font-sans text-[11px] uppercase tracking-[3px] text-rose font-semibold block mb-6">Vamos conversar</span>
-        <h2 class="font-serif text-[36px] md:text-[44px] text-white leading-[1.15] mb-5">Tem uma dúvida? Está com um problema trabalhista?</h2>
-        <p class="font-sans text-[16px] text-white/45 mb-12 leading-[1.85]">A primeira conversa é sem compromisso. Me conta o que está acontecendo.</p>
+        <h2 class="font-serif text-[36px] md:text-[46px] text-white leading-[1.12] mb-5">Tem uma dúvida? Está com um problema trabalhista?</h2>
+        <p class="font-sans text-[16px] text-white/42 mb-12 leading-[1.85]">A primeira conversa é sem compromisso. Me conta o que está acontecendo.</p>
 
-        <div class="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-            <a href="https://wa.me/5511933502503" target="_blank" class="btn-rose px-9 py-4 text-[15px]">→ Falar no WhatsApp</a>
-            <a href="mailto:contato@katarinamalinauskas.com.br" class="btn-outline-white px-9 py-4 text-[15px]">→ Enviar um e-mail</a>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center mb-10">
+            <a href="https://wa.me/5511933502503" target="_blank" class="btn-rose px-8 py-4 text-[15px] flex items-center justify-center gap-2.5">
+                <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="currentColor" viewBox="0 0 16 16"><path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c-.003 1.398.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.005-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"/></svg>
+                Falar no WhatsApp
+            </a>
+            <a href="mailto:contato@katarinamalinauskas.com.br" class="btn-outline-white px-8 py-4 text-[15px] flex items-center justify-center gap-2.5">
+                <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                Enviar e-mail
+            </a>
         </div>
 
-        <p class="font-sans text-[12px] text-white/18 border-t border-white/5 pt-8">São Paulo, SP · OAB/SP nº 338.901 · @kmalinauskas</p>
+        <div class="flex flex-wrap items-center justify-center gap-3 pt-8 border-t border-white/5">
+            <span class="font-sans text-[12px] text-white/22">(11) 93350-2503</span>
+            <span class="text-white/12">·</span>
+            <span class="font-sans text-[12px] text-white/22">São Paulo, SP</span>
+            <span class="text-white/12">·</span>
+            <span class="font-sans text-[12px] text-white/22">OAB/SP nº 338.901</span>
+        </div>
     </div>
 </section>
 
 <!-- RODAPÉ -->
-<footer class="bg-[#0D0D0D] border-t border-rose/18 pt-14 pb-7">
+<footer class="bg-[#0D0D0D] border-t pt-14 pb-7" style="border-color:rgba(214,179,170,.18);">
     <div class="max-w-[1140px] mx-auto px-6">
         <div class="flex flex-col md:flex-row justify-between gap-10 mb-12">
             <div>
@@ -399,13 +552,13 @@
             </div>
         </div>
         <div class="border-t border-white/5 pt-6 text-center">
-            <p class="font-sans text-[11px] text-white/18">© 2024 Katarina Malinauskas · OAB/SP nº 338.901 · Este site tem caráter informativo e não constitui consulta jurídica.</p>
+            <p class="font-sans text-[11px] text-white/18">© 2025 Katarina Malinauskas · OAB/SP nº 338.901 · Este site tem caráter informativo e não constitui consulta jurídica.</p>
         </div>
     </div>
 </footer>
 
 <!-- WhatsApp FAB -->
-<a href="https://wa.me/5511933502503" target="_blank" class="fixed bottom-6 right-6 bg-rose text-white w-14 h-14 rounded-full flex items-center justify-center z-50 hover:scale-110 transition-transform" style="box-shadow:0 8px 28px rgba(214,179,170,.45);" aria-label="Falar no WhatsApp">
+<a href="https://wa.me/5511933502503" target="_blank" class="fixed bottom-6 right-6 text-white w-14 h-14 rounded-full flex items-center justify-center z-50 hover:scale-110 transition-transform" style="background:#D6B3AA; box-shadow:0 8px 28px rgba(214,179,170,.45);" aria-label="Falar no WhatsApp">
     <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" viewBox="0 0 16 16">
         <path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c-.003 1.398.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.005-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"/>
     </svg>
@@ -413,7 +566,6 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', () => {
-        // Scroll animations
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(e => {
                 if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
@@ -421,24 +573,17 @@
         }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
         document.querySelectorAll('.fade-up, .fade-in').forEach(el => observer.observe(el));
 
-        // Navbar: transparent over dark hero → white on scroll
         const nav = document.getElementById('nav');
         function updateNav() {
-            if (window.scrollY > 60) {
-                nav.classList.add('solid');
-            } else {
-                nav.classList.remove('solid');
-            }
+            nav.classList.toggle('solid', window.scrollY > 60);
         }
         window.addEventListener('scroll', updateNav, { passive: true });
         updateNav();
 
-        // Mobile menu
         document.getElementById('mob-toggle').addEventListener('click', () => {
             document.getElementById('mob-menu').classList.toggle('hidden');
         });
 
-        // Progress bar
         const bar = document.getElementById('pbar');
         window.addEventListener('scroll', () => {
             bar.style.width = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight) * 100) + '%';

@@ -145,7 +145,7 @@
             <a href="#servicos" class="font-sans text-[13px] text-white/60 hover:text-white transition-colors tracking-wide">Serviços</a>
             <a href="#sobre" class="font-sans text-[13px] text-white/60 hover:text-white transition-colors tracking-wide">Sobre</a>
             <a href="#faq" class="font-sans text-[13px] text-white/60 hover:text-white transition-colors tracking-wide">FAQ</a>
-            <a href="https://wa.me/5511933502503" target="_blank" class="btn px-6 py-2.5 text-[13px]">Falar no WhatsApp</a>
+            <a href="https://wa.me/5511933502503" target="_blank" onclick="track('whatsapp')" class="btn px-6 py-2.5 text-[13px]">Falar no WhatsApp</a>
         </div>
         <a href="#contato" class="md:hidden btn px-5 py-2.5 text-[13px]">Contato</a>
     </div>
@@ -453,7 +453,7 @@
                 <span class="font-sans text-[11px] uppercase tracking-[3px] text-gold font-semibold block mb-5">Dúvidas Frequentes</span>
                 <h2 class="font-serif text-[36px] md:text-[40px] text-text-p leading-[1.15] mb-6 max-w-[300px]">As perguntas que todo empresário faz.</h2>
                 <p class="font-sans text-[15px] text-text-s leading-[1.7] mb-8">Respostas diretas. Sem enrolação.</p>
-                <a href="https://wa.me/5511933502503" target="_blank" class="btn inline-block px-7 py-3.5 text-[14px]">Tirar dúvida no WhatsApp →</a>
+                <a href="https://wa.me/5511933502503" target="_blank" onclick="track('whatsapp')" class="btn inline-block px-7 py-3.5 text-[14px]">Tirar dúvida no WhatsApp →</a>
             </div>
 
             <div class="w-full lg:w-[64%] fade-up divide-y divide-surface-2">
@@ -611,7 +611,7 @@
 </footer>
 
 <!-- WhatsApp FAB -->
-<a href="https://wa.me/5511933502503" target="_blank" class="fixed bottom-6 right-6 bg-gold text-white w-14 h-14 rounded-full flex items-center justify-center z-50 hover:scale-110 transition-transform" style="box-shadow:0 8px 28px rgba(197,160,89,.45);">
+<a href="https://wa.me/5511933502503" target="_blank" onclick="track('whatsapp')" class="fixed bottom-6 right-6 bg-gold text-white w-14 h-14 rounded-full flex items-center justify-center z-50 hover:scale-110 transition-transform" style="box-shadow:0 8px 28px rgba(197,160,89,.45);">
     <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" viewBox="0 0 16 16">
         <path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c-.003 1.398.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.005-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"/>
     </svg>
@@ -632,12 +632,24 @@
         </div>
         <h3 class="font-serif text-[24px] text-white leading-tight mb-3">Quer agilidade no seu atendimento?</h3>
         <p class="font-sans text-[15px] text-white/70 mb-8 leading-relaxed">Fala com a gente no WhatsApp.</p>
-        <a href="https://wa.me/5511933502503" target="_blank" onclick="closeWhatsAppModal()" class="btn w-full py-4 text-[16px] font-medium text-center block">falar agora</a>
+        <a href="https://wa.me/5511933502503" target="_blank" onclick="track('whatsapp'); closeWhatsAppModal();" class="btn w-full py-4 text-[16px] font-medium text-center block">falar agora</a>
     </div>
 </div>
 
 <script>
     const SHEET_URL = 'https://script.google.com/macros/s/AKfycbyS8jE_tA9oJmk8LRcGfgkf3GABlxyYbfx94NB4ZCR4mY7mNRXJwjLAVYzneejeUKw5SA/exec';
+
+    function track(event) {
+        const urls = {
+            respondeu: 'https://www.kmalinauskas.com.br/empresarios#respondeu',
+            whatsapp:  'https://www.kmalinauskas.com.br/empresarios#whatsapp',
+        };
+        const url = urls[event];
+        if (!url) return;
+        try {
+            fetch(url, { method: 'GET', mode: 'no-cors', cache: 'no-cache' }).catch(() => {});
+        } catch(e) {}
+    }
 
     document.getElementById('lead-form').addEventListener('submit', async function(e) {
         e.preventDefault();
@@ -666,12 +678,13 @@
                 body: JSON.stringify(data),
             });
 
+            track('respondeu');
             form.reset();
             btn.textContent = '✓ Mensagem enviada';
             btn.style.opacity = '1';
             msg.textContent = 'Recebemos seu contato! Retornaremos em até 24 horas.';
             msg.className = 'mt-4 text-center font-sans text-[14px] text-gold';
-            
+
             // Open the WhatsApp redirection popup
             openWhatsAppModal();
         } catch (err) {
