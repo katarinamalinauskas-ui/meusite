@@ -855,6 +855,7 @@
         card.classList.add('scale-95');
     }
 
+    document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('popup-form')?.addEventListener('submit', async function(e) {
         e.preventDefault();
         const btn = document.getElementById('popup-btn');
@@ -881,7 +882,11 @@
                 body: JSON.stringify(data),
             });
 
-            window.open("https://wa.me/5511933502503?text=Ol%C3%A1%2C%20estou%20precisando%20de%20uma%20advogada%20trabalhista%20empresarial", "_blank");
+            const wa_link = form.tipo.value === 'empresarial' 
+                ? 'https://wa.me/5511933502503?text=Ol%C3%A1%2C%20estou%20precisando%20de%20uma%20advogada%20trabalhista%20empresarial'
+                : 'https://wa.me/5511933502503?text=Ol%C3%A1%2C%20estou%20precisando%20de%20uma%20advogada%20trabalhista';
+
+            window.open(wa_link, '_blank');
             closeLeadModal();
             form.reset();
             btn.disabled = false;
@@ -895,18 +900,23 @@
             msg.textContent = 'Erro ao conectar. Redirecionando...';
             msg.classList.remove('hidden');
             msg.className = 'mt-3 text-center font-sans text-[13px] text-red-400 block';
+            
+            const wa_link = form.tipo.value === 'empresarial' 
+                ? 'https://wa.me/5511933502503?text=Ol%C3%A1%2C%20estou%20precisando%20de%20uma%20advogada%20trabalhista%20empresarial'
+                : 'https://wa.me/5511933502503?text=Ol%C3%A1%2C%20estou%20precisando%20de%20uma%20advogada%20trabalhista';
+                
             setTimeout(() => {
-                window.open("https://wa.me/5511933502503?text=Ol%C3%A1%2C%20estou%20precisando%20de%20uma%20advogada%20trabalhista%20empresarial", "_blank");
+                window.open(wa_link, '_blank');
                 closeLeadModal();
                 msg.classList.add('hidden');
             }, 1500);
         }
     });
 
-    // Close on click outside
     document.getElementById('leadModal')?.addEventListener('click', function(e) {
         if(e.target === this) closeLeadModal();
     });
+});
 
     function toggleFaq(el) {
         const isOpen = el.classList.contains('open');
