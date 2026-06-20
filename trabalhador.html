@@ -14,13 +14,12 @@
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-
       gtag('config', 'AW-18159328393');
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Katarina Malinauskas | Defesa dos Direitos do Trabalhador</title>
-    <meta name="description" content="Proteja seus direitos trabalhistas com uma assessoria jurídica especializada, rápida e humanizada. Atendimento em todo o Brasil.">
+    <meta name="description" content="Seus direitos trabalhistas foram violados? Fale com uma advogada especialista. Atendimento humanizado, sigiloso e online em todo o Brasil.">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -32,17 +31,17 @@
             theme: {
                 extend: {
                     colors: {
-                        'brand-dark': '#070D1E',       // Azul marinho ultra escuro para autoridade
-                        'brand-navy': '#0E172E',       // Azul marinho profundo de suporte
-                        'brand-alt': '#F8FAFC',        // Fundo claro e limpo para leitura
-                        'brand-gold': '#C5A059',       // Dourado leve premium para acentos
+                        'brand-dark': '#070D1E',
+                        'brand-navy': '#0E172E',
+                        'brand-alt': '#F8FAFC',
+                        'brand-gold': '#C5A059',
                         'brand-gold-hover': '#B38B44',
                         'brand-gold-light': '#F8F4E6',
-                        'brand-green': '#25D366',      // Verde WhatsApp exclusivo para CTAs
+                        'brand-green': '#25D366',
                         'brand-green-hover': '#1EBE57',
-                        'text-p': '#1E293B',           // Texto principal escuro (slate-800)
-                        'text-s': '#64748B',           // Texto secundário (slate-500)
-                        'text-m': '#94A3B8',           // Texto terciário (slate-400)
+                        'text-p': '#1E293B',
+                        'text-s': '#64748B',
+                        'text-m': '#94A3B8',
                     },
                     fontFamily: {
                         serif: ['"Cormorant Garamond"', 'serif'],
@@ -54,11 +53,14 @@
     </script>
 
     <style>
-        /* Form */
+        /* ── Reset & Base ── */
+        *, *::before, *::after { box-sizing: border-box; }
+
+        /* Form underline fields */
         .field {
             background: transparent;
             border: none;
-            border-bottom: 1px solid rgba(255, 255, 255, .15);
+            border-bottom: 1px solid rgba(255,255,255,.15);
             padding: 11px 0;
             color: #fff;
             width: 100%;
@@ -66,135 +68,261 @@
             font-size: 15px;
             transition: border-color .3s;
         }
+        .field::placeholder { color: rgba(255,255,255,.3); }
+        .field:focus { outline: none; border-bottom-color: #C5A059; }
 
-        .field::placeholder {
-            color: rgba(255, 255, 255, .3);
-        }
-
-        .field:focus {
-            outline: none;
-            border-bottom-color: #C5A059;
-        }
-
-        /* FAQ */
+        /* FAQ accordion */
         .faq-body {
             max-height: 0;
             overflow: hidden;
-            transition: max-height .4s cubic-bezier(.16, 1, .3, 1), padding .3s ease;
+            transition: max-height .4s cubic-bezier(.16,1,.3,1), padding .3s ease;
         }
+        .faq-item.open .faq-body { max-height: 300px; padding-bottom: 18px; }
+        .faq-icon { transition: transform .3s cubic-bezier(.16,1,.3,1); display: inline-block; line-height: 1; }
+        .faq-item.open .faq-icon { transform: rotate(45deg); }
 
-        .faq-item.open .faq-body {
-            max-height: 280px;
-            padding-bottom: 18px;
-        }
-
-        .faq-icon {
-            transition: transform .3s cubic-bezier(.16, 1, .3, 1);
-            display: inline-block;
-            line-height: 1;
-        }
-
-        .faq-item.open .faq-icon {
-            transform: rotate(45deg);
-        }
-
-        /* Service cards */
+        /* Service / specialty cards */
         .scard {
             position: relative;
             overflow: hidden;
             transition: transform .3s ease, box-shadow .3s ease;
         }
-
         .scard::after {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
+            top: 0; left: 0; right: 0;
             height: 2px;
             background: linear-gradient(90deg, #C5A059, #D4B06A);
             transform: scaleX(0);
             transform-origin: left;
             transition: transform .3s ease;
         }
-
-        .scard:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 16px 40px rgba(0, 0, 0, .06);
-        }
-
-        .scard:hover::after {
-            transform: scaleX(1);
-        }
+        .scard:hover { transform: translateY(-4px); box-shadow: 0 20px 48px rgba(0,0,0,.08); }
+        .scard:hover::after { transform: scaleX(1); }
 
         /* Gold line accent */
-        .g-line {
-            width: 44px;
-            height: 2px;
-            background: linear-gradient(90deg, #C5A059, #D4B06A);
-        }
+        .g-line { width: 44px; height: 2px; background: linear-gradient(90deg, #C5A059, #D4B06A); }
 
-        /* Hero grid bg */
+        /* Hero subtle grid */
         .hero-grid {
             background-image:
-                linear-gradient(rgba(197, 160, 89, .03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(197, 160, 89, .03) 1px, transparent 1px);
+                linear-gradient(rgba(197,160,89,.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(197,160,89,.03) 1px, transparent 1px);
             background-size: 64px 64px;
         }
 
-        /* Progress bar */
+        /* Reading progress bar */
         #pbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            height: 2px;
-            background: linear-gradient(90deg, #25D366, #1EBE57);
-            z-index: 200;
-            width: 0%;
+            position: fixed; top: 0; left: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #25D366, #C5A059);
+            z-index: 200; width: 0%;
             transition: width .08s linear;
         }
 
-        /* CTA button styling */
-        .btn-cta {
+        /* Primary WhatsApp CTA */
+        .btn-wa {
             display: inline-flex;
             align-items: center;
             justify-content: center;
+            gap: 10px;
             background: linear-gradient(135deg, #25D366 0%, #1EBE57 100%);
             color: #fff;
-            border-radius: 4px;
+            border-radius: 6px;
             font-family: 'Inter', sans-serif;
-            font-weight: 600;
+            font-weight: 700;
             transition: all .3s ease;
-            box-shadow: 0 4px 18px rgba(37, 211, 102, .25);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
+            box-shadow: 0 6px 24px rgba(37,211,102,.30);
+            letter-spacing: .3px;
+            position: relative;
+            overflow: hidden;
         }
-
-        .btn-cta:hover {
-            box-shadow: 0 6px 24px rgba(37, 211, 102, .45);
-            transform: translateY(-1px);
+        .btn-wa::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 60%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,.15), transparent);
+            transition: left .5s ease;
+        }
+        .btn-wa:hover::before { left: 140%; }
+        .btn-wa:hover {
+            box-shadow: 0 8px 32px rgba(37,211,102,.50);
+            transform: translateY(-2px);
             background: linear-gradient(135deg, #22C35E 0%, #19A94C 100%);
         }
 
-        /* Animations */
-        .fade-up {
-            opacity: 0;
-            transform: translateY(32px);
-            transition: opacity .7s cubic-bezier(.16, 1, .3, 1), transform .7s cubic-bezier(.16, 1, .3, 1);
+        /* Secondary outline CTA */
+        .btn-wa-outline {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: transparent;
+            color: #25D366;
+            border: 2px solid rgba(37,211,102,.35);
+            border-radius: 6px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            transition: all .3s ease;
+            letter-spacing: .3px;
+        }
+        .btn-wa-outline:hover {
+            border-color: #25D366;
+            background: rgba(37,211,102,.06);
+            transform: translateY(-1px);
         }
 
-        .fade-up.visible {
-            opacity: 1;
-            transform: translateY(0);
+        /* Gold outline button */
+        .btn-gold {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: transparent;
+            color: #C5A059;
+            border: 1.5px solid rgba(197,160,89,.4);
+            border-radius: 6px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            transition: all .3s ease;
         }
+        .btn-gold:hover {
+            border-color: #C5A059;
+            background: rgba(197,160,89,.06);
+            transform: translateY(-1px);
+        }
+
+        /* Scroll animations */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(36px);
+            transition: opacity .75s cubic-bezier(.16,1,.3,1), transform .75s cubic-bezier(.16,1,.3,1);
+        }
+        .fade-up.visible { opacity: 1; transform: translateY(0); }
 
         .fade-in {
             opacity: 0;
-            transition: opacity .9s ease;
+            transition: opacity 1s ease;
+        }
+        .fade-in.visible { opacity: 1; }
+
+        /* Pain cards */
+        .pain-card {
+            background: #fff;
+            border: 1px solid #F1F5F9;
+            border-radius: 8px;
+            padding: 20px 22px;
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            box-shadow: 0 2px 8px rgba(0,0,0,.04);
+            transition: box-shadow .3s ease, border-color .3s ease;
+        }
+        .pain-card:hover {
+            box-shadow: 0 8px 28px rgba(0,0,0,.08);
+            border-color: rgba(197,160,89,.3);
+        }
+        .pain-icon {
+            width: 38px; height: 38px;
+            border-radius: 8px;
+            background: linear-gradient(135deg, rgba(197,160,89,.12), rgba(197,160,89,.06));
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0;
+            font-size: 18px;
         }
 
-        .fade-in.visible {
-            opacity: 1;
+        /* Urgency strip */
+        .urgency-strip {
+            background: linear-gradient(90deg, #C5A059 0%, #D4B06A 50%, #C5A059 100%);
+            background-size: 200% 100%;
+            animation: shimmer-gold 3s ease infinite;
+        }
+        @keyframes shimmer-gold {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
+        /* Testimonial card */
+        .tcard {
+            background: #fff;
+            border: 1px solid #F1F5F9;
+            border-radius: 10px;
+            padding: 28px;
+            box-shadow: 0 4px 20px rgba(0,0,0,.05);
+            transition: box-shadow .3s ease;
+        }
+        .tcard:hover { box-shadow: 0 10px 40px rgba(0,0,0,.10); }
+
+        /* Stats counter boxes */
+        .stat-box {
+            text-align: center;
+            padding: 28px 20px;
+        }
+
+        /* Pulse animation for FAB */
+        @keyframes pulse-green {
+            0%, 100% { box-shadow: 0 8px 28px rgba(37,211,102,.4); }
+            50% { box-shadow: 0 8px 40px rgba(37,211,102,.7), 0 0 0 10px rgba(37,211,102,.1); }
+        }
+        .fab-wa { animation: pulse-green 2.5s ease infinite; }
+
+        /* Modal overlay */
+        #leadModal { transition: opacity .3s ease; }
+        #leadModal .modal-card { transition: transform .3s cubic-bezier(.16,1,.3,1); }
+
+        /* Checklist items */
+        .check-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: 'Inter', sans-serif;
+            font-size: 13px;
+            color: rgba(255,255,255,.55);
+        }
+        .check-item .dot {
+            width: 18px; height: 18px;
+            background: rgba(37,211,102,.15);
+            border: 1px solid rgba(37,211,102,.3);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0;
+            color: #25D366;
+            font-size: 10px;
+            font-weight: 700;
+        }
+
+        /* Section divider line */
+        .sec-label {
+            font-family: 'Inter', sans-serif;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: #C5A059;
+        }
+
+        /* Gradient text */
+        .grad-text {
+            background: linear-gradient(135deg, #C5A059, #E8C97A);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Sticky CTA bar (mobile) */
+        #sticky-cta {
+            position: fixed;
+            bottom: 0; left: 0; right: 0;
+            z-index: 48;
+            padding: 12px 16px;
+            background: rgba(7,13,30,.96);
+            backdrop-filter: blur(8px);
+            border-top: 1px solid rgba(255,255,255,.07);
+            display: none;
+        }
+        @media (max-width: 768px) {
+            #sticky-cta { display: block; }
         }
     </style>
 </head>
@@ -202,244 +330,265 @@
     <!-- Google Tag Manager (noscript) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NZHN6HPB"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
 
     <div id="pbar"></div>
 
-    <!-- NAV -->
+    <!-- ══ NAV ══════════════════════════════════════════ -->
     <nav id="nav" class="fixed w-full top-0 z-50 bg-brand-dark/95 backdrop-blur-md border-b border-white/5 transition-all duration-300">
-        <div class="max-w-[1140px] mx-auto px-6 h-[76px] flex items-center justify-between">
+        <div class="max-w-[1140px] mx-auto px-6 h-[72px] flex items-center justify-between">
             <a href="#" class="flex items-center gap-3">
                 <img src="logo-2.png" alt="Katarina Malinauskas Advocacia" class="h-10 w-auto object-contain">
             </a>
-            <div class="hidden md:flex items-center gap-8">
-                <a href="#diferenciais" class="font-sans text-[13px] text-white/70 hover:text-white transition-colors tracking-wide">Diferenciais</a>
-                <a href="#sobre" class="font-sans text-[13px] text-white/70 hover:text-white transition-colors tracking-wide">Sobre</a>
-                <a href="#especialidades" class="font-sans text-[13px] text-white/70 hover:text-white transition-colors tracking-wide">Especialidades</a>
-                <a href="#faq" class="font-sans text-[13px] text-white/70 hover:text-white transition-colors tracking-wide">FAQ</a>
-                <a href="#" onclick="openLeadModal(); return false;" class="btn-cta px-6 py-2.5 text-[12px]">Falar no WhatsApp</a>
+            <div class="hidden md:flex items-center gap-7">
+                <a href="#dores"       class="font-sans text-[13px] text-white/60 hover:text-white transition-colors tracking-wide">Situações</a>
+                <a href="#sobre"       class="font-sans text-[13px] text-white/60 hover:text-white transition-colors tracking-wide">Sobre</a>
+                <a href="#especialidades" class="font-sans text-[13px] text-white/60 hover:text-white transition-colors tracking-wide">Especialidades</a>
+                <a href="#faq"         class="font-sans text-[13px] text-white/60 hover:text-white transition-colors tracking-wide">FAQ</a>
+                <a id="nav-wa-btn" href="https://wa.me/5511933502503?text=Ol%C3%A1%2C%20meu%20direitos%20foram%20violados%2C%20gostaria%20de%20falar%20com%20uma%20advogada%20especialista!" target="_blank" rel="noopener" class="btn-wa px-5 py-2.5 text-[12px] uppercase tracking-wide">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" viewBox="0 0 16 16"><path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c-.003 1.398.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.005-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"/></svg>
+                    Falar no WhatsApp
+                </a>
             </div>
-            <a href="#" onclick="openLeadModal(); return false;" class="md:hidden btn-cta px-5 py-2.5 text-[12px]">Contato</a>
+            <a href="https://wa.me/5511933502503?text=Ol%C3%A1%2C%20meu%20direitos%20foram%20violados%2C%20gostaria%20de%20falar%20com%20uma%20advogada%20especialista!" target="_blank" rel="noopener" class="md:hidden btn-wa px-4 py-2.5 text-[12px]">WhatsApp</a>
         </div>
     </nav>
 
-    <!-- HERO SECTION -->
-    <section class="relative bg-brand-dark min-h-screen flex items-center pt-[90px] hero-grid overflow-hidden">
-        <!-- Decorative light glow -->
-        <div class="absolute top-1/2 right-[20%] -translate-y-1/2 w-[600px] h-[600px] rounded-full pointer-events-none"
-            style="background:radial-gradient(circle,rgba(197,160,89,.05) 0%,transparent 65%);"></div>
+    <!-- ══ URGENCY TOP BAR ════════════════════════════════ -->
+    <div class="urgency-strip pt-[72px]">
+        <p class="text-center font-sans text-[12px] font-semibold text-brand-dark py-2.5 px-4 tracking-wide">
+            ⚖️ Atendimento especializado em direitos trabalhistas — Resposta rápida pelo WhatsApp
+        </p>
+    </div>
 
-        <div class="max-w-[1140px] mx-auto px-6 w-full relative z-10 py-16">
-            <div class="flex flex-col lg:flex-row items-center gap-14 lg:gap-8">
+    <!-- ══ HERO SECTION ═══════════════════════════════════ -->
+    <section class="relative bg-brand-dark flex items-center hero-grid overflow-hidden" style="min-height:calc(100vh - 108px);">
+        <!-- Glow orbs -->
+        <div class="absolute top-1/3 right-[15%] w-[700px] h-[700px] rounded-full pointer-events-none" style="background:radial-gradient(circle,rgba(197,160,89,.06) 0%,transparent 65%);"></div>
+        <div class="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full pointer-events-none" style="background:radial-gradient(circle,rgba(37,211,102,.04) 0%,transparent 70%);"></div>
+
+        <div class="max-w-[1140px] mx-auto px-6 w-full relative z-10 py-16 lg:py-20">
+            <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-8">
                 
                 <!-- Text Column -->
-                <div class="w-full lg:w-[55%] fade-up">
+                <div class="w-full lg:w-[56%] fade-up">
                     <div class="g-line mb-6"></div>
-                    <span class="font-sans text-[11px] uppercase tracking-[3px] text-brand-gold font-semibold block mb-4">
-                        Defesa dos Direitos Trabalhistas · Advocacia Especializada
-                    </span>
-                    <h1 class="font-serif text-[42px] md:text-[54px] text-white leading-[1.12] mb-6 max-w-[620px]">
-                        Trabalhador, seus direitos foram violados? <em class="text-brand-gold not-italic">Fale com uma advogada especialista</em> em Direito do Trabalho!
+                    <span class="sec-label block mb-5">Defesa dos Direitos Trabalhistas · Advocacia Especializada</span>
+                    
+                    <h1 class="font-serif text-[40px] md:text-[52px] lg:text-[58px] text-white leading-[1.08] mb-6" style="max-width:640px;">
+                        Trabalhador, seus direitos foram violados?
+                        <em class="grad-text not-italic block mt-1">Fale com uma advogada especialista em Direito do Trabalho!</em>
                     </h1>
                     
-                    <p class="font-sans text-[15px] uppercase tracking-[1px] text-white/90 font-semibold mb-4">
+                    <p class="font-sans text-[14px] uppercase tracking-[2px] text-white/60 font-semibold mb-5">
                         Atendimento especializado para trabalhadores que sofreram com:
                     </p>
                     
-                    <ul class="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2.5 mb-8 text-white/70 font-sans text-[15px]">
-                        <li class="flex items-center gap-2.5">
-                            <span class="w-1.5 h-1.5 rounded-full bg-brand-gold flex-shrink-0"></span> Horas extras não pagas
-                        </li>
-                        <li class="flex items-center gap-2.5">
-                            <span class="w-1.5 h-1.5 rounded-full bg-brand-gold flex-shrink-0"></span> Burnout / Adoecimento
-                        </li>
-                        <li class="flex items-center gap-2.5">
-                            <span class="w-1.5 h-1.5 rounded-full bg-brand-gold flex-shrink-0"></span> Acidente de trabalho
-                        </li>
-                        <li class="flex items-center gap-2.5">
-                            <span class="w-1.5 h-1.5 rounded-full bg-brand-gold flex-shrink-0"></span> Assédio moral
-                        </li>
-                        <li class="flex items-center gap-2.5">
-                            <span class="w-1.5 h-1.5 rounded-full bg-brand-gold flex-shrink-0"></span> Insalubridade / Periculosidade
-                        </li>
-                        <li class="flex items-center gap-2.5">
-                            <span class="w-1.5 h-1.5 rounded-full bg-brand-gold flex-shrink-0"></span> Acúmulo ou desvio de função
-                        </li>
+                    <ul class="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-3 mb-9 text-white/75 font-sans text-[15px]">
+                        <li class="flex items-center gap-3"><span class="w-2 h-2 rounded-full bg-brand-gold flex-shrink-0"></span>Horas extras não pagas</li>
+                        <li class="flex items-center gap-3"><span class="w-2 h-2 rounded-full bg-brand-gold flex-shrink-0"></span>Burnout / Adoecimento</li>
+                        <li class="flex items-center gap-3"><span class="w-2 h-2 rounded-full bg-brand-gold flex-shrink-0"></span>Acidente de trabalho</li>
+                        <li class="flex items-center gap-3"><span class="w-2 h-2 rounded-full bg-brand-gold flex-shrink-0"></span>Assédio moral</li>
+                        <li class="flex items-center gap-3"><span class="w-2 h-2 rounded-full bg-brand-gold flex-shrink-0"></span>Insalubridade / Periculosidade</li>
+                        <li class="flex items-center gap-3"><span class="w-2 h-2 rounded-full bg-brand-gold flex-shrink-0"></span>Acúmulo ou desvio de função</li>
                     </ul>
 
-                    <p class="font-sans text-[16px] text-white/80 leading-relaxed mb-8 max-w-[480px]">
-                        Receba uma análise inicial da sua situação com orientação clara e sigilosa.
+                    <p class="font-sans text-[15px] text-white/65 leading-relaxed mb-8" style="max-width:500px;">
+                        Receba uma análise inicial da sua situação com orientação <strong class="text-white/85">clara e sigilosa.</strong>
                     </p>
                     
-                    <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
-                        <a href="#" onclick="openLeadModal(); return false;" class="btn-cta px-8 py-4 text-[14px]">
+                    <!-- CTA Buttons -->
+                    <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 mb-7">
+                        <a id="hero-cta-primary"
+                           href="https://wa.me/5511933502503?text=Ol%C3%A1%2C%20meu%20direitos%20foram%20violados%2C%20gostaria%20de%20falar%20com%20uma%20advogada%20especialista!"
+                           target="_blank" rel="noopener"
+                           class="btn-wa px-8 py-4 text-[14px] uppercase tracking-wide">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16"><path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c-.003 1.398.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.005-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"/></svg>
                             Quero falar com uma advogada agora
                         </a>
-                        <a href="#" onclick="openLeadModal(); return false;" class="btn-cta px-6 py-4 text-[14px] bg-none bg-transparent border border-brand-green/30 hover:border-brand-green text-brand-green shadow-none hover:shadow-lg">
+                        <a id="hero-cta-secondary"
+                           href="https://wa.me/5511933502503?text=Ol%C3%A1%2C%20meu%20direitos%20foram%20violados%2C%20gostaria%20de%20falar%20com%20uma%20advogada%20especialista!"
+                           target="_blank" rel="noopener"
+                           class="btn-wa-outline px-6 py-4 text-[14px]">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c-.003 1.398.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.005-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"/></svg>
                             Tirar minhas dúvidas no WhatsApp
                         </a>
                     </div>
-                    
-                    <!-- Microcopy -->
-                    <div class="flex flex-wrap items-center gap-6 mt-6 text-[12px] text-white/40">
-                        <span class="flex items-center gap-1.5"><span class="text-brand-green">✔</span> Atendimento online</span>
-                        <span class="flex items-center gap-1.5"><span class="text-brand-green">✔</span> Atendimento humanizado</span>
-                        <span class="flex items-center gap-1.5"><span class="text-brand-green">✔</span> Resposta rápida no WhatsApp</span>
+
+                    <!-- Microcopy trust signals -->
+                    <div class="flex flex-wrap items-center gap-5">
+                        <div class="check-item"><span class="dot">✔</span> Atendimento online</div>
+                        <div class="check-item"><span class="dot">✔</span> Atendimento humanizado</div>
+                        <div class="check-item"><span class="dot">✔</span> Resposta rápida no WhatsApp</div>
                     </div>
                 </div>
 
                 <!-- Photo Column -->
-                <div class="w-full lg:w-[45%] flex justify-center lg:justify-end fade-in" style="transition-delay:.15s;">
-                    <div class="relative w-full max-w-[380px] h-[460px] lg:h-[580px]">
-                        <div class="absolute -top-4 -right-4 w-full h-full border border-brand-gold/15 rounded-sm z-0"></div>
+                <div class="w-full lg:w-[44%] flex justify-center lg:justify-end fade-in" style="transition-delay:.2s;">
+                    <div class="relative w-full max-w-[360px] lg:max-w-[420px]" style="height:520px;">
+                        <!-- Decorative border -->
+                        <div class="absolute -top-5 -right-5 w-full h-full border border-brand-gold/20 rounded-sm z-0"></div>
+                        <!-- Gold dot accent -->
+                        <div class="absolute -bottom-3 -left-3 w-24 h-24 rounded-sm z-0" style="background:linear-gradient(135deg,rgba(197,160,89,.08),transparent);"></div>
+                        
                         <div class="relative w-full h-full overflow-hidden rounded-sm z-10">
-                            <div class="absolute inset-0 bg-gradient-to-t from-brand-dark via-brand-dark/10 to-transparent z-10"></div>
-                            <div class="absolute inset-0 bg-brand-gold/5 mix-blend-overlay z-20"></div>
+                            <div class="absolute inset-0 bg-gradient-to-t from-brand-dark via-brand-dark/20 to-transparent z-10"></div>
+                            <div class="absolute inset-0 bg-brand-gold/4 mix-blend-overlay z-20"></div>
                             <img src="foto-katarina-sobre.jpg" alt="Dra. Katarina Malinauskas" class="w-full h-full object-cover object-top">
                         </div>
-                        <div class="absolute bottom-5 left-5 z-20 bg-brand-dark/80 backdrop-blur-sm border border-white/10 px-5 py-3 rounded-sm">
-                            <p class="font-serif text-white text-[16px]">Dra. Katarina Malinauskas</p>
-                            <p class="font-sans text-[11px] text-brand-gold/80 tracking-widest uppercase mt-0.5">OAB/SP nº 338.901</p>
+
+                        <!-- Name badge -->
+                        <div class="absolute bottom-6 left-6 z-30 bg-brand-dark/90 backdrop-blur-sm border border-white/10 px-5 py-3.5 rounded-md shadow-xl">
+                            <p class="font-serif text-white text-[17px] leading-tight">Dra. Katarina Malinauskas</p>
+                            <p class="font-sans text-[10px] text-brand-gold/90 tracking-widest uppercase mt-1">OAB/SP nº 338.901</p>
+                        </div>
+
+                        <!-- Floating trust badge -->
+                        <div class="absolute -right-4 top-10 z-30 bg-brand-green/10 border border-brand-green/25 backdrop-blur-sm px-4 py-3 rounded-md shadow-lg hidden lg:block">
+                            <p class="font-sans text-[11px] text-brand-green font-semibold tracking-wide">✔ Atendimento Online</p>
+                            <p class="font-sans text-[10px] text-white/40 mt-0.5">Todo o Brasil</p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 fade-up" style="transition-delay:.4s;">
+        <!-- Scroll indicator -->
+        <div class="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 fade-up" style="transition-delay:.5s;">
             <span class="font-sans text-[9px] uppercase tracking-[2px] text-white/20">Rolar</span>
-            <div class="w-px h-6 bg-gradient-to-b from-white/20 to-transparent"></div>
+            <div class="w-px h-7 bg-gradient-to-b from-white/20 to-transparent"></div>
         </div>
     </section>
 
-    <!-- BLOCO 2 — IDENTIFICAÇÃO DE DOR -->
-    <section class="py-[96px] bg-brand-alt" id="dores">
-        <div class="max-w-[880px] mx-auto px-6 fade-up">
+    <!-- ══ BLOCO 2 — IDENTIFICAÇÃO DE DOR ════════════════ -->
+    <section class="py-[88px] bg-brand-alt" id="dores">
+        <div class="max-w-[960px] mx-auto px-6 fade-up">
             <div class="text-center mb-14">
                 <div class="g-line mx-auto mb-6"></div>
-                <span class="font-sans text-[11px] uppercase tracking-[3px] text-brand-gold font-semibold">Diagnóstico de Situação</span>
-                <h2 class="font-serif text-[36px] md:text-[44px] text-text-p mt-4 leading-[1.2]">Você passou por alguma dessas situações no trabalho?</h2>
+                <span class="sec-label">Diagnóstico de Situação</span>
+                <h2 class="font-serif text-[34px] md:text-[44px] text-text-p mt-4 leading-[1.2] max-w-[640px] mx-auto">
+                    Você passou por alguma dessas situações no trabalho?
+                </h2>
+                <p class="font-sans text-[15px] text-text-s mt-4 max-w-[480px] mx-auto leading-relaxed">
+                    Se você vivenciou qualquer uma dessas situações, <strong class="text-text-p">pode ter valores a receber.</strong>
+                </p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-12">
-                <!-- Card 1 -->
-                <div class="bg-white p-6 border border-slate-100 rounded-sm flex items-start gap-4 shadow-sm hover:shadow-md transition-shadow">
-                    <div class="w-8 h-8 rounded-full bg-brand-gold/10 flex items-center justify-center flex-shrink-0 mt-0.5">
-                        <span class="text-brand-gold font-bold text-sm">?</span>
-                    </div>
+                <div class="pain-card">
+                    <div class="pain-icon">⏰</div>
                     <div>
-                        <h4 class="font-sans font-semibold text-[16px] text-text-p mb-1.5">Fazia horas extras e não recebia corretamente?</h4>
-                        <p class="font-sans text-[14px] text-text-s leading-relaxed">Entradas antecipadas, saídas tardias, trabalho em fins de semana ou intervalos reduzidos sem o devido pagamento.</p>
+                        <h4 class="font-sans font-semibold text-[15px] text-text-p mb-1.5">Fazia horas extras e não recebia corretamente?</h4>
+                        <p class="font-sans text-[13px] text-text-s leading-relaxed">Entradas antecipadas, saídas tardias, fins de semana ou intervalos reduzidos sem o devido pagamento.</p>
                     </div>
                 </div>
                 
-                <!-- Card 2 -->
-                <div class="bg-white p-6 border border-slate-100 rounded-sm flex items-start gap-4 shadow-sm hover:shadow-md transition-shadow">
-                    <div class="w-8 h-8 rounded-full bg-brand-gold/10 flex items-center justify-center flex-shrink-0 mt-0.5">
-                        <span class="text-brand-gold font-bold text-sm">?</span>
-                    </div>
+                <div class="pain-card">
+                    <div class="pain-icon">🧠</div>
                     <div>
-                        <h4 class="font-sans font-semibold text-[16px] text-text-p mb-1.5">Trabalhou doente, sob pressão ou desenvolveu burnout?</h4>
-                        <p class="font-sans text-[14px] text-text-s leading-relaxed">Cobranças excessivas, metas impossíveis e sobrecarga que levaram a crises de ansiedade ou esgotamento extremo.</p>
+                        <h4 class="font-sans font-semibold text-[15px] text-text-p mb-1.5">Trabalhou doente, sob pressão ou desenvolveu burnout?</h4>
+                        <p class="font-sans text-[13px] text-text-s leading-relaxed">Cobranças excessivas, metas impossíveis e sobrecarga que levaram a crises de ansiedade ou esgotamento.</p>
                     </div>
                 </div>
 
-                <!-- Card 3 -->
-                <div class="bg-white p-6 border border-slate-100 rounded-sm flex items-start gap-4 shadow-sm hover:shadow-md transition-shadow">
-                    <div class="w-8 h-8 rounded-full bg-brand-gold/10 flex items-center justify-center flex-shrink-0 mt-0.5">
-                        <span class="text-brand-gold font-bold text-sm">?</span>
-                    </div>
+                <div class="pain-card">
+                    <div class="pain-icon">🚑</div>
                     <div>
-                        <h4 class="font-sans font-semibold text-[16px] text-text-p mb-1.5">Sofreu acidente de trabalho e ficou sem suporte?</h4>
-                        <p class="font-sans text-[14px] text-text-s leading-relaxed">Lesões no local de trabalho ou no trajeto, sem emissão de CAT ou acompanhamento de estabilidade legal.</p>
+                        <h4 class="font-sans font-semibold text-[15px] text-text-p mb-1.5">Sofreu acidente de trabalho e ficou sem suporte?</h4>
+                        <p class="font-sans text-[13px] text-text-s leading-relaxed">Lesões no local de trabalho ou no trajeto, sem emissão de CAT ou acompanhamento de estabilidade legal.</p>
                     </div>
                 </div>
 
-                <!-- Card 4 -->
-                <div class="bg-white p-6 border border-slate-100 rounded-sm flex items-start gap-4 shadow-sm hover:shadow-md transition-shadow">
-                    <div class="w-8 h-8 rounded-full bg-brand-gold/10 flex items-center justify-center flex-shrink-0 mt-0.5">
-                        <span class="text-brand-gold font-bold text-sm">?</span>
-                    </div>
+                <div class="pain-card">
+                    <div class="pain-icon">😤</div>
                     <div>
-                        <h4 class="font-sans font-semibold text-[16px] text-text-p mb-1.5">Era humilhado ou pressionado no ambiente de trabalho?</h4>
-                        <p class="font-sans text-[14px] text-text-s leading-relaxed">Tratamento rude por parte de chefias, perseguições veladas ou constrangimentos constantes que caracterizam assédio.</p>
+                        <h4 class="font-sans font-semibold text-[15px] text-text-p mb-1.5">Era humilhado ou pressionado no ambiente de trabalho?</h4>
+                        <p class="font-sans text-[13px] text-text-s leading-relaxed">Tratamento rude por chefias, perseguições veladas ou constrangimentos constantes que caracterizam assédio.</p>
                     </div>
                 </div>
 
-                <!-- Card 5 -->
-                <div class="bg-white p-6 border border-slate-100 rounded-sm flex items-start gap-4 shadow-sm hover:shadow-md transition-shadow">
-                    <div class="w-8 h-8 rounded-full bg-brand-gold/10 flex items-center justify-center flex-shrink-0 mt-0.5">
-                        <span class="text-brand-gold font-bold text-sm">?</span>
-                    </div>
+                <div class="pain-card">
+                    <div class="pain-icon">⚠️</div>
                     <div>
-                        <h4 class="font-sans font-semibold text-[16px] text-text-p mb-1.5">Recebia funções além da sua contratação sem aumento?</h4>
-                        <p class="font-sans text-[14px] text-text-s leading-relaxed">Acúmulo de responsabilidades ou mudança de função para cargo superior sem a respectiva anotação e reajuste.</p>
+                        <h4 class="font-sans font-semibold text-[15px] text-text-p mb-1.5">Recebia funções além da sua contratação sem aumento?</h4>
+                        <p class="font-sans text-[13px] text-text-s leading-relaxed">Acúmulo de responsabilidades ou mudança para cargo superior sem anotação e reajuste salarial.</p>
                     </div>
                 </div>
 
-                <!-- Card 6 -->
-                <div class="bg-white p-6 border border-slate-100 rounded-sm flex items-start gap-4 shadow-sm hover:shadow-md transition-shadow">
-                    <div class="w-8 h-8 rounded-full bg-brand-gold/10 flex items-center justify-center flex-shrink-0 mt-0.5">
-                        <span class="text-brand-gold font-bold text-sm">?</span>
-                    </div>
+                <div class="pain-card">
+                    <div class="pain-icon">☢️</div>
                     <div>
-                        <h4 class="font-sans font-semibold text-[16px] text-text-p mb-1.5">Trabalhou em ambiente perigoso ou insalubre sem adicional?</h4>
-                        <p class="font-sans text-[14px] text-text-s leading-relaxed">Exposição a ruído excessivo, calor, produtos nocivos ou risco de vida constante sem receber os adicionais previstos.</p>
+                        <h4 class="font-sans font-semibold text-[15px] text-text-p mb-1.5">Trabalhou em ambiente perigoso ou insalubre sem adicional?</h4>
+                        <p class="font-sans text-[13px] text-text-s leading-relaxed">Exposição a ruído excessivo, calor, produtos nocivos ou risco de vida sem receber os adicionais previstos em lei.</p>
                     </div>
                 </div>
             </div>
 
-            <div class="text-center bg-white p-8 border border-slate-100 rounded-sm shadow-sm">
-                <p class="font-sans text-[16px] text-text-p mb-6">
-                    Se você se identificou com alguma dessas situações, seus direitos podem ter sido desrespeitados. 
-                    <strong class="block mt-2 text-brand-gold text-[18px]">Você não precisa enfrentar isso sozinho(a).</strong>
-                </p>
-                <a href="#" onclick="openLeadModal(); return false;" class="btn-cta px-10 py-4 text-[14px]">
-                    Falar com a Advogada no WhatsApp
-                </a>
+            <!-- CTA após as dores -->
+            <div class="bg-brand-dark rounded-xl p-8 md:p-10 text-center relative overflow-hidden">
+                <div class="absolute inset-0 hero-grid opacity-30 pointer-events-none"></div>
+                <div class="relative z-10">
+                    <div class="g-line mx-auto mb-5"></div>
+                    <p class="font-serif text-[22px] md:text-[28px] text-white leading-tight mb-2">
+                        Se você se identificou com alguma dessas situações,
+                    </p>
+                    <p class="font-serif text-[22px] md:text-[28px] text-brand-gold leading-tight mb-6">
+                        você não precisa enfrentar isso sozinho(a).
+                    </p>
+                    <a href="https://wa.me/5511933502503?text=Ol%C3%A1%2C%20meu%20direitos%20foram%20violados%2C%20gostaria%20de%20falar%20com%20uma%20advogada%20especialista!"
+                       target="_blank" rel="noopener"
+                       class="btn-wa px-10 py-4 text-[14px] uppercase tracking-wide mx-auto">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16"><path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c-.003 1.398.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.005-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"/></svg>
+                        Falar com a Advogada no WhatsApp
+                    </a>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- BLOCO 3 — AUTORIDADE + CONFIANÇA -->
+    <!-- ══ BLOCO 3 — AUTORIDADE + CONFIANÇA ═════════════ -->
     <section id="sobre" class="bg-white border-y border-slate-100">
         <div class="flex flex-col lg:flex-row min-h-[640px]">
             <!-- Photo -->
-            <div class="w-full lg:w-1/2 h-[440px] lg:h-auto overflow-hidden fade-in relative">
+            <div class="w-full lg:w-[48%] h-[400px] lg:h-auto overflow-hidden fade-in relative">
                 <img src="nova_foto_katarina.jpg" alt="Dra. Katarina Malinauskas" class="w-full h-full object-cover object-top scale-[1.02] hover:scale-[1.0] transition-transform duration-700">
-                <div class="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-white/10"></div>
+                <div class="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-white/5"></div>
+                <!-- Floating stat badges on photo -->
+                <div class="absolute bottom-6 left-6 bg-white/95 backdrop-blur-sm px-4 py-3 rounded-lg shadow-lg border border-slate-100">
+                    <p class="font-sans font-bold text-[22px] text-brand-gold leading-none">OAB/SP</p>
+                    <p class="font-sans text-[11px] text-text-s mt-0.5">nº 338.901</p>
+                </div>
             </div>
+
             <!-- Text -->
-            <div class="w-full lg:w-1/2 flex items-center py-[72px] px-8 md:px-[72px] lg:px-[88px] fade-up">
-                <div>
+            <div class="w-full lg:w-[52%] flex items-center py-[64px] px-8 md:px-[64px] lg:px-[80px] fade-up">
+                <div class="w-full">
                     <div class="g-line mb-6"></div>
-                    <span class="font-sans text-[11px] uppercase tracking-[3px] text-brand-gold font-semibold block mb-4">A Advogada</span>
-                    <h2 class="font-serif text-[38px] md:text-[46px] text-text-p leading-[1.1] mb-2">Katarina Malinauskas</h2>
+                    <span class="sec-label block mb-4">A Advogada</span>
+                    <h2 class="font-serif text-[36px] md:text-[44px] text-text-p leading-[1.1] mb-1">Katarina Malinauskas</h2>
                     <p class="font-sans text-[11px] text-text-m tracking-[1.5px] mb-8 uppercase">OAB/SP nº 338.901 · Direito do Trabalho · Atendimento Especializado</p>
                     
-                    <div class="space-y-5 mb-10 text-[16px] text-text-s leading-[1.85]">
-                        <p class="font-semibold text-text-p">Atendimento especializado em Direito do Trabalho</p>
-                        <p>
-                            A advogada Katarina Malinauskas atua na defesa dos direitos trabalhistas de trabalhadores que sofreram abusos, irregularidades ou prejuízos dentro do ambiente de trabalho.
-                        </p>
-                        <p>
-                            Com atuação focada em casos trabalhistas, o objetivo é oferecer orientação clara, atendimento próximo, análise detalhada do caso e acompanhamento jurídico estratégico. Tudo com atendimento humanizado e sigiloso.
-                        </p>
+                    <div class="space-y-4 mb-9 text-[15px] text-text-s leading-[1.9]">
+                        <p class="font-semibold text-text-p text-[16px]">Atendimento especializado em Direito do Trabalho</p>
+                        <p>A advogada Katarina Malinauskas atua na defesa dos direitos trabalhistas de trabalhadores que sofreram abusos, irregularidades ou prejuízos dentro do ambiente de trabalho.</p>
+                        <p>Com foco em casos trabalhistas, o objetivo é oferecer orientação clara, atendimento próximo, análise detalhada do caso e acompanhamento jurídico estratégico. Tudo com atendimento humanizado e sigiloso.</p>
                     </div>
 
-                    <!-- Diferenciais -->
-                    <div class="border-t border-slate-100 pt-8 mb-10">
-                        <h4 class="font-sans font-semibold text-[14px] text-brand-gold uppercase tracking-[2px] mb-5">Meus Diferenciais</h4>
-                        <ul class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-text-p font-sans text-[14px]">
-                            <li class="flex items-center gap-2"><span class="text-brand-green font-bold">✔</span> Atendimento rápido pelo WhatsApp</li>
-                            <li class="flex items-center gap-2"><span class="text-brand-green font-bold">✔</span> Análise individual do caso</li>
-                            <li class="flex items-center gap-2"><span class="text-brand-green font-bold">✔</span> Atendimento online e presencial</li>
-                            <li class="flex items-center gap-2"><span class="text-brand-green font-bold">✔</span> Comunicação clara e objetiva</li>
-                            <li class="flex items-center gap-2 sm:col-span-2"><span class="text-brand-green font-bold">✔</span> Foco total nos direitos do trabalhador</li>
+                    <!-- Diferenciais grid -->
+                    <div class="border-t border-slate-100 pt-7 mb-9">
+                        <h4 class="font-sans font-semibold text-[11px] text-brand-gold uppercase tracking-[2.5px] mb-5">Meus Diferenciais</h4>
+                        <ul class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-text-p font-sans text-[14px]">
+                            <li class="flex items-center gap-2.5"><span class="w-5 h-5 bg-brand-green/10 border border-brand-green/25 rounded-full flex items-center justify-center text-brand-green text-[10px] font-bold flex-shrink-0">✔</span>Atendimento rápido pelo WhatsApp</li>
+                            <li class="flex items-center gap-2.5"><span class="w-5 h-5 bg-brand-green/10 border border-brand-green/25 rounded-full flex items-center justify-center text-brand-green text-[10px] font-bold flex-shrink-0">✔</span>Análise individual do caso</li>
+                            <li class="flex items-center gap-2.5"><span class="w-5 h-5 bg-brand-green/10 border border-brand-green/25 rounded-full flex items-center justify-center text-brand-green text-[10px] font-bold flex-shrink-0">✔</span>Atendimento online e presencial</li>
+                            <li class="flex items-center gap-2.5"><span class="w-5 h-5 bg-brand-green/10 border border-brand-green/25 rounded-full flex items-center justify-center text-brand-green text-[10px] font-bold flex-shrink-0">✔</span>Comunicação clara e objetiva</li>
+                            <li class="flex items-center gap-2.5 sm:col-span-2"><span class="w-5 h-5 bg-brand-green/10 border border-brand-green/25 rounded-full flex items-center justify-center text-brand-green text-[10px] font-bold flex-shrink-0">✔</span>Foco total nos direitos do trabalhador</li>
                         </ul>
                     </div>
 
-                    <a href="#" onclick="openLeadModal(); return false;" class="btn-cta px-9 py-4 text-[14px]">
+                    <a href="https://wa.me/5511933502503?text=Ol%C3%A1%2C%20meu%20direitos%20foram%20violados%2C%20gostaria%20de%20falar%20com%20uma%20advogada%20especialista!"
+                       target="_blank" rel="noopener"
+                       class="btn-wa px-9 py-4 text-[14px]">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="currentColor" viewBox="0 0 16 16"><path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c-.003 1.398.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.005-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"/></svg>
                         Quero entender meus direitos
                     </a>
                 </div>
@@ -447,184 +596,189 @@
         </div>
     </section>
 
-    <!-- BLOCO 4 — ESPECIALIDADES -->
-    <section id="especialidades" class="py-[96px] bg-brand-alt">
+    <!-- ══ BLOCO 4 — ESPECIALIDADES ══════════════════════ -->
+    <section id="especialidades" class="py-[88px] bg-brand-alt">
         <div class="max-w-[1140px] mx-auto px-6">
-            <div class="flex flex-col items-center text-center mb-16 fade-up">
+            <div class="flex flex-col items-center text-center mb-14 fade-up">
                 <div class="g-line mb-6"></div>
-                <span class="font-sans text-[11px] uppercase tracking-[3px] text-brand-gold font-semibold mb-4">Áreas de Foco</span>
-                <h2 class="font-serif text-[36px] md:text-[44px] text-text-p leading-[1.15]">Como podemos te ajudar</h2>
+                <span class="sec-label mb-4">Áreas de Foco</span>
+                <h2 class="font-serif text-[34px] md:text-[44px] text-text-p leading-[1.15]">Como podemos te ajudar</h2>
                 <p class="font-sans text-[15px] text-text-s max-w-[480px] leading-relaxed mt-4">
-                    Conheça as principais frentes trabalhistas em que atuamos para buscar a reparação de abusos ocorridos no seu contrato.
+                    Conheça as principais frentes em que atuamos para buscar a reparação de abusos no seu contrato de trabalho.
                 </p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Specialty 1 -->
-                <div class="scard bg-white p-8 border border-slate-100 flex flex-col justify-between h-full fade-up">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+                <div class="scard bg-white p-8 border border-slate-100 rounded-lg flex flex-col justify-between fade-up">
                     <div>
-                        <div class="w-12 h-12 rounded-sm bg-brand-gold/5 flex items-center justify-center mb-6">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#C5A059" stroke-width="1.5">
-                                <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
-                            </svg>
+                        <div class="w-12 h-12 rounded-lg bg-brand-gold/8 flex items-center justify-center mb-6">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#C5A059" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
                         </div>
-                        <h3 class="font-sans font-semibold text-[18px] text-text-p mb-4">Horas Extras</h3>
-                        <p class="font-sans text-[14px] text-text-s leading-relaxed mb-6">
-                            Recebia fora do horário registrado, levava trabalho para fazer em casa ou fazia jornada acima do limite permitido sem o pagamento correto? Você pode ter valores expressivos a receber.
-                        </p>
+                        <h3 class="font-sans font-semibold text-[17px] text-text-p mb-3">Horas Extras</h3>
+                        <p class="font-sans text-[14px] text-text-s leading-relaxed mb-5">Recebia fora do horário registrado, levava trabalho para casa ou fazia jornada acima do limite sem o pagamento correto? Você pode ter valores expressivos a receber.</p>
                     </div>
-                    <p class="font-serif italic text-[15px] text-brand-gold font-medium mt-auto">Reivindique o valor real do seu tempo.</p>
+                    <p class="font-serif italic text-[14px] text-brand-gold font-medium mt-auto">Reivindique o valor real do seu tempo.</p>
                 </div>
 
-                <!-- Specialty 2 -->
-                <div class="scard bg-white p-8 border border-slate-100 flex flex-col justify-between h-full fade-up" style="transition-delay:.08s;">
+                <div class="scard bg-white p-8 border border-slate-100 rounded-lg flex flex-col justify-between fade-up" style="transition-delay:.08s;">
                     <div>
-                        <div class="w-12 h-12 rounded-sm bg-brand-gold/5 flex items-center justify-center mb-6">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#C5A059" stroke-width="1.5">
-                                <path d="M4.318 6.318a4.5 4.5 0 0 0 0 6.364L12 20.364l7.682-7.682a4.5 4.5 0 0 0-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 0 0-6.364 0z"/>
-                            </svg>
+                        <div class="w-12 h-12 rounded-lg bg-brand-gold/8 flex items-center justify-center mb-6">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#C5A059" stroke-width="1.5"><path d="M4.318 6.318a4.5 4.5 0 0 0 0 6.364L12 20.364l7.682-7.682a4.5 4.5 0 0 0-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 0 0-6.364 0z"/></svg>
                         </div>
-                        <h3 class="font-sans font-semibold text-[18px] text-text-p mb-4">Burnout e Saúde Mental</h3>
-                        <p class="font-sans text-[14px] text-text-s leading-relaxed mb-6">
-                            A pressão excessiva, cobranças abusivas diárias, crises de ansiedade severas e o esgotamento físico e mental gerados pelo trabalho inadequado também dão direito a amparos legais e indenizações.
-                        </p>
+                        <h3 class="font-sans font-semibold text-[17px] text-text-p mb-3">Burnout e Saúde Mental</h3>
+                        <p class="font-sans text-[14px] text-text-s leading-relaxed mb-5">Pressão excessiva, cobranças abusivas e esgotamento físico e mental gerados pelo trabalho inadequado geram direito a amparos legais e indenizações.</p>
                     </div>
-                    <p class="font-serif italic text-[15px] text-brand-gold font-medium mt-auto">Sua saúde mental é um direito protegido.</p>
+                    <p class="font-serif italic text-[14px] text-brand-gold font-medium mt-auto">Sua saúde mental é um direito protegido.</p>
                 </div>
 
-                <!-- Specialty 3 -->
-                <div class="scard bg-white p-8 border border-slate-100 flex flex-col justify-between h-full fade-up" style="transition-delay:.16s;">
+                <div class="scard bg-white p-8 border border-slate-100 rounded-lg flex flex-col justify-between fade-up" style="transition-delay:.16s;">
                     <div>
-                        <div class="w-12 h-12 rounded-sm bg-brand-gold/5 flex items-center justify-center mb-6">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#C5A059" stroke-width="1.5">
-                                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
-                            </svg>
+                        <div class="w-12 h-12 rounded-lg bg-brand-gold/8 flex items-center justify-center mb-6">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#C5A059" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
                         </div>
-                        <h3 class="font-sans font-semibold text-[18px] text-text-p mb-4">Acidente de Trabalho</h3>
-                        <p class="font-sans text-[14px] text-text-s leading-relaxed mb-6">
-                            Acidentes no ambiente físico de trabalho ou mesmo durante o trajeto de ida ou volta podem gerar direito a indenizações materiais e morais, além de estabilidade provisória no emprego.
-                        </p>
+                        <h3 class="font-sans font-semibold text-[17px] text-text-p mb-3">Acidente de Trabalho</h3>
+                        <p class="font-sans text-[14px] text-text-s leading-relaxed mb-5">Acidentes no ambiente de trabalho ou durante o trajeto podem gerar direito a indenizações materiais e morais, além de estabilidade provisória no emprego.</p>
                     </div>
-                    <p class="font-serif italic text-[15px] text-brand-gold font-medium mt-auto">Garantia de amparo em momentos difíceis.</p>
+                    <p class="font-serif italic text-[14px] text-brand-gold font-medium mt-auto">Garantia de amparo em momentos difíceis.</p>
                 </div>
 
-                <!-- Specialty 4 -->
-                <div class="scard bg-white p-8 border border-slate-100 flex flex-col justify-between h-full fade-up">
+                <div class="scard bg-white p-8 border border-slate-100 rounded-lg flex flex-col justify-between fade-up">
                     <div>
-                        <div class="w-12 h-12 rounded-sm bg-brand-gold/5 flex items-center justify-center mb-6">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#C5A059" stroke-width="1.5">
-                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>
-                            </svg>
+                        <div class="w-12 h-12 rounded-lg bg-brand-gold/8 flex items-center justify-center mb-6">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#C5A059" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
                         </div>
-                        <h3 class="font-sans font-semibold text-[18px] text-text-p mb-4">Assédio Moral</h3>
-                        <p class="font-sans text-[14px] text-text-s leading-relaxed mb-6">
-                            Humilhações explícitas, apelidos pejorativos, ameaças constantes de demissão e perseguições veladas no ambiente profissional geram indenizações por danos morais severos.
-                        </p>
+                        <h3 class="font-sans font-semibold text-[17px] text-text-p mb-3">Assédio Moral</h3>
+                        <p class="font-sans text-[14px] text-text-s leading-relaxed mb-5">Humilhações, apelidos pejorativos, ameaças de demissão e perseguições veladas no ambiente profissional geram indenizações por danos morais.</p>
                     </div>
-                    <p class="font-serif italic text-[15px] text-brand-gold font-medium mt-auto">Combate à opressão no ambiente profissional.</p>
+                    <p class="font-serif italic text-[14px] text-brand-gold font-medium mt-auto">Combate à opressão no ambiente profissional.</p>
                 </div>
 
-                <!-- Specialty 5 -->
-                <div class="scard bg-white p-8 border border-slate-100 flex flex-col justify-between h-full fade-up" style="transition-delay:.08s;">
+                <div class="scard bg-white p-8 border border-slate-100 rounded-lg flex flex-col justify-between fade-up" style="transition-delay:.08s;">
                     <div>
-                        <div class="w-12 h-12 rounded-sm bg-brand-gold/5 flex items-center justify-center mb-6">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#C5A059" stroke-width="1.5">
-                                <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/>
-                            </svg>
+                        <div class="w-12 h-12 rounded-lg bg-brand-gold/8 flex items-center justify-center mb-6">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#C5A059" stroke-width="1.5"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
                         </div>
-                        <h3 class="font-sans font-semibold text-[18px] text-text-p mb-4">Insalubridade e Periculosidade</h3>
-                        <p class="font-sans text-[14px] text-text-s leading-relaxed mb-6">
-                            Exposição diária a riscos, inflamáveis, eletricidade de alta potência, ruído excessivo ou agentes nocivos sem o pagamento obrigatório dos adicionais de 10%, 20%, 30% ou 40%.
-                        </p>
+                        <h3 class="font-sans font-semibold text-[17px] text-text-p mb-3">Insalubridade e Periculosidade</h3>
+                        <p class="font-sans text-[14px] text-text-s leading-relaxed mb-5">Exposição a riscos, produtos nocivos ou eletricidade sem receber os adicionais obrigatórios de 10%, 20%, 30% ou 40% previstos em lei.</p>
                     </div>
-                    <p class="font-serif italic text-[15px] text-brand-gold font-medium mt-auto">Compensação financeira pelo risco à integridade.</p>
+                    <p class="font-serif italic text-[14px] text-brand-gold font-medium mt-auto">Compensação financeira pelo risco à integridade.</p>
                 </div>
 
-                <!-- Specialty 6 -->
-                <div class="scard bg-white p-8 border border-slate-100 flex flex-col justify-between h-full fade-up" style="transition-delay:.16s;">
+                <div class="scard bg-white p-8 border border-slate-100 rounded-lg flex flex-col justify-between fade-up" style="transition-delay:.16s;">
                     <div>
-                        <div class="w-12 h-12 rounded-sm bg-brand-gold/5 flex items-center justify-center mb-6">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#C5A059" stroke-width="1.5">
-                                <rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
-                            </svg>
+                        <div class="w-12 h-12 rounded-lg bg-brand-gold/8 flex items-center justify-center mb-6">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#C5A059" stroke-width="1.5"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
                         </div>
-                        <h3 class="font-sans font-semibold text-[18px] text-text-p mb-4">Acúmulo e Desvio de Função</h3>
-                        <p class="font-sans text-[14px] text-text-s leading-relaxed mb-6">
-                            Exercer responsabilidades substanciais além daquelas previstas em sua contratação original, ou atuar em função distinta sem receber a contraprestação devida.
-                        </p>
+                        <h3 class="font-sans font-semibold text-[17px] text-text-p mb-3">Acúmulo e Desvio de Função</h3>
+                        <p class="font-sans text-[14px] text-text-s leading-relaxed mb-5">Exercer responsabilidades além da sua contratação original ou atuar em função distinta sem receber a contraprestação devida e o registro correto.</p>
                     </div>
-                    <p class="font-serif italic text-[15px] text-brand-gold font-medium mt-auto">Equilíbrio justo entre funções e remuneração.</p>
+                    <p class="font-serif italic text-[14px] text-brand-gold font-medium mt-auto">Equilíbrio justo entre funções e remuneração.</p>
                 </div>
             </div>
 
             <!-- Double CTA -->
             <div class="mt-12 flex flex-col sm:flex-row items-center justify-center gap-4 fade-up">
-                <a href="#" onclick="openLeadModal(); return false;" class="btn-cta px-10 py-4 text-[15px] w-full sm:w-auto text-center">
+                <a href="https://wa.me/5511933502503?text=Ol%C3%A1%2C%20meu%20direitos%20foram%20violados%2C%20gostaria%20de%20falar%20com%20uma%20advogada%20especialista!"
+                   target="_blank" rel="noopener"
+                   class="btn-wa px-10 py-4 text-[14px] uppercase tracking-wide w-full sm:w-auto">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16"><path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c-.003 1.398.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.005-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"/></svg>
                     Falar com uma advogada agora
                 </a>
-                <a href="#" onclick="openLeadModal(); return false;" class="btn-cta px-10 py-4 text-[15px] bg-none bg-transparent border border-brand-green/30 hover:border-brand-green text-brand-green shadow-none hover:shadow-lg w-full sm:w-auto text-center">
+                <a href="https://wa.me/5511933502503?text=Ol%C3%A1%2C%20meu%20direitos%20foram%20violados%2C%20gostaria%20de%20falar%20com%20uma%20advogada%20especialista!"
+                   target="_blank" rel="noopener"
+                   class="btn-wa-outline px-10 py-4 text-[14px] w-full sm:w-auto">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c-.003 1.398.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.005-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"/></svg>
                     Quero receber orientação no WhatsApp
                 </a>
             </div>
         </div>
     </section>
 
-    <!-- BLOCO 6 — QUEBRA DE OBJEÇÃO (FAQ) -->
-    <section id="faq" class="py-[96px] bg-white">
+    <!-- ══ BLOCO 5 — PRAZO URGÊNCIA ══════════════════════ -->
+    <section class="bg-brand-dark relative overflow-hidden py-[72px]">
+        <div class="absolute inset-0 hero-grid opacity-30 pointer-events-none"></div>
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full pointer-events-none" style="background:radial-gradient(circle,rgba(197,160,89,.07) 0%,transparent 65%);"></div>
+        <div class="max-w-[820px] mx-auto px-6 text-center fade-up relative z-10">
+            <div class="g-line mx-auto mb-6"></div>
+            <span class="sec-label mb-4 block">Atenção ao Prazo</span>
+            <h2 class="font-serif text-[30px] md:text-[40px] text-white leading-tight mb-6">Não deixe seus direitos para depois.</h2>
+            
+            <div class="bg-white/4 border border-white/8 rounded-xl p-6 mb-8 text-left max-w-[600px] mx-auto">
+                <div class="flex items-start gap-3 mb-3">
+                    <span class="text-brand-gold text-xl flex-shrink-0">⏳</span>
+                    <p class="font-sans text-[15px] text-white/80 leading-[1.8]">O trabalhador tem <strong class="text-white">até 2 anos</strong> após o fim do contrato para ingressar com ação judicial, podendo cobrar os direitos dos <strong class="text-white">últimos 5 anos</strong> de trabalho.</p>
+                </div>
+                <div class="flex items-start gap-3">
+                    <span class="text-brand-gold text-xl flex-shrink-0">📋</span>
+                    <p class="font-sans text-[15px] text-white/80 leading-[1.8]">Muitos trabalhadores perdem valores importantes por não buscar orientação no momento certo ou deixar os prazos prescreverem.</p>
+                </div>
+            </div>
+
+            <a href="https://wa.me/5511933502503?text=Ol%C3%A1%2C%20meu%20direitos%20foram%20violados%2C%20gostaria%20de%20falar%20com%20uma%20advogada%20especialista!"
+               target="_blank" rel="noopener"
+               class="btn-wa px-10 py-4.5 text-[14px] uppercase tracking-wide mx-auto">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16"><path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c-.003 1.398.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.005-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"/></svg>
+                Falar com a Advogada Agora
+            </a>
+        </div>
+    </section>
+
+    <!-- ══ BLOCO 6 — FAQ ══════════════════════════════════ -->
+    <section id="faq" class="py-[88px] bg-white">
         <div class="max-w-[1100px] mx-auto px-6">
-            <div class="flex flex-col lg:flex-row gap-16 lg:gap-24">
+            <div class="flex flex-col lg:flex-row gap-14 lg:gap-20">
 
                 <div class="w-full lg:w-[36%] fade-up">
                     <div class="g-line mb-6"></div>
-                    <span class="font-sans text-[11px] uppercase tracking-[3px] text-brand-gold font-semibold block mb-4">Dúvidas Frequentes</span>
-                    <h2 class="font-serif text-[36px] md:text-[40px] text-text-p leading-[1.15] mb-6 max-w-[320px]">Talvez você esteja pensando…</h2>
-                    <p class="font-sans text-[15px] text-text-s leading-relaxed mb-8">Orientação direta e transparente para tirar suas principais dúvidas.</p>
-                    <a href="#" onclick="openLeadModal(); return false;" class="btn-cta px-8 py-3.5 text-[13px] w-full sm:w-auto text-center">Tirar minhas dúvidas agora</a>
+                    <span class="sec-label block mb-4">Dúvidas Frequentes</span>
+                    <h2 class="font-serif text-[34px] md:text-[38px] text-text-p leading-[1.15] mb-5 max-w-[300px]">Talvez você esteja pensando…</h2>
+                    <p class="font-sans text-[14px] text-text-s leading-relaxed mb-8">Orientação direta e transparente para tirar suas principais dúvidas antes de agir.</p>
+                    <a href="https://wa.me/5511933502503?text=Ol%C3%A1%2C%20meu%20direitos%20foram%20violados%2C%20gostaria%20de%20falar%20com%20uma%20advogada%20especialista!"
+                       target="_blank" rel="noopener"
+                       class="btn-wa px-7 py-3.5 text-[13px] w-full sm:w-auto text-center">
+                        Tirar minhas dúvidas agora
+                    </a>
                 </div>
 
                 <div class="w-full lg:w-[64%] fade-up divide-y divide-slate-100 border-t border-slate-100">
 
-                    <!-- FAQ Item 1 -->
-                    <div class="faq-item cursor-pointer py-6" onclick="toggleFaq(this)">
+                    <div class="faq-item cursor-pointer py-5" onclick="toggleFaq(this)">
                         <div class="flex justify-between items-start gap-6">
-                            <h4 class="font-sans font-semibold text-[16px] text-text-p leading-[1.5]">“Preciso pagar para entrar com o processo?”</h4>
+                            <h4 class="font-sans font-semibold text-[15px] text-text-p leading-[1.5]">"Preciso pagar para entrar com o processo?"</h4>
                             <span class="faq-icon text-brand-gold text-2xl flex-shrink-0 mt-0.5">+</span>
                         </div>
                         <div class="faq-body">
-                            <p class="font-sans text-[15px] text-text-s leading-[1.8] pt-4">Cada caso precisa ser analisado individualmente. A orientação inicial serve justamente para entender sua situação financeira e do caso e esclarecer as possibilidades de isenções de custas (justiça gratuita) ou formatos contratuais específicos.</p>
+                            <p class="font-sans text-[14px] text-text-s leading-[1.8] pt-4">Cada caso precisa ser analisado individualmente. A orientação inicial serve justamente para esclarecer as possibilidades de isenções de custas (justiça gratuita) ou formatos contratuais específicos.</p>
                         </div>
                     </div>
 
-                    <!-- FAQ Item 2 -->
-                    <div class="faq-item cursor-pointer py-6" onclick="toggleFaq(this)">
+                    <div class="faq-item cursor-pointer py-5" onclick="toggleFaq(this)">
                         <div class="flex justify-between items-start gap-6">
-                            <h4 class="font-sans font-semibold text-[16px] text-text-p leading-[1.5]">“Ainda trabalho na empresa. Posso buscar meus direitos?”</h4>
+                            <h4 class="font-sans font-semibold text-[15px] text-text-p leading-[1.5]">"Ainda trabalho na empresa. Posso buscar meus direitos?"</h4>
                             <span class="faq-icon text-brand-gold text-2xl flex-shrink-0 mt-0.5">+</span>
                         </div>
                         <div class="faq-body">
-                            <p class="font-sans text-[15px] text-text-s leading-[1.8] pt-4">Sim. Dependendo da gravidade da situação (como atrasos recorrentes de salários, falta de recolhimento de FGTS ou assédio moral contínuo), é possível pleitear a chamada rescisão indireta, que funciona como uma justa causa aplicada pelo trabalhador à empresa.</p>
+                            <p class="font-sans text-[14px] text-text-s leading-[1.8] pt-4">Sim. Dependendo da gravidade da situação (como atrasos recorrentes de salários, falta de recolhimento de FGTS ou assédio moral contínuo), é possível pleitear a rescisão indireta — que funciona como uma justa causa aplicada pelo trabalhador à empresa.</p>
                         </div>
                     </div>
 
-                    <!-- FAQ Item 3 -->
-                    <div class="faq-item cursor-pointer py-6" onclick="toggleFaq(this)">
+                    <div class="faq-item cursor-pointer py-5" onclick="toggleFaq(this)">
                         <div class="flex justify-between items-start gap-6">
-                            <h4 class="font-sans font-semibold text-[16px] text-text-p leading-[1.5]">“Não tenho provas. Ainda posso conversar com uma advogada?”</h4>
+                            <h4 class="font-sans font-semibold text-[15px] text-text-p leading-[1.5]">"Não tenho provas. Ainda posso conversar com uma advogada?"</h4>
                             <span class="faq-icon text-brand-gold text-2xl flex-shrink-0 mt-0.5">+</span>
                         </div>
                         <div class="faq-body">
-                            <p class="font-sans text-[15px] text-text-s leading-[1.8] pt-4">Sim. Muitos trabalhadores acreditam que não possuem provas suficientes quando, na verdade, registros de conversas, e-mails, extratos bancários, testemunhas ou até mesmo a ausência de determinados documentos por parte do empregador servem como provas válidas na análise judicial.</p>
+                            <p class="font-sans text-[14px] text-text-s leading-[1.8] pt-4">Sim. Registros de conversas, e-mails, extratos bancários, testemunhas ou até mesmo a ausência de documentos por parte do empregador servem como provas válidas na análise judicial.</p>
                         </div>
                     </div>
 
-                    <!-- FAQ Item 4 -->
-                    <div class="faq-item cursor-pointer py-6" onclick="toggleFaq(this)">
+                    <div class="faq-item cursor-pointer py-5" onclick="toggleFaq(this)">
                         <div class="flex justify-between items-start gap-6">
-                            <h4 class="font-sans font-semibold text-[16px] text-text-p leading-[1.5]">“Meu caso aconteceu há um tempo. Ainda posso agir?”</h4>
+                            <h4 class="font-sans font-semibold text-[15px] text-text-p leading-[1.5]">"Meu caso aconteceu há um tempo. Ainda posso agir?"</h4>
                             <span class="faq-icon text-brand-gold text-2xl flex-shrink-0 mt-0.5">+</span>
                         </div>
                         <div class="faq-body">
-                            <p class="font-sans text-[15px] text-text-s leading-[1.8] pt-4">No Brasil, o trabalhador tem o prazo limite de até 2 anos após o fim do contrato para ingressar com uma ação judicial, podendo cobrar os direitos referentes aos últimos 5 anos de trabalho. Se você já saiu da empresa, atente-se a esse prazo.</p>
+                            <p class="font-sans text-[14px] text-text-s leading-[1.8] pt-4">No Brasil, o trabalhador tem o prazo de <strong>até 2 anos</strong> após o fim do contrato para ingressar com ação judicial, podendo cobrar os direitos referentes aos últimos <strong>5 anos de trabalho</strong>. Mas não espere muito!</p>
                         </div>
                     </div>
 
@@ -633,45 +787,37 @@
         </div>
     </section>
 
-    <!-- BLOCO 7 — GATILHO DE URGÊNCIA -->
-    <section class="py-[96px] bg-brand-dark relative overflow-hidden">
-        <div class="absolute inset-0 hero-grid pointer-events-none" style="opacity:.3;"></div>
-        <div class="max-w-[780px] mx-auto px-6 text-center fade-up relative z-10">
+    <!-- ══ BLOCO 7 — CTA FINAL FORTE ═════════════════════ -->
+    <section class="py-[88px] bg-brand-alt">
+        <div class="max-w-[700px] mx-auto px-6 text-center fade-up">
             <div class="g-line mx-auto mb-8"></div>
-            <h2 class="font-serif text-[32px] md:text-[40px] text-white leading-tight mb-6">Não deixe seus direitos para depois.</h2>
-            
-            <p class="font-sans text-[16px] text-white/70 leading-[1.85] mb-4 max-w-[560px] mx-auto">
-                Muitos trabalhadores perdem valores importantes por não buscar orientação no momento certo ou deixar os prazos prescreverem.
-            </p>
-            <p class="font-sans text-[16px] text-white/70 leading-[1.85] mb-10 max-w-[560px] mx-auto">
-                Quanto antes seu caso for analisado, maiores podem ser as possibilidades de reunir provas consistentes e proteger seus direitos.
-            </p>
-            
-            <a href="#" onclick="openLeadModal(); return false;" class="btn-cta px-10 py-4 text-[14px]">
-                Falar com a Advogada agora
-            </a>
-        </div>
-    </section>
-
-    <!-- BLOCO 8 — CTA FINAL FORTE -->
-    <section class="py-[96px] bg-white">
-        <div class="max-w-[640px] mx-auto px-6 text-center fade-up">
-            <div class="g-line mx-auto mb-8"></div>
-            <h2 class="font-serif text-[32px] md:text-[40px] text-text-p leading-tight mb-4">Receba orientação jurídica de forma clara, rápida e segura.</h2>
-            <p class="font-sans text-[16px] text-text-s mb-10">
+            <h2 class="font-serif text-[32px] md:text-[42px] text-text-p leading-tight mb-4">Receba orientação jurídica de forma clara, rápida e segura.</h2>
+            <p class="font-sans text-[15px] text-text-s mb-3 max-w-[500px] mx-auto leading-relaxed">
                 Clique no botão abaixo e fale diretamente com a advogada Katarina Malinauskas pelo WhatsApp de forma sigilosa.
             </p>
+            <p class="font-sans text-[13px] text-brand-gold font-semibold mb-10">A mensagem já estará preenchida com sua situação — é só enviar.</p>
             
-            <a href="#" onclick="openLeadModal(); return false;" class="btn-cta px-10 py-4.5 text-[15px] w-full sm:w-auto justify-center">
+            <a id="final-cta"
+               href="https://wa.me/5511933502503?text=Ol%C3%A1%2C%20meu%20direitos%20foram%20violados%2C%20gostaria%20de%20falar%20com%20uma%20advogada%20especialista!"
+               target="_blank" rel="noopener"
+               class="btn-wa px-12 py-5 text-[15px] uppercase tracking-wide mx-auto">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16"><path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c-.003 1.398.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.005-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"/></svg>
                 Quero falar no WhatsApp agora
             </a>
+
+            <!-- Microcopy final -->
+            <div class="flex flex-wrap justify-center items-center gap-6 mt-7">
+                <div class="check-item" style="color:#64748B;"><span class="dot" style="background:rgba(37,211,102,.1);border-color:rgba(37,211,102,.3);">✔</span> Atendimento sigiloso</div>
+                <div class="check-item" style="color:#64748B;"><span class="dot" style="background:rgba(37,211,102,.1);border-color:rgba(37,211,102,.3);">✔</span> Sem compromisso inicial</div>
+                <div class="check-item" style="color:#64748B;"><span class="dot" style="background:rgba(37,211,102,.1);border-color:rgba(37,211,102,.3);">✔</span> Resposta humanizada</div>
+            </div>
         </div>
     </section>
 
-    <!-- RODAPÉ -->
-    <footer class="bg-[#080B16] border-t border-white/5 pt-16 pb-8">
+    <!-- ══ RODAPÉ ══════════════════════════════════════════ -->
+    <footer class="bg-[#080B16] border-t border-white/5 pt-14 pb-8">
         <div class="max-w-[1140px] mx-auto px-6">
-            <div class="flex flex-col md:flex-row justify-between gap-10 mb-12">
+            <div class="flex flex-col md:flex-row justify-between gap-10 mb-10">
                 <div>
                     <strong class="font-serif text-[22px] text-white font-semibold block mb-1">Katarina Malinauskas</strong>
                     <span class="font-serif italic text-[14px] text-brand-gold">Advocacia Trabalhista</span>
@@ -683,7 +829,7 @@
                         <p class="font-sans text-[10px] uppercase tracking-[2px] text-brand-gold font-semibold mb-5">Atendimento</p>
                         <div class="flex flex-col gap-3 font-sans text-[14px] text-white/50">
                             <span class="flex items-center gap-2">📍 Online e presencial</span>
-                            <a href="#" onclick="openLeadModal(); return false;" class="hover:text-white transition-colors flex items-center gap-2">📞 WhatsApp</a>
+                            <a href="https://wa.me/5511933502503?text=Ol%C3%A1%2C%20meu%20direitos%20foram%20violados%2C%20gostaria%20de%20falar%20com%20uma%20advogada%20especialista!" target="_blank" rel="noopener" class="hover:text-white transition-colors flex items-center gap-2">📞 WhatsApp</a>
                             <a href="mailto:contato@kmalinauskas.com.br" class="hover:text-white transition-colors flex items-center gap-2">📧 E-mail profissional</a>
                         </div>
                     </div>
@@ -696,164 +842,75 @@
         </div>
     </footer>
 
-    <!-- WhatsApp FAB -->
-    <a href="#" onclick="openLeadModal(); return false;" class="fixed bottom-6 right-6 text-white w-14 h-14 rounded-full flex items-center justify-center z-50 hover:scale-110 transition-transform" style="background:#25D366; box-shadow:0 8px 28px rgba(37,211,102,0.4);" aria-label="Falar no WhatsApp">
+    <!-- ══ WhatsApp FAB ════════════════════════════════════ -->
+    <a href="https://wa.me/5511933502503?text=Ol%C3%A1%2C%20meu%20direitos%20foram%20violados%2C%20gostaria%20de%20falar%20com%20uma%20advogada%20especialista!"
+       target="_blank" rel="noopener"
+       class="fab-wa fixed bottom-6 right-6 text-white w-14 h-14 rounded-full flex items-center justify-center z-50 hover:scale-110 transition-transform"
+       style="background:#25D366;"
+       aria-label="Falar no WhatsApp">
         <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" viewBox="0 0 16 16">
             <path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c-.003 1.398.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.005-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"/>
         </svg>
     </a>
 
-    <!-- Lead Modal -->
-    <div id="leadModal" class="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-sm opacity-0 pointer-events-none transition-all duration-300">
-        <div class="bg-[#0E172E] border border-white/10 p-8 rounded-sm max-w-[420px] w-full relative scale-95 transition-transform duration-300 mx-6 shadow-2xl">
-            <button onclick="closeLeadModal()" class="absolute top-4 right-4 text-white/40 hover:text-white transition-colors text-2xl leading-none" aria-label="Fechar">&times;</button>
-            <h3 class="font-serif text-[24px] text-white leading-tight mb-2 text-center">Fale com a Advogada</h3>
-            <p class="font-sans text-[14px] text-white/60 mb-6 text-center">Preencha rapidamente para ser direcionado ao WhatsApp.</p>
-            
-            <form id="popup-form" class="space-y-5">
-                <input type="hidden" name="pagina" value="trabalhador.html">
-                <input type="hidden" name="tipo" value="trabalhador">
-                
-                <div>
-                    <label class="block text-[10px] uppercase tracking-[2px] text-brand-gold mb-2 font-semibold">Nome Completo</label>
-                    <input type="text" name="nome" required class="w-full bg-transparent border-b border-white/20 text-white py-2 focus:outline-none focus:border-brand-gold transition-colors font-sans text-[15px]" placeholder="Seu nome">
-                </div>
-                
-                <div>
-                    <label class="block text-[10px] uppercase tracking-[2px] text-brand-gold mb-2 font-semibold">Sua Profissão / Cargo</label>
-                    <input type="text" name="info_extra" required class="w-full bg-transparent border-b border-white/20 text-white py-2 focus:outline-none focus:border-brand-gold transition-colors font-sans text-[15px]" placeholder="Ex: Vendedor, Motorista, Técnico...">
-                </div>
-                
-                <div>
-                    <label class="block text-[10px] uppercase tracking-[2px] text-brand-gold mb-2 font-semibold">WhatsApp</label>
-                    <input type="tel" name="whatsapp" required class="w-full bg-transparent border-b border-white/20 text-white py-2 focus:outline-none focus:border-brand-gold transition-colors font-sans text-[15px]" placeholder="(00) 00000-0000">
-                </div>
-                
-                <div class="pt-4">
-                    <button type="submit" id="popup-btn" class="w-full bg-brand-green hover:bg-brand-green-hover text-white py-[15px] text-[15px] font-bold text-center transition-colors rounded-sm shadow-md">Ir para o WhatsApp →</button>
-                    <div id="popup-msg" class="hidden mt-3 text-center font-sans text-[13px]"></div>
-                </div>
-            </form>
-        </div>
+    <!-- ══ Sticky Mobile CTA ══════════════════════════════ -->
+    <div id="sticky-cta">
+        <a href="https://wa.me/5511933502503?text=Ol%C3%A1%2C%20meu%20direitos%20foram%20violados%2C%20gostaria%20de%20falar%20com%20uma%20advogada%20especialista!"
+           target="_blank" rel="noopener"
+           class="btn-wa w-full py-4 text-[14px] font-bold uppercase tracking-wide">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16"><path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c-.003 1.398.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.005-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"/></svg>
+            Falar com a Advogada no WhatsApp
+        </a>
     </div>
 
-    <!-- SCRIPTS -->
+    <!-- ══ SCRIPTS ════════════════════════════════════════ -->
     <script>
-        // SHEET_URL for Lead capture
-        const SHEET_URL = 'https://script.google.com/macros/s/AKfycbyS8jE_tA9oJmk8LRcGfgkf3GABlxyYbfx94NB4ZCR4mY7mNRXJwjLAVYzneejeUKw5SA/exec';
-
-        function openLeadModal() {
-            const modal = document.getElementById('leadModal');
-            const card = modal.querySelector('div');
-            modal.classList.remove('opacity-0', 'pointer-events-none');
-            card.classList.remove('scale-95');
-            card.classList.add('scale-100');
-        }
-
-        function closeLeadModal() {
-            const modal = document.getElementById('leadModal');
-            const card = modal.querySelector('div');
-            modal.classList.add('opacity-0', 'pointer-events-none');
-            card.classList.remove('scale-100');
-            card.classList.add('scale-95');
-        }
+        // SHEET_URL exclusivo para o nicho TRABALHADOR
+        // ⚠️ Substitua pela URL do Apps Script da planilha de TRABALHADORES quando configurar
+        const SHEET_URL_TRABALHADOR = 'COLE_AQUI_A_URL_DO_APPS_SCRIPT_DOS_TRABALHADORES';
 
         function toggleFaq(element) {
             const allFaqs = document.querySelectorAll('.faq-item');
-            
-            // Close other FAQ items
             allFaqs.forEach(faq => {
                 if (faq !== element && faq.classList.contains('open')) {
                     faq.classList.remove('open');
                 }
             });
-
-            // Toggle current
             element.classList.toggle('open');
         }
 
         document.addEventListener('DOMContentLoaded', () => {
-            // Intersection Observer for scroll animations
+            // Scroll animations
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(e => {
-                    if (e.isIntersecting) { 
-                        e.target.classList.add('visible'); 
-                        observer.unobserve(e.target); 
+                    if (e.isIntersecting) {
+                        e.target.classList.add('visible');
+                        observer.unobserve(e.target);
                     }
                 });
             }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
             
             document.querySelectorAll('.fade-up, .fade-in').forEach(el => observer.observe(el));
 
-            // Navbar shadow & styling on scroll
+            // Navbar shadow on scroll
             const nav = document.getElementById('nav');
+            const stickyCta = document.getElementById('sticky-cta');
+            
             window.addEventListener('scroll', () => {
                 nav.classList.toggle('shadow-lg', window.scrollY > 40);
+                // Hide sticky CTA when user is near the final CTA section
+                const finalCta = document.getElementById('final-cta');
+                if (finalCta) {
+                    const rect = finalCta.getBoundingClientRect();
+                    stickyCta.style.transform = (rect.top < window.innerHeight) ? 'translateY(100%)' : 'translateY(0)';
+                }
             }, { passive: true });
 
-            // Progress bar scroll handler
+            // Progress bar
             const bar = document.getElementById('pbar');
             window.addEventListener('scroll', () => {
                 bar.style.width = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight) * 100) + '%';
             }, { passive: true });
-
-            // Lead Modal click outside to close
-            document.getElementById('leadModal').addEventListener('click', function(e) {
-                if (e.target === this) closeLeadModal();
-            });
-
-            // Form Submit handler
-            document.getElementById('popup-form')?.addEventListener('submit', async function(e) {
-                e.preventDefault();
-                const btn = document.getElementById('popup-btn');
-                const msg = document.getElementById('popup-msg');
-                const form = e.target;
-
-                btn.disabled = true;
-                btn.textContent = 'Enviando...';
-                btn.style.opacity = '0.7';
-
-                const data = {
-                    nome: form.nome.value,
-                    whatsapp: form.whatsapp.value,
-                    info_extra: form.info_extra.value,
-                    pagina: form.pagina.value,
-                    tipo: form.tipo.value
-                };
-
-                try {
-                    await fetch(SHEET_URL, {
-                        method: 'POST',
-                        mode: 'no-cors',
-                        headers: { 'Content-Type': 'text/plain' },
-                        body: JSON.stringify(data),
-                    });
-
-                    const wa_link = 'https://wa.me/5511933502503?text=Ol%C3%A1%2C%20estou%20precisando%20de%20uma%20advogada%20trabalhista';
-                    window.open(wa_link, '_blank');
-                    closeLeadModal();
-                    form.reset();
-                    btn.disabled = false;
-                    btn.textContent = 'Ir para o WhatsApp →';
-                    btn.style.opacity = '1';
-                    
-                } catch (err) {
-                    btn.disabled = false;
-                    btn.textContent = 'Ir para o WhatsApp →';
-                    btn.style.opacity = '1';
-                    msg.textContent = 'Erro ao conectar. Redirecionando...';
-                    msg.classList.remove('hidden');
-                    msg.className = 'mt-3 text-center font-sans text-[13px] text-red-400 block';
-                    
-                    const wa_link = 'https://wa.me/5511933502503?text=Ol%C3%A1%2C%20estou%20precisando%20de%20uma%20advogada%20trabalhista';
-                        
-                    setTimeout(() => {
-                        window.open(wa_link, '_blank');
-                        closeLeadModal();
-                        msg.classList.add('hidden');
-                    }, 1500);
-                }
-            });
         });
     </script>
 </body>
