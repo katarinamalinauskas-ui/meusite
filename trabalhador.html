@@ -934,11 +934,13 @@
         const SHEET_URL = 'https://script.google.com/macros/s/AKfycbyS8jE_tA9oJmk8LRcGfgkf3GABlxyYbfx94NB4ZCR4mY7mNRXJwjLAVYzneejeUKw5SA/exec';
         const WA_LINK   = 'https://wa.me/5511933502503?text=Ol%C3%A1%2C%20meu%20direitos%20foram%20violados%2C%20gostaria%20de%20falar%20com%20uma%20advogada%20especialista!';
 
+        // Variável global para rastrear o botão clicado
+        var _botaoLabel = '';
+
         function openLeadModal(botaoLabel) {
+            _botaoLabel = botaoLabel || 'Não identificado';
             const modal = document.getElementById('leadModal');
             const card  = modal.querySelector('.modal-card');
-            const botaoInput = document.getElementById('popup-botao');
-            if (botaoInput) botaoInput.value = botaoLabel || 'Não identificado';
             modal.classList.remove('opacity-0', 'pointer-events-none');
             card.classList.remove('scale-95');
             card.classList.add('scale-100');
@@ -1014,7 +1016,7 @@
                     info_extra: form.info_extra.value,
                     pagina:     form.pagina.value,
                     tipo:       form.tipo.value,
-                    botao:      form.botao.value
+                    botao:      _botaoLabel
                 };
 
                 try {
