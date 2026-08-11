@@ -1,371 +1,22 @@
-<!DOCTYPE html>
-<html lang="pt-BR" class="scroll-smooth">
-<head>
-    <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-NZHN6HPB');</script>
-    <!-- End Google Tag Manager -->
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18159328393"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'AW-18159328393');
-    </script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Katarina Malinauskas | Defesa dos Direitos do Trabalhador</title>
-    <meta name="description" content="Seus direitos trabalhistas foram violados? Fale com uma advogada especialista. Atendimento humanizado, sigiloso e online em todo o Brasil.">
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'brand-dark': '#0B0F19',
-                        'brand-navy': '#111827',
-                        'brand-alt': '#0B0F19', // Dark mode for alt section
-                        'brand-gold': '#D4AF37',
-                        'brand-gold-hover': '#F3E5AB',
-                        'brand-gold-light': '#1F1A0F',
-                        'brand-green': '#25D366',
-                        'brand-green-hover': '#1EBE57',
-                        'text-p': '#1E293B',
-                        'text-s': '#64748B',
-                        'text-m': '#94A3B8',
-                        'glass': 'rgba(255, 255, 255, 0.03)',
-                        'glass-border': 'rgba(255, 255, 255, 0.08)',
-                    },
-                    fontFamily: {
-                        serif: ['"Cormorant Garamond"', 'serif'],
-                        sans: ['Inter', 'sans-serif'],
-                    }
-                }
-            }
-        }
-    </script>
+import re
 
-    <style>
-        /* ── Reset & Base ── */
-        /* Premium Glass Cards */
-        .glass-card {
-            background: rgba(255, 255, 255, 0.02);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 12px;
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
-            transition: all 0.4s ease;
-        }
-        .glass-card:hover {
-            background: rgba(255, 255, 255, 0.04);
-            border-color: rgba(212, 175, 55, 0.4);
-            transform: translateY(-5px);
-            box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.5);
-        }
+def update_trabalhador():
+    with open('trabalhador.html', 'r', encoding='utf-8') as f:
+        content = f.read()
 
-        *, *::before, *::after { box-sizing: border-box; }
+    # Extract head (everything before <!-- ══ NAV ══════════════════════════════════════════ -->)
+    head_match = re.search(r'(.*?)(?=<!-- ══ NAV)', content, re.DOTALL)
+    head = head_match.group(1) if head_match else ''
 
-        /* Form underline fields */
-        .field {
-            background: transparent;
-            border: none;
-            border-bottom: 1px solid rgba(255,255,255,.15);
-            padding: 11px 0;
-            color: #fff;
-            width: 100%;
-            font-family: 'Inter', sans-serif;
-            font-size: 15px;
-            transition: border-color .3s;
-        }
-        .field::placeholder { color: rgba(255,255,255,.3); }
-        .field:focus { outline: none; border-bottom-color: #C5A059; }
+    # Extract nav (we keep nav)
+    nav_match = re.search(r'(<!-- ══ NAV.*?</nav>)', content, re.DOTALL)
+    nav = nav_match.group(1) if nav_match else ''
 
-        /* FAQ accordion */
-        .faq-body {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height .4s cubic-bezier(.16,1,.3,1), padding .3s ease;
-        }
-        .faq-item.open .faq-body { max-height: 300px; padding-bottom: 18px; }
-        .faq-icon { transition: transform .3s cubic-bezier(.16,1,.3,1); display: inline-block; line-height: 1; }
-        .faq-item.open .faq-icon { transform: rotate(45deg); }
+    # Extract map and footer
+    footer_match = re.search(r'(<!-- ══ MAPA.*?)(?=<!-- ══ Lead Modal)', content, re.DOTALL)
+    footer = footer_match.group(1) if footer_match else ''
 
-        /* Service / specialty cards */
-        .scard {
-            position: relative;
-            overflow: hidden;
-            transition: transform .3s ease, box-shadow .3s ease;
-        }
-        .scard::after {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0;
-            height: 2px;
-            background: linear-gradient(90deg, #C5A059, #D4B06A);
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform .3s ease;
-        }
-        .scard:hover { transform: translateY(-4px); box-shadow: 0 20px 48px rgba(0,0,0,.08); }
-        .scard:hover::after { transform: scaleX(1); }
-
-        /* Gold line accent */
-        .g-line { width: 44px; height: 2px; background: linear-gradient(90deg, #C5A059, #D4B06A); }
-
-        /* Hero subtle grid */
-        .hero-grid {
-            background-image:
-                linear-gradient(rgba(197,160,89,.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(197,160,89,.03) 1px, transparent 1px);
-            background-size: 64px 64px;
-        }
-
-        /* Reading progress bar */
-        #pbar {
-            position: fixed; top: 0; left: 0;
-            height: 3px;
-            background: linear-gradient(90deg, #25D366, #C5A059);
-            z-index: 200; width: 0%;
-            transition: width .08s linear;
-        }
-
-        /* Primary WhatsApp CTA */
-        .btn-wa {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            background: linear-gradient(135deg, #25D366 0%, #1EBE57 100%);
-            color: #fff;
-            border-radius: 6px;
-            font-family: 'Inter', sans-serif;
-            font-weight: 700;
-            transition: all .3s ease;
-            box-shadow: 0 6px 24px rgba(37,211,102,.30);
-            letter-spacing: .3px;
-            position: relative;
-            overflow: hidden;
-        }
-        .btn-wa::before {
-            content: '';
-            position: absolute;
-            top: 0; left: -100%;
-            width: 60%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,.15), transparent);
-            transition: left .5s ease;
-        }
-        .btn-wa:hover::before { left: 140%; }
-        .btn-wa:hover {
-            box-shadow: 0 8px 32px rgba(37,211,102,.50);
-            transform: translateY(-2px);
-            background: linear-gradient(135deg, #22C35E 0%, #19A94C 100%);
-        }
-
-        /* Secondary outline CTA */
-        .btn-wa-outline {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            background: transparent;
-            color: #25D366;
-            border: 2px solid rgba(37,211,102,.35);
-            border-radius: 6px;
-            font-family: 'Inter', sans-serif;
-            font-weight: 600;
-            transition: all .3s ease;
-            letter-spacing: .3px;
-        }
-        .btn-wa-outline:hover {
-            border-color: #25D366;
-            background: rgba(37,211,102,.06);
-            transform: translateY(-1px);
-        }
-
-        /* Gold outline button */
-        .btn-gold {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            background: transparent;
-            color: #C5A059;
-            border: 1.5px solid rgba(197,160,89,.4);
-            border-radius: 6px;
-            font-family: 'Inter', sans-serif;
-            font-weight: 600;
-            transition: all .3s ease;
-        }
-        .btn-gold:hover {
-            border-color: #C5A059;
-            background: rgba(212,175,55,.15);
-            transform: translateY(-1px);
-        }
-
-        /* Scroll animations */
-        .fade-up {
-            opacity: 0;
-            transform: translateY(36px);
-            transition: opacity .75s cubic-bezier(.16,1,.3,1), transform .75s cubic-bezier(.16,1,.3,1);
-        }
-        .fade-up.visible { opacity: 1; transform: translateY(0); }
-
-        .fade-in {
-            opacity: 0;
-            transition: opacity 1s ease;
-        }
-        .fade-in.visible { opacity: 1; }
-
-        /* Pain cards */
-        .pain-card {
-            background: linear-gradient(145deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.05);
-            border-left: 3px solid rgba(212,175,55,0.5);
-            border-radius: 12px;
-            padding: 28px;
-            box-shadow: 0 4px 24px rgba(0,0,0,.2);
-            transition: all .4s cubic-bezier(.16,1,.3,1);
-        }
-        .pain-card:hover {
-            box-shadow: 0 12px 40px rgba(0,0,0,.4);
-            border-left: 3px solid #D4AF37;
-            background: linear-gradient(145deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%);
-            transform: translateY(-4px);
-        }
-        .pain-card h4 { color: #F3F4F6; }
-        .pain-card p { color: #9CA3AF; }
-
-        /* Urgency strip */
-        .urgency-strip {
-            background: linear-gradient(90deg, #C5A059 0%, #D4B06A 50%, #C5A059 100%);
-            background-size: 200% 100%;
-            animation: shimmer-gold 3s ease infinite;
-        }
-        @keyframes shimmer-gold {
-            0% { background-position: 200% 0; }
-            100% { background-position: -200% 0; }
-        }
-
-        /* Testimonial card */
-        .tcard {
-            background: #fff;
-            border: 1px solid #F1F5F9;
-            border-radius: 10px;
-            padding: 28px;
-            box-shadow: 0 4px 20px rgba(0,0,0,.05);
-            transition: box-shadow .3s ease;
-        }
-        .tcard:hover { box-shadow: 0 10px 40px rgba(0,0,0,.10); }
-
-        /* Stats counter boxes */
-        .stat-box {
-            text-align: center;
-            padding: 28px 20px;
-        }
-
-        /* Pulse animation for FAB */
-        @keyframes pulse-green {
-            0%, 100% { box-shadow: 0 8px 28px rgba(37,211,102,.4); }
-            50% { box-shadow: 0 8px 40px rgba(37,211,102,.7), 0 0 0 10px rgba(37,211,102,.1); }
-        }
-        .fab-wa { animation: pulse-green 2.5s ease infinite; }
-
-        /* Modal overlay */
-        #leadModal { transition: opacity .3s ease; }
-        #leadModal .modal-card { transition: transform .3s cubic-bezier(.16,1,.3,1); }
-
-        /* Checklist items */
-        .check-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-family: 'Inter', sans-serif;
-            font-size: 13px;
-            color: rgba(255,255,255,.55);
-        }
-        .check-item .dot {
-            width: 18px; height: 18px;
-            background: rgba(37,211,102,.15);
-            border: 1px solid rgba(37,211,102,.3);
-            border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            flex-shrink: 0;
-            color: #25D366;
-            font-size: 10px;
-            font-weight: 700;
-        }
-
-        /* Section divider line */
-        .sec-label {
-            font-family: 'Inter', sans-serif;
-            font-size: 11px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            color: #C5A059;
-        }
-
-        /* Gradient text */
-        .grad-text {
-            background: linear-gradient(135deg, #C5A059, #E8C97A);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        /* Sticky CTA bar (mobile) */
-        #sticky-cta {
-            position: fixed;
-            bottom: 0; left: 0; right: 0;
-            z-index: 48;
-            padding: 12px 16px;
-            background: rgba(7,13,30,.96);
-            backdrop-filter: blur(8px);
-            border-top: 1px solid rgba(255,255,255,.07);
-            display: none;
-        }
-        @media (max-width: 768px) {
-            #sticky-cta { display: block; }
-        }
-    </style>
-</head>
-<body class="bg-white text-text-p font-sans antialiased overflow-x-hidden selection:bg-brand-gold selection:text-white">
-    <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NZHN6HPB"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-
-    <div id="pbar"></div>
-
-    <!-- ══ NAV ══════════════════════════════════════════ -->
-    <nav id="nav" class="fixed w-full top-0 z-50 bg-brand-dark/95 backdrop-blur-md border-b border-white/5 transition-all duration-300">
-        <div class="max-w-[1140px] mx-auto px-6 h-[72px] flex items-center justify-between">
-            <a href="#" class="flex items-center gap-3">
-                <img src="logo-2.png" alt="Katarina Malinauskas Advocacia" class="h-10 w-auto object-contain">
-            </a>
-            <div class="hidden md:flex items-center gap-7">
-                <a href="#dores"       class="font-sans text-[13px] text-white/60 hover:text-white transition-colors tracking-wide">Situações</a>
-                <a href="#sobre"       class="font-sans text-[13px] text-white/60 hover:text-white transition-colors tracking-wide">Sobre</a>
-                <a href="#especialidades" class="font-sans text-[13px] text-white/60 hover:text-white transition-colors tracking-wide">Especialidades</a>
-                <a href="#faq"         class="font-sans text-[13px] text-white/60 hover:text-white transition-colors tracking-wide">FAQ</a>
-                <a id="nav-wa-btn" href="#" onclick="openLeadModal('Nav - Falar no WhatsApp'); return false;" class="btn-wa px-5 py-2.5 text-[12px] uppercase tracking-wide">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" viewBox="0 0 16 16"><path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c-.003 1.398.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.005-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"/></svg>
-                    Falar no WhatsApp
-                </a>
-            </div>
-            <a href="#" onclick="openLeadModal('Nav Mobile - WhatsApp'); return false;" class="md:hidden btn-wa px-4 py-2.5 text-[12px]">WhatsApp</a>
-        </div>
-    </nav>
+    new_body = """
     <!-- ══ URGENCY TOP BAR ════════════════════════════════ -->
     <div class="urgency-strip pt-[72px]">
         <p class="text-center font-sans text-[12px] font-semibold text-brand-dark py-2.5 px-4 tracking-wide">
@@ -721,95 +372,23 @@
             </a>
         </div>
     </section>
-    <!-- ══ MAPA ══════════════════════════════════════════ -->
-    <section class="bg-brand-dark pb-10">
-        <div class="max-w-[1140px] mx-auto px-6">
-            <div class="rounded-xl overflow-hidden border border-white/10 shadow-lg relative h-[400px]">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3656.702741527027!2d-46.68532452399994!3d-23.579124478788!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce576dfa8de391%3A0xa61fc6b37fc9a1e0!2sAv.%20Cidade%20Jardim%2C%20377%20-%20Jardim%20Paulistano%2C%20S%C3%A3o%20Paulo%20-%20SP%2C%2001453-000!5e0!3m2!1spt-BR!2sbr!4v1714421161394!5m2!1spt-BR!2sbr" 
-                        class="absolute top-0 left-0 w-full h-full" style="border:0;" allowfullscreen="" referrerpolicy="no-referrer-when-downgrade"></iframe>
-            </div>
-            <p class="font-sans text-[13px] text-white/50 mt-4 text-center">Av. Cidade Jardim, 377 - SLJ - Jardim Paulistano, São Paulo - SP, 01017-040</p>
-        </div>
-    </section>
+    """
 
-    <!-- ══ RODAPÉ ══════════════════════════════════════════ -->
-    <footer class="bg-[#080B16] border-t border-white/5 pt-14 pb-8">
-        <div class="max-w-[1140px] mx-auto px-6">
-            <div class="flex flex-col md:flex-row justify-between gap-10 mb-10">
-                <div>
-                    <strong class="font-serif text-[22px] text-white font-semibold block mb-1">Katarina Malinauskas</strong>
-                    <span class="font-serif italic text-[14px] text-brand-gold">Advocacia Trabalhista</span>
-                    <p class="font-sans text-[13px] text-white/40 mt-3 max-w-[280px]">Atendimento especializado voltado à defesa integral dos direitos do trabalhador.</p>
-                </div>
-                
-                <div class="flex flex-col sm:flex-row gap-10 sm:gap-16">
-                    <div>
-                        <p class="font-sans text-[10px] uppercase tracking-[2px] text-brand-gold font-semibold mb-5">Atendimento</p>
-                        <div class="flex flex-col gap-3 font-sans text-[14px] text-white/50">
-                            <span class="flex items-center gap-2">📍 Online e presencial</span>
-                            <a href="#" onclick="openLeadModal('Footer - WhatsApp'); return false;" class="hover:text-white transition-colors flex items-center gap-2">📞 WhatsApp</a>
-                            <a href="mailto:contato@kmalinauskas.com.br" class="hover:text-white transition-colors flex items-center gap-2">📧 E-mail profissional</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="border-t border-white/5 pt-6 text-center">
-                <p class="font-sans text-[11px] text-white/20">© 2026 Katarina Malinauskas · OAB/SP nº 338.901 · Este site tem caráter exclusivamente informativo e não constitui consulta jurídica.</p>
-            </div>
-        </div>
-    </footer>
-
-    <!-- ══ WhatsApp FAB ════════════════════════════════════ -->
-    <a href="#" onclick="openLeadModal('FAB - WhatsApp'); return false;"
-       class="fab-wa fixed bottom-6 right-6 text-white w-14 h-14 rounded-full flex items-center justify-center z-50 hover:scale-110 transition-transform"
-       style="background:#25D366;"
-       aria-label="Falar no WhatsApp">
-        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" viewBox="0 0 16 16">
-            <path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c-.003 1.398.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.005-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"/>
-        </svg>
-    </a>
-
-    
-    
-    <!-- ══ Lead Modal — Trabalhador (Mini Diagnóstico Multi-step) ═════ -->
+    modal_and_scripts = """
+    <!-- ══ Lead Modal — Trabalhador (Mini Diagnóstico) ═════ -->
     <div id="leadModal" class="fixed inset-0 z-[100] flex items-center justify-center bg-black/85 backdrop-blur-sm opacity-0 pointer-events-none transition-all duration-300 overflow-y-auto py-10">
         <div class="modal-card bg-[#0E172E] border border-white/10 p-8 rounded-xl max-w-[500px] w-full relative scale-95 transition-transform duration-300 mx-5 shadow-2xl my-auto">
             <button onclick="closeLeadModal()" class="absolute top-4 right-4 text-white/40 hover:text-white transition-colors text-2xl leading-none" aria-label="Fechar">&times;</button>
             
             <div class="g-line mb-4"></div>
             <h3 class="font-serif text-[24px] text-white leading-tight mb-2">Avaliação de Caso</h3>
-            <p id="modal-subtitle" class="font-sans text-[13px] text-white/60 mb-6">Preencha seus dados para iniciarmos a análise.</p>
+            <p class="font-sans text-[13px] text-white/60 mb-6">Responda rapidamente para que possamos entender sua situação antes do atendimento no WhatsApp.</p>
             
             <form id="popup-form" class="space-y-6">
                 <input type="hidden" name="pagina" value="trabalhador.html">
                 <input type="hidden" name="tipo" value="trabalhador">
                 <input type="hidden" name="botao" id="popup-botao" value="">
                 
-                <!-- PASSO 1: DADOS BÁSICOS -->
-                <div id="form-step-1" class="space-y-5 transition-all duration-300">
-                    <div>
-                        <label class="block text-[10px] uppercase tracking-[2px] text-brand-gold mb-1.5 font-semibold">Seu Nome</label>
-                        <input type="text" name="nome" id="input-nome" required class="w-full bg-black/20 border border-white/10 rounded px-3 py-3 text-white focus:outline-none focus:border-brand-gold transition-colors font-sans text-[15px]" placeholder="Nome completo">
-                    </div>
-                    <div>
-                        <label class="block text-[10px] uppercase tracking-[2px] text-brand-gold mb-1.5 font-semibold">WhatsApp</label>
-                        <input type="tel" name="whatsapp" id="input-whatsapp" required class="w-full bg-black/20 border border-white/10 rounded px-3 py-3 text-white focus:outline-none focus:border-brand-gold transition-colors font-sans text-[15px]" placeholder="(00) 00000-0000">
-                    </div>
-                    <div>
-                        <label class="block text-[10px] uppercase tracking-[2px] text-brand-gold mb-1.5 font-semibold">Profissão / Função</label>
-                        <input type="text" name="profissao" id="input-profissao" required class="w-full bg-black/20 border border-white/10 rounded px-3 py-3 text-white focus:outline-none focus:border-brand-gold transition-colors font-sans text-[15px]" placeholder="Sua profissão">
-                    </div>
-                    <div class="pt-2">
-                        <button type="button" id="btn-next-step" class="w-full btn-wa py-4 text-[14px] font-bold rounded-lg shadow-[0_0_20px_rgba(37,211,102,0.2)] hover:shadow-[0_0_30px_rgba(37,211,102,0.4)] transition-all">
-                            PRÓXIMO PASSO →
-                        </button>
-                    </div>
-                </div>
-
-                <!-- PASSO 2: DIAGNÓSTICO -->
-                <div id="form-step-2" class="space-y-6 hidden opacity-0 transition-opacity duration-300">
-                    
                 <!-- Pergunta 1 -->
                 <div>
                     <label class="block text-[13px] text-white mb-3 font-semibold">Seu caso se encaixa em qual dessas situações?</label>
@@ -824,48 +403,55 @@
                         <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="situacao" value="Outro problema trabalhista" class="accent-brand-gold"> Outro problema trabalhista</label>
                     </div>
                 </div>
-        
 
-                    <!-- Pergunta 2 -->
-                    <div>
-                        <label class="block text-[13px] text-white mb-3 font-semibold">Quando isso aconteceu?</label>
-                        <div class="space-y-2 font-sans text-[13px] text-white/80">
-                            <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="quando" value="Está acontecendo agora" required class="accent-brand-gold"> Está acontecendo agora</label>
-                            <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="quando" value="Nos últimos 3 meses" class="accent-brand-gold"> Nos últimos 3 meses</label>
-                            <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="quando" value="Nos últimos 6 meses" class="accent-brand-gold"> Nos últimos 6 meses</label>
-                            <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="quando" value="Há mais de 6 meses" class="accent-brand-gold"> Há mais de 6 meses</label>
+                <!-- Pergunta 2 -->
+                <div>
+                    <label class="block text-[13px] text-white mb-3 font-semibold">Quando isso aconteceu?</label>
+                    <div class="space-y-2 font-sans text-[13px] text-white/80">
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="quando" value="Está acontecendo agora" required class="accent-brand-gold"> Está acontecendo agora</label>
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="quando" value="Nos últimos 3 meses" class="accent-brand-gold"> Nos últimos 3 meses</label>
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="quando" value="Nos últimos 6 meses" class="accent-brand-gold"> Nos últimos 6 meses</label>
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="quando" value="Há mais de 6 meses" class="accent-brand-gold"> Há mais de 6 meses</label>
+                    </div>
+                </div>
+
+                <!-- Pergunta 3 -->
+                <div>
+                    <label class="block text-[13px] text-white mb-3 font-semibold">Você ainda trabalha nessa empresa?</label>
+                    <div class="space-y-2 font-sans text-[13px] text-white/80 flex gap-6">
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="ainda_trabalha" value="Sim" required class="accent-brand-gold"> Sim</label>
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="ainda_trabalha" value="Não" class="accent-brand-gold"> Não</label>
+                    </div>
+                </div>
+
+                <!-- Pergunta 4 -->
+                <div>
+                    <label class="block text-[13px] text-white mb-3 font-semibold">Você possui documentos ou provas sobre o que aconteceu?</label>
+                    <div class="space-y-2 font-sans text-[13px] text-white/80 flex gap-6">
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="tem_provas" value="Sim" required class="accent-brand-gold"> Sim</label>
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="tem_provas" value="Alguns" class="accent-brand-gold"> Alguns</label>
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="tem_provas" value="Não" class="accent-brand-gold"> Não</label>
+                    </div>
+                </div>
+                
+                <div class="border-t border-white/10 pt-5">
+                    <div class="flex gap-4">
+                        <div class="flex-1">
+                            <label class="block text-[10px] uppercase tracking-[2px] text-brand-gold mb-1.5 font-semibold">Seu Nome</label>
+                            <input type="text" name="nome" required class="w-full bg-black/20 border border-white/10 rounded px-3 py-2.5 text-white focus:outline-none focus:border-brand-gold transition-colors font-sans text-[14px]" placeholder="Nome completo">
+                        </div>
+                        <div class="flex-1">
+                            <label class="block text-[10px] uppercase tracking-[2px] text-brand-gold mb-1.5 font-semibold">WhatsApp</label>
+                            <input type="tel" name="whatsapp" required class="w-full bg-black/20 border border-white/10 rounded px-3 py-2.5 text-white focus:outline-none focus:border-brand-gold transition-colors font-sans text-[14px]" placeholder="(00) 00000-0000">
                         </div>
                     </div>
-
-                    <!-- Pergunta 3 -->
-                    <div>
-                        <label class="block text-[13px] text-white mb-3 font-semibold">Você ainda trabalha nessa empresa?</label>
-                        <div class="space-y-2 font-sans text-[13px] text-white/80 flex gap-6">
-                            <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="ainda_trabalha" value="Sim" required class="accent-brand-gold"> Sim</label>
-                            <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="ainda_trabalha" value="Não" class="accent-brand-gold"> Não</label>
-                        </div>
-                    </div>
-
-                    <!-- Pergunta 4 -->
-                    <div>
-                        <label class="block text-[13px] text-white mb-3 font-semibold">Você possui documentos ou provas sobre o que aconteceu?</label>
-                        <div class="space-y-2 font-sans text-[13px] text-white/80 flex gap-6">
-                            <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="tem_provas" value="Sim" required class="accent-brand-gold"> Sim</label>
-                            <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="tem_provas" value="Alguns" class="accent-brand-gold"> Alguns</label>
-                            <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="tem_provas" value="Não" class="accent-brand-gold"> Não</label>
-                        </div>
-                    </div>
-                    
-                    <div class="pt-2">
-                        <button type="submit" id="popup-btn" class="w-full btn-wa py-4 text-[14px] font-bold rounded-lg shadow-[0_0_20px_rgba(37,211,102,0.2)] hover:shadow-[0_0_30px_rgba(37,211,102,0.4)] transition-all">
-                            AVALIAR MEU CASO NO WHATSAPP
-                        </button>
-                        <p class="text-center font-sans text-[11px] text-white/30 mt-3">Suas informações são tratadas com sigilo absoluto.</p>
-                        
-                        <button type="button" id="btn-prev-step" class="w-full text-white/40 hover:text-white font-sans text-[12px] mt-4 text-center transition-colors">
-                            ← Voltar e editar dados
-                        </button>
-                    </div>
+                </div>
+                
+                <div class="pt-2">
+                    <button type="submit" id="popup-btn" class="w-full btn-wa py-4 text-[14px] font-bold rounded-lg shadow-[0_0_20px_rgba(37,211,102,0.2)] hover:shadow-[0_0_30px_rgba(37,211,102,0.4)] transition-all">
+                        AVALIAR MEU CASO NO WHATSAPP
+                    </button>
+                    <p class="text-center font-sans text-[11px] text-white/30 mt-3">Suas informações são tratadas com sigilo absoluto.</p>
                 </div>
             </form>
         </div>
@@ -889,33 +475,17 @@
             _botaoLabel = botaoLabel || 'Não identificado';
             const modal = document.getElementById('leadModal');
             const card  = modal.querySelector('.modal-card');
-            if(modal && card) {
-                modal.classList.remove('opacity-0', 'pointer-events-none');
-                card.classList.remove('scale-95');
-                card.classList.add('scale-100');
-            }
-            
-            // Reseta para o passo 1 sempre que abrir
-            const step1 = document.getElementById('form-step-1');
-            const step2 = document.getElementById('form-step-2');
-            
-            if(step1 && step2) {
-                step1.classList.remove('hidden');
-                setTimeout(() => step1.classList.remove('opacity-0'), 10);
-                
-                step2.classList.add('hidden', 'opacity-0');
-                document.getElementById('modal-subtitle').innerText = 'Preencha seus dados para iniciarmos a análise.';
-            }
+            modal.classList.remove('opacity-0', 'pointer-events-none');
+            card.classList.remove('scale-95');
+            card.classList.add('scale-100');
         }
 
         function closeLeadModal() {
             const modal = document.getElementById('leadModal');
             const card  = modal.querySelector('.modal-card');
-            if(modal && card) {
-                modal.classList.add('opacity-0', 'pointer-events-none');
-                card.classList.remove('scale-100');
-                card.classList.add('scale-95');
-            }
+            modal.classList.add('opacity-0', 'pointer-events-none');
+            card.classList.remove('scale-100');
+            card.classList.add('scale-95');
         }
 
         function toggleFaq(element) {
@@ -944,9 +514,9 @@
             const nav = document.getElementById('nav');
             const stickyCta = document.getElementById('sticky-cta');
             window.addEventListener('scroll', () => {
-                if(nav) nav.classList.toggle('shadow-lg', window.scrollY > 40);
+                nav.classList.toggle('shadow-lg', window.scrollY > 40);
                 const finalCta = document.getElementById('final-cta');
-                if (finalCta && stickyCta) {
+                if (finalCta) {
                     const rect = finalCta.getBoundingClientRect();
                     stickyCta.style.transform = (rect.top < window.innerHeight) ? 'translateY(100%)' : 'translateY(0)';
                 }
@@ -955,60 +525,15 @@
             // Progress bar
             const bar = document.getElementById('pbar');
             window.addEventListener('scroll', () => {
-                if(bar) bar.style.width = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight) * 100) + '%';
+                bar.style.width = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight) * 100) + '%';
             }, { passive: true });
 
             // Close modal clicking outside
-            document.getElementById('leadModal')?.addEventListener('click', function(e) {
+            document.getElementById('leadModal').addEventListener('click', function(e) {
                 if (e.target === this) closeLeadModal();
             });
 
-            // Lógica Multi-step do Formulário
-            const btnNext = document.getElementById('btn-next-step');
-            const btnPrev = document.getElementById('btn-prev-step');
-            const step1 = document.getElementById('form-step-1');
-            const step2 = document.getElementById('form-step-2');
-            const inputNome = document.getElementById('input-nome');
-            const inputWhats = document.getElementById('input-whatsapp');
-            const inputProfissao = document.getElementById('input-profissao');
-            const modalSubtitle = document.getElementById('modal-subtitle');
-
-            if(btnNext) {
-                btnNext.addEventListener('click', () => {
-                    // Validação simples
-                    if (!inputNome.value || !inputWhats.value || !inputProfissao.value) {
-                        inputNome.reportValidity();
-                        inputWhats.reportValidity();
-                        inputProfissao.reportValidity();
-                        return;
-                    }
-                    
-                    step1.classList.add('opacity-0');
-                    setTimeout(() => {
-                        step1.classList.add('hidden');
-                        step2.classList.remove('hidden');
-                        modalSubtitle.innerText = 'Responda as perguntas abaixo para finalizar.';
-                        // Reflow
-                        void step2.offsetWidth;
-                        step2.classList.remove('opacity-0');
-                    }, 300);
-                });
-            }
-
-            if(btnPrev) {
-                btnPrev.addEventListener('click', () => {
-                    step2.classList.add('opacity-0');
-                    setTimeout(() => {
-                        step2.classList.add('hidden');
-                        step1.classList.remove('hidden');
-                        modalSubtitle.innerText = 'Preencha seus dados para iniciarmos a análise.';
-                        void step1.offsetWidth;
-                        step1.classList.remove('opacity-0');
-                    }, 300);
-                });
-            }
-
-            // Form submit final
+            // Form submit
             document.getElementById('popup-form')?.addEventListener('submit', async function(e) {
                 e.preventDefault();
                 const btn  = document.getElementById('popup-btn');
@@ -1018,26 +543,20 @@
                 btn.innerHTML = 'Enviando...';
                 btn.style.opacity = '0.7';
                 
+                // Formata os dados preenchidos no form para uma mensagem de WhatsApp
                 const nome = form.nome.value;
-                const whatsapp = form.whatsapp.value;
-                const profissao = form.profissao.value;
                 const situacao = form.situacao.value;
                 const quando = form.quando.value;
                 const aindaTrabalha = form.ainda_trabalha.value;
                 const provas = form.tem_provas.value;
                 
-                const textoWa = `Olá, meu nome é ${nome}. Trabalhei/trabalho como ${profissao} e gostaria de uma avaliação do meu caso.\n\nSituação: ${situacao}\nQuando: ${quando}\nAinda na empresa: ${aindaTrabalha}\nPossui provas: ${provas}`;
+                const textoWa = `Olá, meu nome é ${nome}. Gostaria de uma avaliação do meu caso.\\n\\nSituação: ${situacao}\\nQuando: ${quando}\\nAinda na empresa: ${aindaTrabalha}\\nPossui provas: ${provas}`;
                 const WA_LINK = 'https://wa.me/5511933502503?text=' + encodeURIComponent(textoWa);
 
                 const data = {
                     nome:       nome,
-                    whatsapp:   whatsapp,
-                    profissao:  profissao,
-                    situacao:   situacao,
-                    quando:     quando,
-                    ainda_trabalha: aindaTrabalha,
-                    tem_provas: provas,
-                    info_extra: `Profissão: ${profissao} | Situação: ${situacao} | Quando: ${quando} | Ainda Trabalha: ${aindaTrabalha} | Provas: ${provas}`,
+                    whatsapp:   form.whatsapp.value,
+                    info_extra: `Situação: ${situacao} | Quando: ${quando} | Ainda Trabalha: ${aindaTrabalha} | Provas: ${provas}`,
                     pagina:     form.pagina.value,
                     tipo:       form.tipo.value,
                     botao:      _botaoLabel
@@ -1055,12 +574,6 @@
                 window.open(WA_LINK, '_blank');
                 closeLeadModal();
                 form.reset();
-                
-                // Volta pro passo 1 em background
-                step2.classList.add('hidden', 'opacity-0');
-                step1.classList.remove('hidden');
-                setTimeout(() => step1.classList.remove('opacity-0'), 10);
-                
                 btn.disabled = false;
                 btn.innerHTML = 'AVALIAR MEU CASO NO WHATSAPP';
                 btn.style.opacity = '1';
@@ -1069,4 +582,94 @@
     </script>
 </body>
 </html>
+    """
+
+    full_trabalhador = head + nav + new_body + footer + modal_and_scripts
+    with open('trabalhador.html', 'w', encoding='utf-8') as f:
+        f.write(full_trabalhador)
+
+    # Agora criar horas-extras.html mudando a COPY específica.
+    # Vou usar o trabalhador gerado e substituir o Hero, dores e form values.
     
+    # Substituir Hero
+    he_body = new_body.replace(
+        "Seu empregador deixou de pagar seus direitos trabalhistas?",
+        "Você trabalhava além do horário e essas horas não eram pagas?"
+    ).replace(
+        """Se você trabalha ou trabalhou com carteira assinada e passou por problemas como <strong class="text-white">horas extras não pagas, acidente de trabalho, doença profissional, falta de registro, justa causa, rescisão indireta ou problemas relacionados à gestação</strong>, seu caso pode precisar de uma análise jurídica.""",
+        """Se você fazia horas extras com frequência e elas não apareciam corretamente no seu pagamento, assinava folha de ponto e voltava a trabalhar, ou levava trabalho para casa sem receber por isso, seu caso pode precisar de uma análise jurídica específica."""
+    )
+    
+    # Modificar Identificação
+    he_body = he_body.replace(
+        "Qual dessas situações aconteceu com você?",
+        "Identifique como as suas horas extras foram violadas:"
+    )
+    
+    # Refazendo os cards
+    pain_cards_regex = r'<div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-12">.*?</div>\s*<!-- Consequência / Urgência -->'
+    he_pain_cards = """<div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-12">
+                <div class="pain-card">
+                    <div>
+                        <h4 class="font-sans font-semibold text-[16px] text-white mb-2">Bater o ponto e voltar a trabalhar?</h4>
+                        <p class="font-sans text-[14px] text-white/70 leading-relaxed">A empresa pedia para você registrar a saída, mas você continuava trabalhando por horas sem que isso fosse contabilizado.</p>
+                    </div>
+                </div>
+                <div class="pain-card">
+                    <div>
+                        <h4 class="font-sans font-semibold text-[16px] text-white mb-2">Trabalhar aos finais de semana e feriados sem adicional?</h4>
+                        <p class="font-sans text-[14px] text-white/70 leading-relaxed">Você abria mão dos seus dias de descanso e não recebia os adicionais legais (100% ou folga compensatória).</p>
+                    </div>
+                </div>
+                <div class="pain-card">
+                    <div>
+                        <h4 class="font-sans font-semibold text-[16px] text-white mb-2">Não ter intervalo de almoço completo?</h4>
+                        <p class="font-sans text-[14px] text-white/70 leading-relaxed">Tinha que engolir a comida e voltar ao trabalho antes de completar a 1 hora mínima de descanso obrigatório.</p>
+                    </div>
+                </div>
+                <div class="pain-card">
+                    <div>
+                        <h4 class="font-sans font-semibold text-[16px] text-white mb-2">Banco de horas que nunca era pago ou folgado?</h4>
+                        <p class="font-sans text-[14px] text-white/70 leading-relaxed">Acumulava milhares de horas, mas não conseguia tirar folga nem recebia o valor em dinheiro no final.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Consequência / Urgência -->"""
+    
+    he_body = re.sub(pain_cards_regex, he_pain_cards, he_body, flags=re.DOTALL)
+    
+    he_modal = modal_and_scripts.replace(
+        '<input type="hidden" name="pagina" value="trabalhador.html">',
+        '<input type="hidden" name="pagina" value="horas-extras.html">'
+    )
+    
+    # O form_situacao para HE
+    he_modal = re.sub(
+        r'<!-- Pergunta 1 -->.*?<!-- Pergunta 2 -->',
+        """<!-- Pergunta 1 -->
+                <div>
+                    <label class="block text-[13px] text-white mb-3 font-semibold">Como as suas horas extras eram tratadas?</label>
+                    <div class="space-y-2 font-sans text-[13px] text-white/80">
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="situacao" value="Não eram pagas nem iam para banco de horas" required class="accent-brand-gold"> Não eram pagas nem iam para banco de horas</label>
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="situacao" value="Batia o ponto e voltava a trabalhar" class="accent-brand-gold"> Batia o ponto e voltava a trabalhar</label>
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="situacao" value="Intervalo de almoço reduzido" class="accent-brand-gold"> Intervalo de almoço reduzido</label>
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="situacao" value="Trabalho externo/home office sem controle" class="accent-brand-gold"> Trabalho sem externo/home office sem controle</label>
+                    </div>
+                </div>
+                <!-- Pergunta 2 -->""",
+        he_modal, flags=re.DOTALL
+    )
+
+    full_he = head + nav + he_body + footer + he_modal
+    
+    # Atualizar title meta tag na página HE
+    full_he = re.sub(r'<title>.*?</title>', '<title>Katarina Malinauskas | Horas Extras Não Pagas</title>', full_he)
+    full_he = re.sub(r'<meta name="description" content=".*?">', '<meta name="description" content="Trabalhava além do horário e não recebia corretamente? Você pode ter valores atrasados de horas extras a receber.">', full_he)
+
+    with open('horas-extras.html', 'w', encoding='utf-8') as f:
+        f.write(full_he)
+        
+    print("Sucesso")
+
+if __name__ == '__main__':
+    update_trabalhador()
